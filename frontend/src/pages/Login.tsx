@@ -4,7 +4,9 @@ import logo from '../assets/images/logo.jpg';
 const Login = () => {
   return (
     <div className='flex flex-col items-center justify-center w-100 mt-2'>
-      <img src={logo} alt="logo" className='w-80 mb-4'/>
+      <Link to={'/'}>
+        <img src={logo} alt="logo" className='w-80 mb-4'/>
+      </Link>
       <form className='border p-10 rounded-md bg-white shadow-xl drop-shadow-xl'>
         <div className='font-bold text-2xl mb-5'>Login Now</div>
         <div className='flex flex-col mb-2'>
@@ -17,7 +19,7 @@ const Login = () => {
         </div>
         <div className='flex justify-between'>
           <Link to={'/'} className='text-sky-600 underline'>Forgot Password</Link>
-          <button className='border p-2 px-4 rounded-md bg-sky-700 text-white'>Login</button>
+          <button className='border p-2 px-4 rounded-md bg-sky-500 text-white'>Login</button>
         </div>
       </form>
       <div className='mt-2'>
