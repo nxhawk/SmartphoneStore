@@ -10,8 +10,8 @@ const Usernavbar = () => {
 
   return (
     <div className="max-w-5xl mx-auto border-b-2 flex justify-between border-gray-100 items-center">
-      <Link to={'/'}>
-        <img src={logo} alt="logo" className='w-60 mb-4 mt-2'/>
+      <Link to={'/'} className='overflow-hidden'>
+        <img src={logo} alt="logo" className='w-60 mb-4 mt-2 hover:scale-105'/>
       </Link>
       <div className='flex gap-8'>
           <Link to={'/'} className='flex items-center gap-2 relative'
