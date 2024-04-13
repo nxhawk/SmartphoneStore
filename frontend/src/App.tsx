@@ -5,6 +5,7 @@ import Home from './pages/Home'
 import Layout from './layout/Layout'
 import News from './pages/News'
 import Hiring from './pages/Hiring'
+import About from './pages/About'
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
             <Route index element={<Home/>}/>
             <Route path='/news' element={<News/>}/>
             <Route path='/hiring' element={<Hiring/>}/>
+            <Route path='/about' element={<About/>}/>
           </Route>
           <Route path='/auth'>
             <Route path='login' element={<Login/>}/>
