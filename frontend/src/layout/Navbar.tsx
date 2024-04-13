@@ -13,16 +13,24 @@ const Navbar = () => {
         <div className="flex justify-between">
           <div className="flex w-3/12">
             <div className="py-2 px-1 hover:bg-sky-800 hover:text-white text-slate-500">
-              <BiLogoFacebook className=" hover:bg-sky-800"/>
+              <Link to={'/'}>
+                <BiLogoFacebook className=" hover:bg-sky-800"/>
+              </Link>
             </div>
             <div className="py-2 px-1 hover:bg-sky-400 hover:text-white text-slate-500">
-              <AiOutlineTwitter className=" hover:bg-sky-400"/>
+              <Link to={'/'}>
+                <AiOutlineTwitter className=" hover:bg-sky-400"/>
+              </Link>
             </div>
             <div className="py-2 px-1 hover:bg-red-500 hover:text-white text-slate-500">
-              <AiOutlineGoogle className=" hover:bg-red-500"/>
+              <Link to={'/'}>
+                <AiOutlineGoogle className=" hover:bg-red-500"/>
+              </Link>
             </div>
             <div className="py-2 px-1 hover:bg-red-600 hover:text-white text-slate-500">
-              <TfiYoutube className=" hover:bg-red-600"/>
+              <Link to={'/'}>
+                <TfiYoutube className=" hover:bg-red-600"/>
+              </Link>
             </div>
           </div>
           <div className="text-slate-500 text-lg flex w-9/12 justify-around">

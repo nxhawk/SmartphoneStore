@@ -74,5 +74,112 @@
       "description": "Chúng tôi tạo ra không gian mua sắm thân thiện và thoải mái, nơi bạn có thể dễ dàng khám phá và trải nghiệm các sản phẩm. Cùng với đó là đội ngũ nhân viên chuyên nghiệp, sẵn sàng hỗ trợ và tư vấn, chúng tôi cam kết mang lại trải nghiệm mua sắm tốt nhất cho khách hàng.",
       "color": "bg-stone-100"
     }
+  ],
+  "maintenance": [
+    {
+      "stt": "1",
+      "address": "10F2, Hồ Trung Thành, P7 – Tp. Cà Mau, Tỉnh Cà Mau",
+      "phone": "(0780)-2212 158",
+      "time": "8h00 - 17h00",
+      "url": "https://www.google.com/maps/place/10+H%E1%BB%93+Trung+Th%C3%A0nh,+Ph%C6%B0%E1%BB%9Dng+7,+Th%C3%A0nh+ph%E1%BB%91+C%C3%A0+Mau,+C%C3%A0+Mau/@9.1747111,105.1461066,17z/data=!3m1!4b1!4m6!3m5!1s0x31a1497537c00087:0xa3fca076f7aaf013!8m2!3d9.1747111!4d105.1486815!16s%2Fg%2F11j37h2b46?entry=ttu"
+    },
+    {
+      "stt": "2",
+      "address": "14A2 Trần Nguyên Hãn, P.Mỹ Long, Long Xuyên, An Giang",
+      "phone": "076.3841649",
+      "time": "8h00 - 17h00",
+      "url": "https://www.google.com/maps?q=14A2+Tr%E1%BA%A7n+Nguy%C3%AAn+H%C3%A3n,+P.M%E1%BB%B9+Long,+Long+Xuy%C3%AAn,+An+Giang"
+    },
+    {
+      "stt": "3",
+      "address": "114 Tô Hiệu, Quận Lê Chân, Tp. Hải Phòng",
+      "phone": "(031)-384 7689",
+      "time": "8h00 - 17h00",
+      "url": "https://www.google.com/maps/place/114+T%C3%B4+Hi%E1%BB%87u/@20.851585,106.6801411,17z/data=!3m1!4b1!4m6!3m5!1s0x314a7a8c0478a94f:0x4652567046c06629!8m2!3d20.851585!4d106.682716!16s%2Fg%2F11b6jgkr9j?entry=ttu"
+    },
+    {
+      "stt": "4",
+      "address": "32 Lương Khánh Thiện, Tp. Hải phòng",
+      "phone": "0924713257",
+      "time": "8h00 - 17h00",
+      "url": "https://www.google.com/maps?q=32+L%C6%B0%C6%A1ng+Kh%C3%A1nh+Thi%E1%BB%87n,+Tp.+H%E1%BA%A3i+ph%C3%B2ng"
+    },
+    {
+      "stt": "5",
+      "address": "123 Nam Kỳ Khởi Nghĩa, Tp. Vũng Tàu, Tỉnh BRVT",
+      "phone": "(064)-3531 248",
+      "time": "8h00 - 17h00",
+      "url": "https://www.google.com/maps?q=123+Nam+K%E1%BB%B3+Kh%E1%BB%9Fi+Ngh%C4%A9a,+Tp.+V%C5%A9ng+T%C3%A0u,+T%E1%BB%89nh+BRVT"
+    },
+    {
+      "stt": "6",
+      "address": "157 Ngô Gia Tự, Phường Ngô Quyền, TP Bắc Giang",
+      "phone": "(0240)-3820 349",
+      "time": "8h00 - 17h00",
+      "url": "https://www.google.com/maps?q=157+Ng%C3%B4+Gia+T%E1%BB%B1,+Ph%C6%B0%E1%BB%9Dng+Ng%C3%B4+Quy%E1%BB%81n,+TP+B%E1%BA%AFc+Giang"
+    },
+    {
+      "stt": "7",
+      "address": "32 Lương Khánh Thiện, Tp. Hải phòng",
+      "phone": "(0781)-3827 676",
+      "time": "8h00 - 17h00",
+      "url": "https://www.google.com/maps?q=32+L%C6%B0%C6%A1ng+Kh%C3%A1nh+Thi%E1%BB%87n,+Tp.+H%E1%BA%A3i+ph%C3%B2ng"
+    },
+    {
+      "stt": "8",
+      "address": "139 Nguyễn Văn Cừ, Tp. Bắc Ninh, Tỉnh Bắc Ninh",
+      "phone": "(0241)-3812767",
+      "time": "8h00 - 17h00",
+      "url": "https://www.google.com/maps?q=139+Nguy%E1%BB%85n+V%C4%83n+C%E1%BB%AB,+Tp.+B%E1%BA%AFc+Ninh,+T%E1%BB%89nh+B%E1%BA%AFc+Ninh"
+    },
+    {
+      "stt": "9",
+      "address": "39 Nguyễn Đình Chiểu, P 1, Tx. Bến Tre, Tỉnh Bến Tre",
+      "phone": "(075)-3814 701",
+      "time": "8h00 - 17h00",
+      "url": "https://www.google.com/maps?q=39+Nguy%E1%BB%85n+%C4%90%C3%ACnh+Chi%E1%BB%83u,+P+1,+Tx.+B%E1%BA%BFn+Tre,+T%E1%BB%89nh+B%E1%BA%BFn+Tre"
+    },
+    {
+      "stt": "10",
+      "address": "10A, Lý Thường Kiệt, Tp. Quy Nhơn, Tỉnh Bình Định",
+      "phone": "(056)-3821 788",
+      "time": "8h00 - 17h00",
+      "url": "https://www.google.com/maps?q=10A,+L%C3%BD+Th%C6%B0%E1%BB%9Dng+Ki%E1%BB%87t,+Tp.+Quy+Nh%C6%A1n,+T%E1%BB%89nh+B%C3%ACnh+%C4%90%E1%BB%8Bnh"
+    },
+    {
+      "stt": "11",
+      "address": "42 Phố 11 Vân Giang, P. Vân Giang, Tp. Ninh Bình",
+      "phone": "(030)-389 3408",
+      "time": "8h00 - 17h00",
+      "url": "https://www.google.com/maps?q=42+Ph%E1%BB%91+11+V%C3%A2n+Giang,+P.+V%C3%A2n+Giang,+Tp.+Ninh+B%C3%ACnh"
+    },
+    {
+      "stt": "12",
+      "address": "283 Cách Mạng Tháng Tám, TX.Thủ Dầu Một, Tỉnh Bình Dương",
+      "phone": "0650.3831528",
+      "time": "8h00 - 17h00",
+      "url": "https://www.google.com/maps?q=283+C%C3%A1ch+M%E1%BA%A1ng+Th%C3%A1ng+T%C3%A1m,+TX.Th%E1%BB%A7+D%E1%BA%A7u+M%E1%BB%99t,+T%E1%BB%89nh+B%C3%ACnh+D%C6%B0%C6%A1ng"
+    },
+    {
+      "stt": "13",
+      "address": "47 Khu 2, P. Phước Bình, Tx. Phước Long, Bình Phước",
+      "phone": "(0651)-3774 789",
+      "time": "8h00 - 17h00",
+      "url": "https://www.google.com/maps?q=47+Khu+2,+P.+Ph%C6%B0%E1%BB%9Bc+B%C3%ACnh,+Tx.+Ph%C6%B0%E1%BB%9Bc+Long,+B%C3%ACnh+Ph%C6%B0%E1%BB%9Bc"
+    },
+    {
+      "stt": "14",
+      "address": "20 Nguyễn Hội P.Phú Trinh Tp.Phan Thiết, Tỉnh Bình Thuận",
+      "phone": "062.382853",
+      "time": "8h00 - 17h00",
+      "url": "https://www.google.com/maps?q=20+Nguy%E1%BB%85n+H%E1%BB%99i+P.Ph%C3%BA+Trinh+Tp.Phan+Thi%E1%BA%BFt,+T%E1%BB%89nh+B%C3%ACnh+Thu%E1%BA%ADn"
+    },
+    {
+      "stt": "15",
+      "address": "76 Nguyễn Đình Chiểu, P 2, Tp. Cao Lãnh, Đồng Tháp",
+      "phone": "(067)-3874 686",
+      "time": "8h00 - 17h00",
+      "url": "https://www.google.com/maps?q=76+Nguy%E1%BB%85n+%C4%90%C3%ACnh+Chi%E1%BB%83u,+P+2,+Tp.+Cao+L%C3%A3nh,+%C4%90%E1%BB%93ng+Th%C3%A1p"
+    }
   ]
 }

@@ -6,6 +6,7 @@ import Layout from './layout/Layout'
 import News from './pages/News'
 import Hiring from './pages/Hiring'
 import About from './pages/About'
+import Maintenance from './pages/Maintenance'
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
             <Route path='/news' element={<News/>}/>
             <Route path='/hiring' element={<Hiring/>}/>
             <Route path='/about' element={<About/>}/>
+            <Route path='/maintenance' element={<Maintenance/>}/>
           </Route>
           <Route path='/auth'>
             <Route path='login' element={<Login/>}/>
