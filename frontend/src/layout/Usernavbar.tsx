@@ -26,7 +26,7 @@ const Usernavbar = () => {
             </span>
             {
               show && (
-            <div className='absolute top-[42px] left-[-80px] w-40 bg-slate-300 text-green-700 font-semibold text-center rounded-sm'>
+            <div className='z-50 absolute top-[42px] left-[-80px] w-40 bg-slate-300 text-green-700 font-semibold text-center rounded-sm'>
               <div className='hover:text-white hover:bg-neutral-700 p-2 hover:rounded-sm'>Trang người dùng</div>
               <div className='hover:text-white hover:bg-neutral-700 p-2 hover:rounded-sm'>Đăng xuất</div>
             </div>

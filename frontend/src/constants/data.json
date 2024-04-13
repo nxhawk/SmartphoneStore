@@ -1,0 +1,46 @@
+{
+  "news": [
+    {
+      "banner": "src/assets/images/tintuc/tintuc1.png", 
+      "link": "https://doanhnghiepvn.vn/cong-nghe/danh-gia-smartphone-chip-s660-ram-8-gb-gia-6-99-trieu-tai-viet-nam/2018112603315443",
+      "title": "Đánh giá smartphone chip S660, RAM 8 GB, giá 6,99 triệu tại Việt Nam",
+      "from": "Doanh ngiệp",
+      "time": "3 giờ"
+    },
+    {
+      "banner": "src/assets/images/tintuc/tintuc2.png", 
+      "link": "https://thanhnien.vn/kham-pha-smartphone-man-hinh-gap-duoc-dau-tien-cua-samsung-185807113.htm",
+      "title": "Khám phá smartphone màn hình gập được đầu tiên của Samsung",
+      "from": "Thanh niên",
+      "time": "6 giờ"
+    },
+    {
+      "banner": "src/assets/images/tintuc/tintuc3.png", 
+      "link": "https://vov.vn/cong-nghe/doanh-so-iphone-xs-va-iphone-xr-tham-hai-apple-san-xuat-lai-iphone-x-843717.vov",
+      "title": "Doanh số iPhone XS và iPhone XR thảm hại, Apple sản xuất lại iPhone X",
+      "from": "VOV",
+      "time": "6 giờ"
+    },
+    {
+      "banner": "src/assets/images/tintuc/tintuc4.png", 
+      "link": "https://vietq.vn/chiec-dien-thoai-thong-minh-nay-cua-lg-se-co-toi-16-camera-d151674.html",
+      "title": "Chiếc điện thoại thông minh này của LG sẽ có tới 16 Camera",
+      "from": "VietQ",
+      "time": "13 giờ"
+    },
+    {
+      "banner": "src/assets/images/tintuc/tintuc5.png", 
+      "link": "https://news.zing.vn/nhung-tieu-chi-ban-khong-nen-bo-qua-khi-mua-smartphone-2018-post894509.html",
+      "title": "Những tiêu chí bạn không nên bỏ qua khi mua smartphone 2018",
+      "from": "Zing",
+      "time": "9 giờ"
+    },
+    {
+      "banner": "src/assets/images/tintuc/tintuc6.png", 
+      "link": "https://cellphones.com.vn/sforum/danh-gia-iphone-14-pro-sau-gan-mot-nam-su-dung",
+      "title": "Đánh giá Iphone 14 pro sau gần 1 năm sử dụng",
+      "from": "Forum",
+      "time": "7 giờ"
+    }
+  ]
+}
