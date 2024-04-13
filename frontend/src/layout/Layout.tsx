@@ -6,7 +6,9 @@ const Layout = () => {
   return (
     <>
       <Header/>
-      <Outlet/>
+      <main className='max-w-5xl mx-auto min-h-screen'>
+        <Outlet/>
+      </main>
       <Footer/>
     </>
   )
