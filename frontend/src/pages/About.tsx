@@ -5,7 +5,7 @@ const About = () => {
   return (
     <div>
       <CustomMarquee message="Chào mừng đến với Thế Giới Di Động!"/>
-      <div className="py-5 px-10 grid grid-cols-2 gap-8">
+      <div className="py-5 px-10 grid lg:grid-cols-2 grid-cols-1 gap-8">
         {
           about["about"].map((item, key)=>
           <div key={key} className={`border p-3 rounded-lg shadow-md ${item.color}`}>

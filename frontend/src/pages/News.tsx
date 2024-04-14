@@ -6,7 +6,7 @@ const News = () => {
   return (
     <div>
       <CustomMarquee message="Các tin tức mới nhất về SMART PHONE"/>
-      <div className="grid grid-cols-2 gap-4 mt-4 mb-10">
+      <div className="grid grid-cols-1 p-2 lg:grid-cols-2 gap-4 mt-4 mb-10">
         {
           news["news"]?.map((item, key) =>
             <SingleNews 

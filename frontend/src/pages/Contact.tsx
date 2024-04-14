@@ -1,8 +1,8 @@
 const Contact = () => {
   return (
     <div className="py-5">
-      <div className="flex">
-          <div className="w-5/12 bg-neutral-500 p-6 text-white rounded-l-3xl">
+      <div className="flex justify-center p-2">
+          <div className="lg:w-5/12 lg:block hidden bg-neutral-500 p-6 text-white rounded-l-3xl">
             <div className="text-2xl font-bold mb-4">Thông tin liên hệ</div>
             <div className="text-base mb-10">Gửi phản hồi của bạn vào form. Chúng tôi sẽ trả lời sớm nhất cho bạn!</div>
             <div className="">
@@ -20,7 +20,7 @@ const Contact = () => {
               </div>
             </div>
           </div>
-          <div className="w-7/12 bg-neutral-50 p-6 rounded-r-3xl">
+          <div className="lg:w-7/12 bg-neutral-50 p-6 lg:rounded-r-3xl rounded-3xl">
             <div className="text-2xl font-bold mb-4">Gửi phản hồi cho chúng tôi</div>
             <form>
               <div className="grid grid-cols-2 gap-5">
