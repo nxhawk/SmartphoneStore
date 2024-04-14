@@ -4,6 +4,7 @@ import Comment, { CommentProps } from './Comment'
 import Pagination from '@mui/material/Pagination';
 import FilterStarButton from './FilterStarButton';
 import { valueInArray } from '../utils/helper';
+import AddComment from './AddComment';
 
 const CommentList = () => {
   const [numberPage, setnumberPage] = useState(10);
@@ -89,6 +90,7 @@ const CommentList = () => {
           <div className='text-center font-bold text-2xl mb-2'>Chưa có bình luận nào</div>
         )
       }
+      <AddComment/>
     </div>
   )
 }
