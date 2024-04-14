@@ -5,8 +5,12 @@ import { Link } from "react-router-dom";
 import { FaRegNewspaper, FaRegHandshake, FaInfoCircle } from "react-icons/fa";
 import { BiSolidWrench } from "react-icons/bi";
 import { BsFillTelephoneFill } from "react-icons/bs";
+import { useLocation } from 'react-router-dom';
 
 const Navbar = () => {
+  const location = useLocation();
+  const pathname = location.pathname.split('/')[1] || '';
+
   return (
     <div className="bg-neutral-200 border border-b-1 border-neutral-300">
       <div className="max-w-5xl mx-auto">
@@ -35,42 +39,42 @@ const Navbar = () => {
           </div>
           <div className="text-slate-500 text-lg flex w-9/12 justify-around">
             <Link to={'/'} title="Trang chủ">
-              <div className="flex items-center hover:border-b-4 hover:border-black hover:text-black">
+              <div className={`flex items-center lg:border-b-4  ${pathname===''?'border-black text-black':'hover:border-black hover:text-black'}`}>
                 <AiFillHome className="mr-1 mt-2 lg:mt-0" />
                 <span className="hidden lg:block">Trang chủ</span>
               </div>
             </Link>
 
             <Link to={'/news'} title="Tin tức">
-              <div className="flex items-center hover:border-b-4 hover:border-black hover:text-black">
+              <div className={`flex items-center lg:border-b-4  ${pathname==='news'?'border-black text-black':'hover:border-black hover:text-black'}`}>
                 <FaRegNewspaper className="mr-1 mt-2 lg:mt-0" />
                 <span className="hidden lg:block">Tin tức</span>
               </div>
             </Link>
 
             <Link to={'/hiring'} title="Tuyển dụng">
-              <div className="flex items-center hover:border-b-4 hover:border-black hover:text-black">
+              <div className={`flex items-center lg:border-b-4  ${pathname==='hiring'?'border-black text-black':'hover:border-black hover:text-black'}`}>
                 <FaRegHandshake className="mr-1 mt-2 lg:mt-0" />
                 <span className="hidden lg:block">Tuyển dụng</span>
               </div>
             </Link>
 
             <Link to={'/about'} title="Giới thiệu">
-              <div className="flex items-center hover:border-b-4 hover:border-black hover:text-black">
+              <div className={`flex items-center lg:border-b-4  ${pathname==='about'?'border-black text-black':'hover:border-black hover:text-black'}`}>
                 <FaInfoCircle className="mr-1 mt-2 lg:mt-0" />
                 <span className="hidden lg:block">Giới thiệu</span>
               </div>
             </Link>
 
             <Link to={'/maintenance'} title="Bảo hành">
-              <div className="flex items-center hover:border-b-4 hover:border-black hover:text-black">
+              <div className={`flex items-center lg:border-b-4  ${pathname==='maintenance'?'border-black text-black':'hover:border-black hover:text-black'}`}>
                 <BiSolidWrench className="mr-1 mt-2 lg:mt-0" />
                 <span className="hidden lg:block">Bảo hành</span>
               </div>
             </Link>
 
             <Link to={'/contact'} title="Liên hệ">
-              <div className="flex items-center hover:border-b-4 hover:border-black hover:text-black">
+              <div className={`flex items-center lg:border-b-4  ${pathname==='contact'?'border-black text-black':'hover:border-black hover:text-black'}`}>
                 <BsFillTelephoneFill className="mr-1 mt-2 lg:mt-0" />
                 <span className="hidden lg:block">Liên hệ</span>
               </div>
