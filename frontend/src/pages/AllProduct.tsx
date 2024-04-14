@@ -13,9 +13,9 @@ const AllProduct = () => {
   const [filter, setFilter] = useState<filterProps[]>([]);
 
   const addFilterOption = (option: filterProps) => {
-    if (option.option_root == 'type'){
+    if (option.option_root == 'brand'){
       const tmp = filter.filter(prop => 
-        ((prop.option_root != option.option_root)  || (prop.option_root == 'type' && prop.option_name !== option.option_name))
+        ((prop.option_root != option.option_root)  || (prop.option_root == 'brand' && prop.option_name !== option.option_name))
       );
       tmp.push(option);
       setFilter(tmp);
@@ -31,7 +31,7 @@ const AllProduct = () => {
   }
 
   const removeOneFilterOption = (option_root: string, option_name?: string) => {
-    if (option_root === 'type'){
+    if (option_root === 'brand'){
       const tmp = filter.filter(prop => 
         (prop.option_name !== option_name)
       );
