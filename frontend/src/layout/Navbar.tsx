@@ -34,45 +34,45 @@ const Navbar = () => {
             </div>
           </div>
           <div className="text-slate-500 text-lg flex w-9/12 justify-around">
-            <Link to={'/'}>
+            <Link to={'/'} title="Trang chủ">
               <div className="flex items-center hover:border-b-4 hover:border-black hover:text-black">
-                <AiFillHome className="mr-1" />
-                Trang chủ
+                <AiFillHome className="mr-1 mt-2 lg:mt-0" />
+                <span className="hidden lg:block">Trang chủ</span>
               </div>
             </Link>
 
-            <Link to={'/news'}>
+            <Link to={'/news'} title="Tin tức">
               <div className="flex items-center hover:border-b-4 hover:border-black hover:text-black">
-                <FaRegNewspaper className="mr-1" />
-                Tin tức
+                <FaRegNewspaper className="mr-1 mt-2 lg:mt-0" />
+                <span className="hidden lg:block">Tin tức</span>
               </div>
             </Link>
 
-            <Link to={'/hiring'}>
+            <Link to={'/hiring'} title="Tuyển dụng">
               <div className="flex items-center hover:border-b-4 hover:border-black hover:text-black">
-                <FaRegHandshake className="mr-1" />
-                Tuyển dụng
+                <FaRegHandshake className="mr-1 mt-2 lg:mt-0" />
+                <span className="hidden lg:block">Tuyển dụng</span>
               </div>
             </Link>
 
-            <Link to={'/about'}>
+            <Link to={'/about'} title="Giới thiệu">
               <div className="flex items-center hover:border-b-4 hover:border-black hover:text-black">
-                <FaInfoCircle className="mr-1" />
-                Giới thiệu
+                <FaInfoCircle className="mr-1 mt-2 lg:mt-0" />
+                <span className="hidden lg:block">Giới thiệu</span>
               </div>
             </Link>
 
-            <Link to={'/maintenance'}>
+            <Link to={'/maintenance'} title="Bảo hành">
               <div className="flex items-center hover:border-b-4 hover:border-black hover:text-black">
-                <BiSolidWrench className="mr-1" />
-                Bảo hành
+                <BiSolidWrench className="mr-1 mt-2 lg:mt-0" />
+                <span className="hidden lg:block">Bảo hành</span>
               </div>
             </Link>
 
-            <Link to={'/contact'}>
+            <Link to={'/contact'} title="Liên hệ">
               <div className="flex items-center hover:border-b-4 hover:border-black hover:text-black">
-                <BsFillTelephoneFill className="mr-1" />
-                Liên hệ
+                <BsFillTelephoneFill className="mr-1 mt-2 lg:mt-0" />
+                <span className="hidden lg:block">Liên hệ</span>
               </div>
             </Link>
           </div>

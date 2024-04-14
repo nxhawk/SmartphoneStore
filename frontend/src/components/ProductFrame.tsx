@@ -15,7 +15,7 @@ const ProductFrame = () => {
         </div>
 
         {/* list product */}
-        <div className='grid grid-cols-5'>
+        <div className='grid lg:grid-cols-5 md:grid-cols-3 grid-cols-1'>
           {
             phones["phones"].map((product, key) =>
               <Product

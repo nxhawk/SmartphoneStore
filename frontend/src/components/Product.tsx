@@ -25,11 +25,11 @@ const Product = ({ image, name, price, sale, star, comments }: Props) => {
         <p className={`${hover?"text-blue-500":""} text-sm mt-4`}>{name}</p>
       </div>
       <div>
-        <div className="flex justify-between text-xs mt-2 items-center">
+        <div className="flex flex-wrap gap-2 justify-between text-xs mt-2 items-center">
           <strong className="text-red-600">{convertToVND(price)}</strong>
           <s>{convertToVND(sale)}</s>
         </div>
-        <div className="flex items-center justify-between mt-1">
+        <div className="flex flex-wrap items-center justify-between mt-1">
           <ReactStars
             count={5}
             value={star}
