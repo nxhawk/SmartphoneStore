@@ -1,9 +1,11 @@
 import brandsData from "../constants/brands.json" 
+import filterOption from "../constants/filter.json" 
 import ButtonFilter from "./ButtonFilter"
 
-const Brands = () => {
+// eslint-disable-next-line @typescript-eslint/ban-types
+const Brands = ({ addFilterOption }: { addFilterOption: Function }) => {
   return (
-    <div className='border-y-2 p-4'>
+    <div>
       <div className="flex flex-wrap items-center justify-center cursor-pointer">
         {
           brandsData["brands"].map((item, key)=>(
@@ -15,7 +17,19 @@ const Brands = () => {
       </div>
 
       {/* filter */}
-      <ButtonFilter/>
+      <div className="mt-6 flex gap-4 flex-wrap items-center justify-center">
+        {
+          filterOption["filter"].map((option) =>
+            <ButtonFilter 
+              options={option.options}
+              name={option.name}
+              t_key={option.key}
+              key={option.key}
+              addFilterOption={addFilterOption}
+            />
+          )
+        }
+      </div>
     </div>
   )
 }

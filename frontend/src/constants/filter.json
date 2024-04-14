@@ -1,0 +1,112 @@
+{
+  "filter": [
+    {
+      "name": "Giá tiền",
+      "key": "price",
+      "options": [
+        {
+          "key":"under2",
+          "name": "Dưới 2 triệu"
+        },
+        {
+          "key":"2_4",
+          "name": "Từ 2 - 4 triệu"
+        },
+        {
+          "key":"4_7",
+          "name": "Từ 4 - 7 triệu"
+        },
+        {
+          "key":"7_13",
+          "name": "Từ 7 - 13 triệu"
+        },
+        {
+          "key":"more13",
+          "name": "Trên 13 triệu"
+        }
+      ]
+    },
+    {
+      "name": "Danh mục",
+      "key": "category",
+      "options": [
+        {
+          "key":"new",
+          "name": "Sản phẩm mới"
+        },
+        {
+          "key":"hot",
+          "name": "Nổi bật nhất"
+        },
+        {
+          "key":"modern",
+          "name": "Sản phẩm hiện đại nhất"
+        },
+        {
+          "key":"bigSale",
+          "name": "Giảm giá lớn"
+        },
+        {
+          "key":"cheap",
+          "name": "Giá rẻ cho mọi nhà"
+        }
+      ]
+    },
+    {
+      "name": "Số lượng sao",
+      "key": "star",
+      "options":[
+        {
+          "key": "1",
+          "name": "1 sao"
+        },
+        {
+          "key": "2",
+          "name": "2 sao"
+        },
+        {
+          "key": "3",
+          "name": "3 sao"
+        },
+        {
+          "key": "4",
+          "name": "4 sao"
+        },
+        {
+          "key": "5",
+          "name": "5 sao"
+        }
+      ]
+    },
+    {
+      "name": "Sắp xếp",
+      "key": "sort",
+      "options": [
+        {
+          "name": "Giá tăng dần",
+          "key": "PINC"
+        },
+        {
+          "name": "Giá giảm dần",
+          "key": "PDEC"
+        },
+        {
+          "name": "Sao tăng dần",
+          "key": "SINC"
+        },
+        {
+          "name": "Sao giảm dần",
+          "key": "SDEC"
+        },
+        {
+          "name": "Tên A-Z",
+          "key": "A-Z"
+        },
+        {
+          "name": "Tên Z-A",
+          "key": "Z-A"
+        } 
+      ]
+    }
+  ]
+}
