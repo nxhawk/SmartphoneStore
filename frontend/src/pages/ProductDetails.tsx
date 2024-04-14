@@ -7,6 +7,7 @@ import { FaBoxOpen } from "react-icons/fa";
 import { FaMedal } from "react-icons/fa";
 import { FaExchangeAlt } from "react-icons/fa";
 import { FaCartPlus } from "react-icons/fa6";
+import CommentList from "../components/CommentList";
 
 const ProductDetails = () => {
   const { productId }  = useParams()
@@ -29,7 +30,7 @@ const ProductDetails = () => {
           <div className="text-xl font-normal">6 đánh giá</div>
         </div>
       </div>
-      <div className="flex flex-wrap py-3 px-2 gap-2 justify-between">
+      <div className="flex flex-wrap py-3 px-2 gap-2 justify-between mb-2 md:mb-10">
         <div className="md:w-3/12 w-full flex flex-col justify-center items-center">
           <img src={phone} className="object-fit"/>
         </div>
@@ -109,6 +110,11 @@ const ProductDetails = () => {
         {/* end list */}
         </div>
       </div>
+
+      {/* comments */}
+      <CommentList
+        
+      />
     </div>
   )
 }
