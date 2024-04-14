@@ -8,7 +8,7 @@ import { filterProps } from '../pages/AllProduct';
 interface ProductProps {
   more?: boolean;
   title: string;
-  filter: filterProps[];
+  filter?: filterProps[];
 }
 
 interface Product {
@@ -47,7 +47,7 @@ const ProductFrame = ({ more = true, title, filter }: ProductProps) => {
   },[])
 
   return (
-    <div className={`mt-10 border-sky-600 border-2 rounded-lg p-10 relative mb-10 ${!more?'pb-4':''}`}>
+    <div className={`mt-10 border-sky-600 border-2 rounded-lg p-10 relative mb-8 ${!more?'pb-4':''}`}>
         <h3 className='text-white text-3xl rounded-full font-bold text-center py-1 bg-gradient-to-r from-cyan-500 to-blue-500 absolute w-full top-0 left-0 -translate-y-1/2'>{title}</h3>
         {
           more &&(

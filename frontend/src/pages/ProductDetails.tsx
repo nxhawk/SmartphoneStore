@@ -8,6 +8,7 @@ import { FaMedal } from "react-icons/fa";
 import { FaExchangeAlt } from "react-icons/fa";
 import { FaCartPlus } from "react-icons/fa6";
 import CommentList from "../components/CommentList";
+import ProductFrame from "../components/ProductFrame";
 
 const ProductDetails = () => {
   const { productId }  = useParams()
@@ -112,8 +113,11 @@ const ProductDetails = () => {
       </div>
 
       {/* comments */}
-      <CommentList
-        
+      <CommentList/>
+
+      <ProductFrame
+        title='* BẠN CÓ THỂ THÍCH *' 
+        more={false}
       />
     </div>
   )

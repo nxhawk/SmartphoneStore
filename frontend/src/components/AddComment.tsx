@@ -9,6 +9,9 @@ const AddComment = () => {
 
   const handlePost = () => {
     alert(`${name} ${content}`)
+
+    // setName("");
+    // setContent("");
   }
 
   return (
