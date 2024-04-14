@@ -13,6 +13,14 @@ const AllProduct = () => {
   const [filter, setFilter] = useState<filterProps[]>([]);
 
   const addFilterOption = (option: filterProps) => {
+    if (option.option_root == 'type'){
+      const tmp = filter.filter(prop => 
+        ((prop.option_root != option.option_root)  || (prop.option_root == 'type' && prop.option_name !== option.option_name))
+      );
+      tmp.push(option);
+      setFilter(tmp);
+      return;
+    }
     const tmp = filter.filter(prop => prop.option_root != option.option_root);
     tmp.push(option);
     setFilter(tmp);
@@ -22,7 +30,14 @@ const AllProduct = () => {
     setFilter([]);
   }
 
-  const removeOneFilterOption = (option_root: string) => {
+  const removeOneFilterOption = (option_root: string, option_name?: string) => {
+    if (option_root === 'type'){
+      const tmp = filter.filter(prop => 
+        (prop.option_name !== option_name)
+      );
+      setFilter(tmp);
+      return;
+    }
     const tmp = filter.filter(prop => prop.option_root != option_root);
     setFilter(tmp);
   }
@@ -46,6 +61,7 @@ const AllProduct = () => {
         <ProductFrame 
           title='* SẢN PHẨM TÌM KIẾM THEO YÊU CẦU *' 
           more={false}
+          filter={filter}
         />
       </div>
     </div>

@@ -3,10 +3,12 @@ import Product from './Product'
 import phones from "../constants/phone.json"
 import Pagination from '@mui/material/Pagination';
 import { useEffect, useState } from 'react';
+import { filterProps } from '../pages/AllProduct';
 
 interface ProductProps {
   more?: boolean;
   title: string;
+  filter: filterProps[];
 }
 
 interface Product {
@@ -18,7 +20,7 @@ interface Product {
   comments: number;
 }
 
-const ProductFrame = ({ more = true, title }: ProductProps) => {
+const ProductFrame = ({ more = true, title, filter }: ProductProps) => {
   const [page, setPage] = useState(1);
   const [perPage, setperPage] = useState(10);
   const [products, setProducts] = useState<Product[]>([]);
@@ -32,6 +34,7 @@ const ProductFrame = ({ more = true, title }: ProductProps) => {
   const changePage=(page: number, perPage: number)=>{
     const from = (page - 1) * perPage;
     const to = Math.min(phones["phones"].length, page * perPage);
+
     setProducts(phones["phones"].slice(from, to))
   }
 

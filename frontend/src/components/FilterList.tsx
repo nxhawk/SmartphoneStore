@@ -11,7 +11,7 @@ interface Props {
 
 const FilterList = ({ filter, clearFilterOption, removeOneFilterOption }: Props) => {
   return (
-    <div className='mt-5 flex flex-wrap gap-1 items-center justify-center'>
+    <div className='mt-7 lg:w-10/12 w-full mx-auto flex flex-wrap gap-1 items-center justify-center'>
       {
         filter.length > 0 && (
           <div 
@@ -32,7 +32,7 @@ const FilterList = ({ filter, clearFilterOption, removeOneFilterOption }: Props)
             <IoCloseSharp className='cursor-pointer hover:text-red-600 ease-in-out' style={{
               fontSize: "22px",
             }}
-            onClick={() => removeOneFilterOption(op.option_root)}
+            onClick={() => removeOneFilterOption(op.option_root, op.option_name)}
             />
           </div>
         ))

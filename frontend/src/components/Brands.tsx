@@ -9,7 +9,13 @@ const Brands = ({ addFilterOption }: { addFilterOption: Function }) => {
       <div className="flex flex-wrap items-center justify-center cursor-pointer">
         {
           brandsData["brands"].map((item, key)=>(
-            <div key={key} className="p-2 border-2 border-white hover:border-gray-400 overflow-hidden flex justify-center">
+            <div key={key} className="p-2 border-2 border-white hover:border-gray-400 overflow-hidden flex justify-center"
+            onClick={() => addFilterOption({
+              option_root: "type",
+              option_key: item.name,
+              option_name: item.name,
+            })}
+            >
               <img src={item.image} className="w-28 duration-150 hover:scale-125 ease-linear"/>
             </div>
           ))
