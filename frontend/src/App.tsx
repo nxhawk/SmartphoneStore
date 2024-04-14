@@ -9,6 +9,7 @@ import About from './pages/About'
 import Maintenance from './pages/Maintenance'
 import Contact from './pages/Contact'
 import AllProduct from './pages/AllProduct'
+import ProductDetails from './pages/ProductDetails'
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
             <Route path='/maintenance' element={<Maintenance/>}/>
             <Route path='/contact' element={<Contact/>}/>
             <Route path='/showall' element={<AllProduct/>}/>
+            <Route path='/product/:productId' element={<ProductDetails/>}/>
           </Route>
           <Route path='/auth'>
             <Route path='login' element={<Login/>}/>

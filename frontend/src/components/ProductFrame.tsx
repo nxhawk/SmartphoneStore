@@ -20,6 +20,8 @@ interface Product {
   comments: number;
 }
 
+// TODO: call API get Product by page, filter
+
 const ProductFrame = ({ more = true, title, filter }: ProductProps) => {
   const [page, setPage] = useState(1);
   const [perPage, setperPage] = useState(10);
@@ -72,6 +74,7 @@ const ProductFrame = ({ more = true, title, filter }: ProductProps) => {
                 price={product.price}
                 comments={product.comments}
                 star={product.star}
+                link="/product/1"
               />
             )
           }

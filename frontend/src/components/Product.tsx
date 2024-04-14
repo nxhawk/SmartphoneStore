@@ -10,13 +10,14 @@ interface Props {
   sale: number;
   star: number;
   comments: number;
+  link: string;
 }
 
-const Product = ({ image, name, price, sale, star, comments }: Props) => {
+const Product = ({ image, name, price, sale, star, comments, link }: Props) => {
   const [hover, setHover] = useState(false)
 
   return (
-    <Link to={'/'} className='border rounded-sm p-2 flex flex-col justify-between' 
+    <Link to={link} className='border rounded-sm p-2 flex flex-col justify-between' 
       onMouseLeave={() => setHover(false)}
       onMouseEnter={() => setHover(true)}
     >

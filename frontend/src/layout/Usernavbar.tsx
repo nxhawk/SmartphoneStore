@@ -9,11 +9,11 @@ const Usernavbar = () => {
   const [hover, setHover] = useState(false);
 
   return (
-    <div className="max-w-5xl mx-auto border-b-2 flex justify-between border-gray-100 items-center">
+    <div className="max-w-5xl mx-auto border-b-2 flex justify-between border-gray-100 items-center flex-wrap">
       <Link to={'/'} className='overflow-hidden'>
-        <img src={logo} alt="logo" className='w-60 mb-4 mt-2 hover:scale-105'/>
+        <img src={logo} alt="logo" className='w-full md:w-60 mb-4 mt-2 hover:scale-105'/>
       </Link>
-      <div className='flex gap-8'>
+      <div className='flex gap-8 w-full mb-2 md:w-fit justify-center'>
           <Link to={'/'} className='flex items-center gap-2 relative'
             onMouseEnter={() => setShow(true)}
             onMouseLeave={() => setShow(false)}

@@ -1,7 +1,7 @@
 const Footer = () => {
   return (
     <footer className="border-t-2 ">
-      <div className="bg-gray-100 text-sm">
+      <div className="bg-gray-100 text-sm hidden sm:block">
         <div className="max-w-5xl mx-auto flex py-1">
           <div className="p-2 border-r-2">
             Giao hàng hỏa tốc trong 1 giờ
