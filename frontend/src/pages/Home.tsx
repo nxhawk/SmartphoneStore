@@ -11,7 +11,7 @@ const Home = () => {
         <img src={banner}/>
       </div>
       <div>
-        <ProductFrame/>
+        <ProductFrame title='* SẢN PHẨM MỚI *'/>
       </div>
       <ScrollButton /> 
     </div>

@@ -1,7 +1,7 @@
 {
   "phones": [
     {
-      "name": "Điện thoại Samsung Galaxy S23+ 5G 256GB",
+      "name": "Điện thoại Samsung Galaxy S23+ 5G 256GB 1",
       "image": "src/assets/images/products/iphone-7-plus-32gb-hh-600x600.jpg",
       "price": 24021100,
       "sale": 26990000,
@@ -9,7 +9,7 @@
       "comments": 54
     },
     {
-      "name": "Điện thoại iPhone 15",
+      "name": "Điện thoại iPhone 15 2",
       "image": "src/assets/images/products/iphone-7-plus-32gb-hh-600x600.jpg",
       "price": 220070400,
       "sale": 220990000,
@@ -17,7 +17,7 @@
       "comments": 5
     },
     {
-      "name": "Điện thoại iPhone 15",
+      "name": "Điện thoại iPhone 15 3",
       "image": "src/assets/images/products/iphone-7-plus-32gb-hh-600x600.jpg",
       "price": 220070400,
       "sale": 220990000,
@@ -25,7 +25,7 @@
       "comments": 5
     },
     {
-      "name": "Điện thoại iPhone 15",
+      "name": "Điện thoại iPhone 15 4",
       "image": "src/assets/images/products/iphone-7-plus-32gb-hh-600x600.jpg",
       "price": 220070400,
       "sale": 220990000,
@@ -33,7 +33,7 @@
       "comments": 5
     },
     {
-      "name": "Điện thoại iPhone 15",
+      "name": "Điện thoại iPhone 15 5",
       "image": "src/assets/images/products/iphone-7-plus-32gb-hh-600x600.jpg",
       "price": 220070400,
       "sale": 220990000,
@@ -41,7 +41,135 @@
       "comments": 5
     },
     {
-      "name": "Điện thoại iPhone 15",
+      "name": "Điện thoại iPhone 15 6",
+      "image": "src/assets/images/products/iphone-7-plus-32gb-hh-600x600.jpg",
+      "price": 220070400,
+      "sale": 220990000,
+      "star": 2,
+      "comments": 5
+    },
+    {
+      "name": "Điện thoại iPhone 15 7",
+      "image": "src/assets/images/products/iphone-7-plus-32gb-hh-600x600.jpg",
+      "price": 220070400,
+      "sale": 220990000,
+      "star": 2,
+      "comments": 5
+    },
+    {
+      "name": "Điện thoại iPhone 15 8",
+      "image": "src/assets/images/products/iphone-7-plus-32gb-hh-600x600.jpg",
+      "price": 220070400,
+      "sale": 220990000,
+      "star": 2,
+      "comments": 5
+    },
+    {
+      "name": "Điện thoại iPhone 15 9",
+      "image": "src/assets/images/products/iphone-7-plus-32gb-hh-600x600.jpg",
+      "price": 220070400,
+      "sale": 220990000,
+      "star": 2,
+      "comments": 5
+    },
+    {
+      "name": "Điện thoại iPhone 15 10",
+      "image": "src/assets/images/products/iphone-7-plus-32gb-hh-600x600.jpg",
+      "price": 220070400,
+      "sale": 220990000,
+      "star": 2,
+      "comments": 5
+    },
+    {
+      "name": "Điện thoại iPhone 15 11",
+      "image": "src/assets/images/products/iphone-7-plus-32gb-hh-600x600.jpg",
+      "price": 220070400,
+      "sale": 220990000,
+      "star": 2,
+      "comments": 5
+    },
+    {
+      "name": "Điện thoại iPhone 15 12",
+      "image": "src/assets/images/products/iphone-7-plus-32gb-hh-600x600.jpg",
+      "price": 220070400,
+      "sale": 220990000,
+      "star": 2,
+      "comments": 5
+    },
+    {
+      "name": "Điện thoại iPhone 15 13",
+      "image": "src/assets/images/products/iphone-7-plus-32gb-hh-600x600.jpg",
+      "price": 220070400,
+      "sale": 220990000,
+      "star": 2,
+      "comments": 5
+    },
+    {
+      "name": "Điện thoại iPhone 15 14",
+      "image": "src/assets/images/products/iphone-7-plus-32gb-hh-600x600.jpg",
+      "price": 220070400,
+      "sale": 220990000,
+      "star": 2,
+      "comments": 5
+    },
+    {
+      "name": "Điện thoại iPhone 15 15",
+      "image": "src/assets/images/products/iphone-7-plus-32gb-hh-600x600.jpg",
+      "price": 220070400,
+      "sale": 220990000,
+      "star": 2,
+      "comments": 5
+    },
+    {
+      "name": "Điện thoại iPhone 15 16",
+      "image": "src/assets/images/products/iphone-7-plus-32gb-hh-600x600.jpg",
+      "price": 220070400,
+      "sale": 220990000,
+      "star": 2,
+      "comments": 5
+    },
+    {
+      "name": "Điện thoại iPhone 15 17",
+      "image": "src/assets/images/products/iphone-7-plus-32gb-hh-600x600.jpg",
+      "price": 220070400,
+      "sale": 220990000,
+      "star": 2,
+      "comments": 5
+    },
+    {
+      "name": "Điện thoại iPhone 15 18",
+      "image": "src/assets/images/products/iphone-7-plus-32gb-hh-600x600.jpg",
+      "price": 220070400,
+      "sale": 220990000,
+      "star": 2,
+      "comments": 5
+    },
+    {
+      "name": "Điện thoại iPhone 15 19",
+      "image": "src/assets/images/products/iphone-7-plus-32gb-hh-600x600.jpg",
+      "price": 220070400,
+      "sale": 220990000,
+      "star": 2,
+      "comments": 5
+    },
+    {
+      "name": "Điện thoại iPhone 15 20",
+      "image": "src/assets/images/products/iphone-7-plus-32gb-hh-600x600.jpg",
+      "price": 220070400,
+      "sale": 220990000,
+      "star": 2,
+      "comments": 5
+    },
+    {
+      "name": "Điện thoại iPhone 15 21",
+      "image": "src/assets/images/products/iphone-7-plus-32gb-hh-600x600.jpg",
+      "price": 220070400,
+      "sale": 220990000,
+      "star": 2,
+      "comments": 5
+    },
+    {
+      "name": "Điện thoại iPhone 15 22",
       "image": "src/assets/images/products/iphone-7-plus-32gb-hh-600x600.jpg",
       "price": 220070400,
       "sale": 220990000,

@@ -8,6 +8,7 @@ import Hiring from './pages/Hiring'
 import About from './pages/About'
 import Maintenance from './pages/Maintenance'
 import Contact from './pages/Contact'
+import AllProduct from './pages/AllProduct'
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
             <Route path='/about' element={<About/>}/>
             <Route path='/maintenance' element={<Maintenance/>}/>
             <Route path='/contact' element={<Contact/>}/>
+            <Route path='/showall' element={<AllProduct/>}/>
           </Route>
           <Route path='/auth'>
             <Route path='login' element={<Login/>}/>
