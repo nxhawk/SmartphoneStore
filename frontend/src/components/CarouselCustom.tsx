@@ -22,31 +22,31 @@ const CarouselCustom = () => {
       swipeable={true}
       showArrows={false}
     >
-      <div className="w-9/12 mx-auto">
+      <div className="w-10/12 mx-auto">
         <img src={banner0}  className="object-cover"/>
       </div>
-      <div className="w-9/12 mx-auto">
+      <div className="w-10/12 mx-auto">
         <img src={banner1}  className="object-cover"/>
       </div>
-      <div className="w-9/12 mx-auto">
+      <div className="w-10/12 mx-auto">
         <img src={banner2}  className="object-cover"/>
       </div>
-      <div className="w-9/12 mx-auto">
+      <div className="w-10/12 mx-auto">
         <img src={banner3}  className="object-cover"/>
       </div>
-      <div className="w-9/12 mx-auto">
+      <div className="w-10/12 mx-auto">
         <img src={banner4}  className="object-cover"/>
       </div>
-      <div className="w-9/12 mx-auto">
+      <div className="w-10/12 mx-auto">
         <img src={banner5}  className="object-cover"/>
       </div>
-      <div className="w-9/12 mx-auto">
+      <div className="w-10/12 mx-auto">
         <img src={banner6}  className="object-cover"/>
       </div>
-      <div className="w-9/12 mx-auto">
+      <div className="w-10/12 mx-auto">
         <img src={banner7}  className="object-cover"/>
       </div>
-      <div className="w-9/12 mx-auto">
+      <div className="w-10/12 mx-auto">
         <img src={banner8}  className="object-cover"/>
       </div>
 
