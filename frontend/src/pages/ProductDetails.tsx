@@ -9,6 +9,7 @@ import { FaExchangeAlt } from "react-icons/fa";
 import { FaCartPlus } from "react-icons/fa6";
 import CommentList from "../components/CommentList";
 import ProductFrame from "../components/ProductFrame";
+import ScrollButton from "../components/ScrollButton/ScrollButton";
 
 const ProductDetails = () => {
   const { productId }  = useParams()
@@ -119,6 +120,7 @@ const ProductDetails = () => {
         title='* BẠN CÓ THỂ THÍCH *' 
         more={false}
       />
+      <ScrollButton /> 
     </div>
   )
 }

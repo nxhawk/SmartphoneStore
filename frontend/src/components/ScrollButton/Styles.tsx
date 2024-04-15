@@ -14,7 +14,7 @@ position: relative;
 export const Button = styled.div` 
 position: fixed; 
 width: 100%; 
-left: 1270px; 
+left: calc(100vw - 100px); 
 bottom: 100px; 
 height: 10px; 
 font-size: 2rem; 
