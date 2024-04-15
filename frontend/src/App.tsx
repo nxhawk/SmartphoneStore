@@ -11,6 +11,7 @@ import Contact from './pages/Contact'
 import AllProduct from './pages/AllProduct'
 import ProductDetails from './pages/ProductDetails'
 import DetailUser from './pages/detailUser'
+import Cart from './pages/Cart'
 
 function App() {
 
@@ -30,6 +31,7 @@ function App() {
 
             // authentication
             <Route path='/detailUser' element={<DetailUser/>}/>
+            <Route path='/cart' element={<Cart/>}/>
           </Route>
           <Route path='/auth'>
             <Route path='login' element={<Login/>}/>
