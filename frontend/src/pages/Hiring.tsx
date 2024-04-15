@@ -5,8 +5,8 @@ const Hiring = () => {
   return (
     <div>
         <CustomMarquee message="Yêu cầu tuyển dụng"/>
-        <div className='p-10'>
-          <div className='text-center text-2xl font-bold text-sky-400'>NHÂN VIÊN BÁN HÀNG</div>
+        <div className='py-6 px-5 md:pt-10 pt-4'>
+          <div className='mb-2 text-center text-2xl font-bold text-sky-400'>NHÂN VIÊN BÁN HÀNG</div>
           
           <div className='mb-4'>
             <div className='font-bold text-sky-400'>1. MÔ TẢ</div>

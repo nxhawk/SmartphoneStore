@@ -34,7 +34,7 @@ const Maintenance = () => {
   return (
     <div>
       <CustomMarquee message="Các trung tâm bảo hành của Smartphone Store"/>
-      <div className="p-5 mb-5">
+      <div className="p-2 lg:p-5 mb-5">
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 700 }} aria-label="customized table">
             <TableHead>
