@@ -5,3 +5,10 @@ export function convertToVND(money: number){
 export function valueInArray(value: number, array: number[]) {
   return array.filter((val) => val == value).length > 0;
 }
+
+export function isNumber(value?: string | number): boolean
+{
+  return ((value != null) &&
+          (value !== '') &&
+          !isNaN(Number(value.toString())));
+}

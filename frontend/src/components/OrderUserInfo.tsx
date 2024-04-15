@@ -12,7 +12,7 @@ import { convertToVND } from "../utils/helper";
 
 const OrderUserInfo = () => {
   return (
-    <div className="rounded-lg shadow-lg px-4 pt-1 pb-4 mb-5">
+    <div className="rounded-lg shadow-lg px-4 pt-1 pb-4 mb-8">
       <div className="mb-3 font-bold text-lg text-center">Xác nhận thông tin đặt hàng</div>
       <form>
         <div className="mb-3">
