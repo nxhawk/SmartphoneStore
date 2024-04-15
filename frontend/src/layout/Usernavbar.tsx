@@ -27,13 +27,17 @@ const Usernavbar = () => {
             {
               show && (
             <div className='z-50 absolute top-[42px] left-[-80px] w-40 bg-slate-300 text-green-700 font-semibold text-center rounded-sm'>
-              <div className='hover:text-white hover:bg-neutral-700 p-2 hover:rounded-sm'>Trang người dùng</div>
-              <div className='hover:text-white hover:bg-neutral-700 p-2 hover:rounded-sm'>Đăng xuất</div>
+              <Link to={'/detailUser'}>
+                <div className='hover:text-white hover:bg-neutral-700 p-2 hover:rounded-sm'>Trang người dùng</div>
+              </Link>
+              <Link to={'/auth/logout'}>
+                <div className='hover:text-white hover:bg-neutral-700 p-2 hover:rounded-sm'>Đăng xuất</div>
+              </Link>
             </div>
               )
             }
           </Link>
-          <Link to={'/'} className='flex items-center gap-2'
+          <Link to={'/cart'} className='flex items-center gap-2'
             onMouseEnter={() => setHover(true)}
             onMouseLeave={() => setHover(false)}
           >
