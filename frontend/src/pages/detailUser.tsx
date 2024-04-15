@@ -2,6 +2,7 @@ import avatar from '../assets/images/chitietsanpham/avatar.jpg'
 import banner from '../assets/images/banners/blackFriday.gif'
 import { MdModeEdit } from "react-icons/md";
 import { useEffect, useRef, useState } from 'react';
+import OrderList from '../components/OrderList';
 
 const DetailUser = () => {
   // todo: data here
@@ -42,7 +43,7 @@ const DetailUser = () => {
             file:text-sm file:font-semibold
           file:bg-violet-50 file:text-blue-400
           hover:file:bg-violet-100
-          outline-none
+            outline-none
             mt-2"
           />
         </div>
@@ -162,7 +163,7 @@ const DetailUser = () => {
             <div className='flex mb-3 gap-2'>
               <p className='w-4/12'></p>
               <p className='w-5/12 text-center'>
-                <button className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 rounded sm:text-base text-xs">
+                <button className="shadow-2xl w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 rounded sm:text-base text-xs">
                 Cập nhật thông tin
                 </button>
               </p>
@@ -170,6 +171,11 @@ const DetailUser = () => {
             </div>
           </div>
         </div>
+      </div>
+      <hr className='mt-2 mb-3'/>
+      <div className='mb-5'>
+        <div className='text-center mb-3 font-bold text-2xl sm:text-3xl text-gray-800'>DANH SÁCH ĐƠN HÀNG</div>
+        <OrderList/>
       </div>
     </div>
   )
