@@ -8,8 +8,13 @@ const Cart = () => {
         <div className="md:w-7/12 w-full mb-4 flex-1">
           <div className="rounded-sm shadow uppercase px-4 py-1 bg-slate-50 font-semibold">Giỏ hàng của bạn bao gồm 1 sản phẩm</div>
           <div className="rounded-sm shadow-lg p-2 bg-slate-50 mt-5">
-            <ProductOrder/>
-            <ProductOrder/>
+            {
+              [1, 2, 3, 4].map(item=>(
+                <ProductOrder
+                  key={item}
+                />
+              ))
+            }
           </div>
         </div>
         <div className="flex-1">
