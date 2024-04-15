@@ -1,6 +1,5 @@
 import ReactStars from "react-rating-stars-component";
 
-
 export interface CommentProps {
   id: number;
   date: string;

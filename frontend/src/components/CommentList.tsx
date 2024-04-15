@@ -47,7 +47,7 @@ const CommentList = () => {
   
   return (
     <div className="py-3 bg-gray-200 rounded shadow-xl mb-5">
-      <div className='font-bold mb-5 px-5 text-lg justify-between flex flex-wrap'>
+      <div className='gap-2 font-bold mb-5 px-5 text-lg justify-between flex flex-wrap'>
         <span className=''>Bình luận về sản phẩm</span>
         {
           comments.length > 0 && (

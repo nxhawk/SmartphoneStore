@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import avatar from '../assets/images/chitietsanpham/avatar.jpg'
 import ReactStars from "react-rating-stars-component";
+import { AiOutlineStar } from "react-icons/ai";
+import { AiFillStar } from "react-icons/ai";
 
 const AddComment = () => {
   const [name, setName] = useState<string>("");
@@ -8,11 +10,15 @@ const AddComment = () => {
   const [star, setStar] = useState<number>(0)
 
   const handlePost = () => {
-    alert(`${name} ${content}`)
+    alert(`${name} ${content} ${star}`)
 
     // setName("");
     // setContent("");
   }
+
+  const ratingChanged = (newRating: number) => {
+    setStar(newRating);
+  };
 
   return (
     <div className='mt-6'>
@@ -32,14 +38,17 @@ const AddComment = () => {
         </div>
         
       </div>
-      <div className='flex flex-wrap justify-between px-5'>
+      <div className='flex flex-wrap justify-between px-5 mt-3'>
         <div className='flex items-center gap-4'>
           <div className='text-xl font-bold'>Số sao: </div>
           <ReactStars
+            emptyIcon={<AiOutlineStar/>}
+            filledIcon={<AiFillStar />}
             count={5}
             value={star}
             size={60}
             activeColor="orange"
+            onChange={ratingChanged}
           />
         </div>
         <div className='flex justify-center items-center w-full mt-3 md:mt-0 md:w-fit'>
