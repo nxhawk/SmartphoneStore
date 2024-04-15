@@ -47,7 +47,7 @@ const AllProduct = () => {
 
   return (
     <div className='mt-5'>
-      <div className='border-y-2 p-4'>
+      <div className='border-y-2 p-1 md:p-4'>
         <Brands
           addFilterOption={addFilterOption}
         />
@@ -57,7 +57,7 @@ const AllProduct = () => {
           removeOneFilterOption={removeOneFilterOption}
         />
       </div>
-      <div className='p-2'>
+      <div className='px-2 py-1'>
         <ProductFrame 
           title='* SẢN PHẨM TÌM KIẾM THEO YÊU CẦU *' 
           more={false}

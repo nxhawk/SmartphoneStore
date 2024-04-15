@@ -11,7 +11,7 @@ interface Props {
 
 const FilterList = ({ filter, clearFilterOption, removeOneFilterOption }: Props) => {
   return (
-    <div className='mt-7 lg:w-10/12 w-full mx-auto flex flex-wrap gap-1 items-center justify-center'>
+    <div className='mt-4 md:mt-7 lg:w-10/12 w-full mx-auto flex flex-wrap gap-1 items-center justify-center'>
       {
         filter.length > 0 && (
           <div 

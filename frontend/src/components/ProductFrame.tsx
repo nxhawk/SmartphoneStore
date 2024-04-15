@@ -48,7 +48,7 @@ const ProductFrame = ({ more = true, title, filter }: ProductProps) => {
 
   return (
     <div className={`mt-10 border-sky-600 border-2 rounded-lg p-10 relative mb-8 ${!more?'pb-4':''}`}>
-        <h3 className='text-white text-3xl rounded-full font-bold text-center py-1 bg-gradient-to-r from-cyan-500 to-blue-500 absolute w-full top-0 left-0 -translate-y-1/2'>{title}</h3>
+        <h3 className='text-white text-lg sm:text-2xl md:text-3xl rounded-full font-bold text-center py-1 bg-gradient-to-r from-cyan-500 to-blue-500 absolute w-full top-0 left-0 -translate-y-1/2'>{title}</h3>
         {
           more &&(
         <div className='bottom-0 left-0 translate-y-1/2 absolute w-full flex items-center py-1 rounded-full bg-stone-200 text-stone-400 ease-in-out hover:text-black hover:bg-stone-300 border-x-2 border-cyan-500'>

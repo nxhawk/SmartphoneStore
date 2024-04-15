@@ -16,14 +16,14 @@ const Brands = ({ addFilterOption }: { addFilterOption: Function }) => {
               option_name: item.name,
             })}
             >
-              <img src={item.image} className="w-28 duration-150 hover:scale-125 ease-linear"/>
+              <img src={item.image} className="w-24 sm:w-28 duration-150 hover:scale-125 ease-linear"/>
             </div>
           ))
         }
       </div>
 
       {/* filter */}
-      <div className="mt-6 flex gap-4 flex-wrap items-center justify-center">
+      <div className="mt-6 flex gap-2 flex-wrap items-center justify-center">
         {
           filterOption["filter"].map((option) =>
             <ButtonFilter 
