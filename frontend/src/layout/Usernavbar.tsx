@@ -41,8 +41,9 @@ const Usernavbar = () => {
             onMouseEnter={() => setHover(true)}
             onMouseLeave={() => setHover(false)}
           >
-            <div className={`border rounded-full p-2 ${hover?'text-white bg-slate-400':''}`}>
+            <div className={`relative border rounded-full p-2 ${hover?'text-white bg-slate-400':''}`}>
               <FaShoppingCart />
+              <span className='absolute text-sm -bottom-2 -right-1 text-red-600 font-bold'>10</span>
             </div>
             <span className='font-semibold'>
               Giỏ hàng
