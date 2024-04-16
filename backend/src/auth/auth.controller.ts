@@ -12,7 +12,7 @@ import {
 import { IAuthService } from './auth';
 import { CreateAuthDto } from './dtos/create-auth.dto';
 import { Routes, Services } from 'src/utils/constants';
-import { LocalAuthGuard } from './utils/Guards';
+import { AuthenticatedGuard, LocalAuthGuard } from './utils/Guards';
 import { Response, Request } from 'express';
 import { IUserService } from 'src/user/user';
 
@@ -35,6 +35,7 @@ export class AuthController {
   }
 
   @Get('/status')
+  @UseGuards(AuthenticatedGuard)
   async status(@Req() req: Request, @Res() res: Response) {
     res.send(req.user);
   }
