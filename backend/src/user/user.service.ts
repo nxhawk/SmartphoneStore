@@ -1,6 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { IUser } from './user';
-import { CreateUserDetails } from 'src/utils/types';
+import { IUserService } from './user';
+import {
+  CreateUserDetails,
+  FindUserOptions,
+  FindUserParams,
+} from 'src/utils/types';
 import { User } from './entities/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -8,7 +12,7 @@ import { UserAlreadyExists } from './exceptions/UserAlreadyExists';
 import { hashPassword } from 'src/utils/helpers';
 
 @Injectable()
-export class UserService implements IUser {
+export class UserService implements IUserService {
   constructor(
     @InjectRepository(User) private readonly userRepository: Repository<User>,
   ) {}
@@ -29,5 +33,24 @@ export class UserService implements IUser {
 
     const newUser = this.userRepository.create(params);
     return this.userRepository.save(newUser);
+  }
+
+  async findUser(
+    params: FindUserParams,
+    options?: FindUserOptions,
+  ): Promise<User> {
+    const selections: (keyof User)[] = [
+      'email',
+      'name',
+      'phoneNumber',
+      'avatar',
+      'public_id',
+      'gender',
+    ];
+    const selectionsWithPassword: (keyof User)[] = [...selections, 'password'];
+    return this.userRepository.findOne({
+      where: params,
+      select: options?.selectAll ? selectionsWithPassword : selections,
+    });
   }
 }

@@ -1,6 +1,14 @@
-import { CreateUserDetails } from 'src/utils/types';
+import {
+  CreateUserDetails,
+  FindUserOptions,
+  FindUserParams,
+} from 'src/utils/types';
 import { User } from './entities/user.entity';
 
-export interface IUser {
+export interface IUserService {
   createUser(createUserDetails: CreateUserDetails);
+  findUser(
+    findUserParams: FindUserParams,
+    options?: FindUserOptions,
+  ): Promise<User>;
 }
