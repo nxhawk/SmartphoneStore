@@ -32,7 +32,7 @@ const Signup = () => {
         <div className=''>
           <p className='text-slate-500 text-sm mb-2 text-wrap'>By registering you agree with our terms and condition.</p>
           <div className='flex justify-end'>
-            <button className='border p-2 px-4 rounded-md bg-sky-500 text-white'>Signup</button>
+            <button className='border p-2 px-4 rounded-md bg-sky-500 text-white hover:bg-sky-600 ease-in-out shadow'>Signup</button>
           </div>
         </div>
       </form>

@@ -19,7 +19,7 @@ const Login = () => {
         </div>
         <div className='flex justify-between'>
           <Link to={'/'} className='text-sky-600 underline'>Forgot Password</Link>
-          <button className='border p-2 px-4 rounded-md bg-sky-500 text-white'>Login</button>
+          <button className='border p-2 px-4 rounded-md bg-sky-500 text-white hover:bg-sky-600 ease-in-out shadow'>Login</button>
         </div>
       </form>
       <div className='mt-2'>
