@@ -1,9 +1,10 @@
 import banner from '../assets/images/banners/blackFriday.gif'
 import { MdModeEdit } from "react-icons/md";
-import { useEffect, useRef, useState } from 'react';
+import { ChangeEvent, useEffect, useRef, useState } from 'react';
 import OrderList from '../components/OrderList';
 import { useSelector } from 'react-redux';
 import { AppState } from '../store';
+import { toast } from 'react-toastify';
 
 const DetailUser = () => {
   const user = useSelector((state: AppState) => state?.user?.user);
@@ -11,10 +12,10 @@ const DetailUser = () => {
   // todo: data here
   const [name, setName] = useState(user?.name);
   const [phoneNumber, setPhoneNumber] = useState(user?.phoneNumber);
+  const [attachment, setAttachment] = useState<string>(user?.avatar);
   const [oldPassword, setOldPassword] = useState("")
   const [newPassword, setNewPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
-
   
   const nameRef = useRef<HTMLInputElement>(null);
   const phoneNumberRef = useRef<HTMLInputElement>(null);
@@ -30,6 +31,32 @@ const DetailUser = () => {
     if (phoneNumberRef.current && editPhoneNumber) phoneNumberRef.current.focus();
   },[editPhoneNumber])
 
+
+  const handleUpdateInfo = async() =>{
+    if (name.length <= 0 || phoneNumber.length != 10) {
+      toast.error("Name or phone number does not correct")
+      return;
+    }
+    // update infomation
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const handleOnChangeFile = (changeEvent: ChangeEvent<HTMLInputElement>) =>{
+    if (!changeEvent.target.files) return;
+    
+    for (const file of Array.from(changeEvent.target.files)) {
+      const reader = new FileReader();
+
+      reader.onload = function (onLoadEvent) {
+          setAttachment(
+              onLoadEvent.target?.result as string,
+          );
+      };
+
+      reader.readAsDataURL(file);
+    }
+  }
+
   return (
     <div className='px-2'>
       <div className='flex justify-center mt-2 mb-3 lg:mb-6'>
@@ -37,9 +64,12 @@ const DetailUser = () => {
       </div>
       <div className='flex flex-col items-center md:flex-row'>
         <div className='flex flex-col w-4/12 justify-center items-center'>
-          <img src={user?.avatar} alt='avatar' 
+          <img src={attachment} alt='avatar' 
           className='w-32 h-32 md:w-60 md:h-60 object-fit'/>
-          <input type="file" className="
+          <input 
+          onChange={handleOnChangeFile}
+          accept='image/*'
+          type="file" className="
             block w-full text-sm text-slate-500
             file:mr-4 file:py-2 file:px-4
             file:rounded-full file:border-0
@@ -166,7 +196,7 @@ const DetailUser = () => {
             <div className='flex mb-3 gap-2'>
               <p className='w-4/12'></p>
               <p className='w-5/12 text-center'>
-                <button className="shadow-2xl w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 rounded sm:text-base text-xs">
+                <button onClick={handleUpdateInfo} className="shadow-2xl w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 rounded sm:text-base text-xs">
                 Cập nhật thông tin
                 </button>
               </p>

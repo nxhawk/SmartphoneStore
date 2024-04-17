@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../store';
 import { loginUser } from '../store/user';
 import { toast } from 'react-toastify';
+import { useState } from 'react';
 
 const LoginSchema = yup.object().shape({
   email: yup.string()
@@ -19,7 +20,8 @@ const LoginSchema = yup.object().shape({
 
 const Login = () => {
   const dispatch = useDispatch<AppDispatch>();
-  
+  const [isLoading, setIsLoading] = useState(false);
+
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
@@ -28,9 +30,12 @@ const Login = () => {
     },
     validationSchema: LoginSchema,
     onSubmit: async (values) => {
+      if (isLoading) return;
+      setIsLoading(true);
       const res = await dispatch(
         loginUser(values)
       );
+      setIsLoading(false); 
       if (res.meta.requestStatus=='rejected'){
         toast.error('Invalid email or password')
       }
@@ -73,7 +78,7 @@ const Login = () => {
         </div>
         <div className='flex justify-between'>
           <Link to={'/'} className='text-sky-600 underline'>Forgot Password</Link>
-          <button type='submit' className='border p-2 px-4 rounded-md bg-sky-500 text-white hover:bg-sky-600 ease-in-out shadow'>Login</button>
+          <button type='submit' className={`border p-2 px-4 rounded-md bg-sky-500 text-white hover:bg-sky-600 ease-in-out shadow ${isLoading&&'opacity-20'}`}>Login</button>
         </div>
       </form>
 
