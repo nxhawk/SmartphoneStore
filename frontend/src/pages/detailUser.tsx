@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, AppState } from '../store';
 import { toast } from 'react-toastify';
 import { updateProfile } from '../store/user';
+import { Loading } from 'notiflix';
 
 const DetailUser = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -45,8 +46,9 @@ const DetailUser = () => {
     formData.append('name', name);
     formData.append('phoneNumber', phoneNumber);
     avatarFile && formData.append('avatar', avatarFile);
+    Loading.hourglass();
     const res = await dispatch(updateProfile(formData));
-  
+    Loading.remove();
     if (res.meta.requestStatus=='rejected'){
       toast.error('Update profile failed')
     }
