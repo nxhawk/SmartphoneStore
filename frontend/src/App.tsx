@@ -15,6 +15,7 @@ import Cart from './pages/Cart'
 import RedirectRoute from './routes/RedirectRoute'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import PrivateRoute from './routes/PrivateRoute'
 
 function App() {
 
@@ -33,8 +34,10 @@ function App() {
             <Route path='/product/:productId' element={<ProductDetails/>}/>
 
             // authentication
-            <Route path='/detailUser' element={<DetailUser/>}/>
-            <Route path='/cart' element={<Cart/>}/>
+            <Route element={<PrivateRoute/>}>
+              <Route path='/detailUser' element={<DetailUser/>}/>
+              <Route path='/cart' element={<Cart/>}/>
+            </Route>
           </Route>
           <Route path='/auth' element={<RedirectRoute/>}>
             <Route path='login' element={<Login/>}/>

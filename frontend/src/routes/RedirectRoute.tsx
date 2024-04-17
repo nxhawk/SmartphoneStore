@@ -12,7 +12,7 @@ export default function RedirectRoute() {
   }, []);
 
   const user = useSelector((state: AppState) => state?.user?.user);
-  console.log(user);
+
   if (user.email.length > 0) {
     return <Navigate to="/" replace />;
   }
