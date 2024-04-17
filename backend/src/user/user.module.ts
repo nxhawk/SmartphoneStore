@@ -4,9 +4,10 @@ import { UserController } from './user.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './entities/user.entity';
 import { Services } from 'src/utils/constants';
+import { ImageStorageModule } from 'src/image-storage/image-storage.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([User])],
+  imports: [TypeOrmModule.forFeature([User]), ImageStorageModule],
   controllers: [UserController],
   providers: [
     {

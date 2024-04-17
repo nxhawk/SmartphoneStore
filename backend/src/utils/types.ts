@@ -30,3 +30,11 @@ export type FindUserOptions = Partial<{
 export interface AuthenticatedRequest extends Request {
   user: User;
 }
+
+export type UserProfileFiles = Partial<{
+  avatar: Express.Multer.File[];
+}>;
+
+export type UploadImageParams = {
+  file: Express.Multer.File;
+};

@@ -18,7 +18,8 @@ const DetailUser = () => {
   const [oldPassword, setOldPassword] = useState("")
   const [newPassword, setNewPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
-  
+  const [avatarFile, setAvatarFile] = useState<File|undefined>(undefined);
+
   const nameRef = useRef<HTMLInputElement>(null);
   const phoneNumberRef = useRef<HTMLInputElement>(null);
   
@@ -40,11 +41,12 @@ const DetailUser = () => {
       return;
     }
     // update infomation
-    const res = await dispatch(updateProfile({
-      name,
-      phoneNumber,
-      avatar: attachment,
-    }));
+    const formData = new FormData();
+    formData.append('name', name);
+    formData.append('phoneNumber', phoneNumber);
+    avatarFile && formData.append('avatar', avatarFile);
+    const res = await dispatch(updateProfile(formData));
+  
     if (res.meta.requestStatus=='rejected'){
       toast.error('Update profile failed')
     }
@@ -64,6 +66,7 @@ const DetailUser = () => {
       };
 
       reader.readAsDataURL(file);
+      setAvatarFile(file);
     }
   }
 

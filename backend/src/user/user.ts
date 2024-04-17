@@ -15,6 +15,7 @@ export interface IUserService {
   ): Promise<User>;
   updateProfile(
     user: User,
+    file: Express.Multer.File,
     updateUserInformation: UpdateUserInformation,
   ): Promise<UpdateResult>;
 }

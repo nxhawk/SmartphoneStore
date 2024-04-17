@@ -6,6 +6,7 @@ import { dataSourceOptions } from 'db/data-source';
 import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
 import { PassportModule } from '@nestjs/passport';
+import { ImageStorageModule } from './image-storage/image-storage.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { PassportModule } from '@nestjs/passport';
     TypeOrmModule.forRoot(dataSourceOptions),
     UserModule,
     AuthModule,
+    ImageStorageModule,
   ],
   providers: [],
 })

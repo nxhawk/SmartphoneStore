@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { IUserService } from './user';
 import {
   CreateUserDetails,
@@ -11,11 +11,15 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, UpdateResult } from 'typeorm';
 import { UserAlreadyExists } from './exceptions/UserAlreadyExists';
 import { hashPassword } from 'src/utils/helpers';
+import { Services } from 'src/utils/constants';
+import { IImageStorageService } from 'src/image-storage/image-storage';
 
 @Injectable()
 export class UserService implements IUserService {
   constructor(
     @InjectRepository(User) private readonly userRepository: Repository<User>,
+    @Inject(Services.IMAGE_UPLOAD_SERVICE)
+    private readonly imageStorageService: IImageStorageService,
   ) {}
 
   async createUser(userDetails: CreateUserDetails) {
@@ -59,6 +63,7 @@ export class UserService implements IUserService {
 
   async updateProfile(
     user: User,
+    file: Express.Multer.File,
     updateUserInformation: UpdateUserInformation,
   ): Promise<UpdateResult> {
     const getUser = await this.findUser(
@@ -68,6 +73,12 @@ export class UserService implements IUserService {
     user.phoneNumber = updateUserInformation.phoneNumber;
     user.name = updateUserInformation.name;
     user.password = getUser.password;
+    if (file !== undefined) {
+      await this.imageStorageService.destroy(user.public_id);
+      const res = await this.imageStorageService.upload({ file });
+      user.avatar = res.url;
+      user.public_id = res.public_id;
+    }
     return this.userRepository.update({ email: user.email }, user);
   }
 }
