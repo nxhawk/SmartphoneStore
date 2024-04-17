@@ -3,18 +3,30 @@ import logo from '../assets/images/logo.jpg';
 import { BiSolidUser } from "react-icons/bi";
 import { FaShoppingCart } from "react-icons/fa";
 import { useState } from 'react';
+import { AppDispatch, AppState } from '../store';
+import { useDispatch, useSelector } from 'react-redux';
+import { logoutUser } from '../store/user';
 
 const Usernavbar = () => {
   const [show, setShow] = useState(false);
   const [hover, setHover] = useState(false);
+  const dispatch = useDispatch<AppDispatch>();
 
+  const user = useSelector((state:AppState)=>state?.user?.user);
+
+  const logout = async () =>{
+    await dispatch(logoutUser());
+  }
   return (
     <div className="max-w-5xl mx-auto border-b-2 flex justify-between border-gray-100 items-center flex-wrap">
       <Link to={'/'} className='overflow-hidden'>
         <img src={logo} alt="logo" className='w-full md:w-60 mb-4 mt-2 hover:scale-105'/>
       </Link>
-      <div className='flex gap-8 w-full mb-2 md:w-fit justify-center'>
-          <Link to={'/'} className='flex items-center gap-2 relative'
+      {
+        user.email.length > 0 ?
+        (
+          <div className='flex gap-8 w-full mb-2 md:w-fit justify-center'>
+          <div className='cursor-default flex items-center gap-2 relative'
             onMouseEnter={() => setShow(true)}
             onMouseLeave={() => setShow(false)}
           >
@@ -22,7 +34,7 @@ const Usernavbar = () => {
               <BiSolidUser />
             </div>
             <span className='font-semibold'>
-            Tài khoản
+              Tài khoản
             </span>
             {
               show && (
@@ -30,13 +42,13 @@ const Usernavbar = () => {
               <Link to={'/detailUser'}>
                 <div className='hover:text-white hover:bg-neutral-700 p-2 hover:rounded-sm'>Trang người dùng</div>
               </Link>
-              <Link to={'/auth/logout'}>
+              <div onClick={logout}>
                 <div className='hover:text-white hover:bg-neutral-700 p-2 hover:rounded-sm'>Đăng xuất</div>
-              </Link>
+              </div>
             </div>
               )
             }
-          </Link>
+          </div>
           <Link to={'/cart'} className='flex items-center gap-2'
             onMouseEnter={() => setHover(true)}
             onMouseLeave={() => setHover(false)}
@@ -49,7 +61,16 @@ const Usernavbar = () => {
               Giỏ hàng
             </span>
           </Link>
-      </div>
+          </div>
+        )
+        :
+        (
+          <div className='flex gap-8 w-full mb-2 md:w-fit justify-center'>
+            <Link to={'/auth/login'} className='hover:text-blue-500'>Đăng nhập</Link>
+            <Link to={'/auth/signup'} className='hover:text-blue-500'>Đăng kí</Link>
+          </div>
+        )
+      }
     </div>
   )
 }

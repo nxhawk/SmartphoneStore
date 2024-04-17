@@ -28,6 +28,14 @@ export const getUserProfile = createAsyncThunk(
   }
 );
 
+export const logoutUser = createAsyncThunk("user/logout", async (_: void, {rejectWithValue}) => {
+  try {
+    return await userApi.logout();
+  } catch (error) {
+    return rejectWithValue(error);
+  }
+});
+
 const initialState: IUserStore = {
   token: "",
   user : {
@@ -53,6 +61,16 @@ const userSlice = createSlice({
     .addCase(getUserProfile.fulfilled, (state: IUserStore, action:PayloadAction<IUser>)=>{
       console.log("user login, save token to local storage");
       state.user = action.payload;
+    })
+    .addCase(logoutUser.fulfilled, (state: IUserStore) => {
+      state.user = {
+        email: "",
+        phoneNumber: "",
+        avatar: "",
+        name: "",
+        public_id: "",
+        gender: false,
+      }
     })
   }
 })

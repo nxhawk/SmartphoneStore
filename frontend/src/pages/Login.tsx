@@ -27,9 +27,10 @@ const Login = () => {
     },
     validationSchema: LoginSchema,
     onSubmit: async (values) => {
-      await dispatch(
+      const res = await dispatch(
         loginUser(values)
       );
+      console.log(res.meta.requestStatus);
     }
   })
 
