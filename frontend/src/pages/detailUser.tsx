@@ -2,11 +2,13 @@ import banner from '../assets/images/banners/blackFriday.gif'
 import { MdModeEdit } from "react-icons/md";
 import { ChangeEvent, useEffect, useRef, useState } from 'react';
 import OrderList from '../components/OrderList';
-import { useSelector } from 'react-redux';
-import { AppState } from '../store';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, AppState } from '../store';
 import { toast } from 'react-toastify';
+import { updateProfile } from '../store/user';
 
 const DetailUser = () => {
+  const dispatch = useDispatch<AppDispatch>();
   const user = useSelector((state: AppState) => state?.user?.user);
   
   // todo: data here
@@ -38,6 +40,14 @@ const DetailUser = () => {
       return;
     }
     // update infomation
+    const res = await dispatch(updateProfile({
+      name,
+      phoneNumber,
+      avatar: attachment,
+    }));
+    if (res.meta.requestStatus=='rejected'){
+      toast.error('Update profile failed')
+    }
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

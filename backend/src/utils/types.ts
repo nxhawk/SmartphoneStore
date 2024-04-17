@@ -1,8 +1,16 @@
+import { User } from 'src/user/entities/user.entity';
+
 export type CreateUserDetails = {
   name: string;
   phoneNumber: string;
   email: string;
   password: string;
+};
+
+export type UpdateUserInformation = {
+  name: string;
+  phoneNumber: string;
+  avatar?: string;
 };
 
 export type ValidateUserDetails = {
@@ -18,3 +26,7 @@ export type FindUserParams = Partial<{
 export type FindUserOptions = Partial<{
   selectAll: boolean;
 }>;
+
+export interface AuthenticatedRequest extends Request {
+  user: User;
+}

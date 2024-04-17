@@ -4,10 +4,11 @@ import {
   CreateUserDetails,
   FindUserOptions,
   FindUserParams,
+  UpdateUserInformation,
 } from 'src/utils/types';
 import { User } from './entities/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Repository, UpdateResult } from 'typeorm';
 import { UserAlreadyExists } from './exceptions/UserAlreadyExists';
 import { hashPassword } from 'src/utils/helpers';
 
@@ -54,5 +55,19 @@ export class UserService implements IUserService {
       where: params,
       select: options?.selectAll ? selectionsWithPassword : selections,
     });
+  }
+
+  async updateProfile(
+    user: User,
+    updateUserInformation: UpdateUserInformation,
+  ): Promise<UpdateResult> {
+    const getUser = await this.findUser(
+      { email: user.email },
+      { selectAll: true },
+    );
+    user.phoneNumber = updateUserInformation.phoneNumber;
+    user.name = updateUserInformation.name;
+    user.password = getUser.password;
+    return this.userRepository.update({ email: user.email }, user);
   }
 }

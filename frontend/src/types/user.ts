@@ -18,3 +18,9 @@ export interface IRegisterForm {
   password: string;
   phoneNumber: string;
 }
+
+export interface IUpdateProfile {
+  name: string;
+  phoneNumber: string;
+  avatar: string;
+}
