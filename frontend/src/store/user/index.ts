@@ -1,5 +1,5 @@
 import { userApi } from "../../api/axios";
-import { ILoginForm, IUser } from "../../types/user";
+import { ILoginForm, IRegisterForm, IUser } from "../../types/user";
 import { IUserStore } from "./type";
 import {
   ActionReducerMapBuilder,
@@ -13,6 +13,15 @@ export const loginUser = createAsyncThunk('user/login',
   async (user: ILoginForm, {rejectWithValue}) => {
   try {
     return await userApi.login(user);
+  } catch (error) {
+    return rejectWithValue(error);
+  }
+})
+
+export const registerUser = createAsyncThunk('user/register', 
+  async (user: IRegisterForm, {rejectWithValue}) => {
+  try {
+    return await userApi.signup(user);
   } catch (error) {
     return rejectWithValue(error);
   }
@@ -62,6 +71,9 @@ const userSlice = createSlice({
     })
     .addCase(getUserProfile.fulfilled, (state: IUserStore, action:PayloadAction<IUser>)=>{
       state.user = action.payload;
+    })
+    .addCase(registerUser.fulfilled, ()=>{
+      toast.success('Register successfully');
     })
     .addCase(logoutUser.fulfilled, (state: IUserStore) => {
       state.user = {

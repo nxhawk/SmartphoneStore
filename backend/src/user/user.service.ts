@@ -31,6 +31,8 @@ export class UserService implements IUserService {
       avatar: 'https://ui-avatars.com/api/?name=No+Name',
     };
 
+    console.log(params);
+
     const newUser = this.userRepository.create(params);
     return this.userRepository.save(newUser);
   }
