@@ -6,6 +6,7 @@ import { useFormik } from 'formik'
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../store';
 import { loginUser } from '../store/user';
+import { toast } from 'react-toastify';
 
 const LoginSchema = yup.object().shape({
   email: yup.string()
@@ -30,7 +31,9 @@ const Login = () => {
       const res = await dispatch(
         loginUser(values)
       );
-      console.log(res.meta.requestStatus);
+      if (res.meta.requestStatus=='rejected'){
+        toast.error('Invalid email or password')
+      }
     }
   })
 

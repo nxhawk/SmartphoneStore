@@ -42,7 +42,7 @@ const Usernavbar = () => {
               <Link to={'/detailUser'}>
                 <div className='hover:text-white hover:bg-neutral-700 p-2 hover:rounded-sm'>Trang người dùng</div>
               </Link>
-              <div onClick={logout}>
+              <div onClick={logout} className='cursor-pointer'>
                 <div className='hover:text-white hover:bg-neutral-700 p-2 hover:rounded-sm'>Đăng xuất</div>
               </div>
             </div>
@@ -67,7 +67,7 @@ const Usernavbar = () => {
         (
           <div className='flex gap-8 w-full mb-2 md:w-fit justify-center'>
             <Link to={'/auth/login'} className='hover:text-blue-500'>Đăng nhập</Link>
-            <Link to={'/auth/signup'} className='hover:text-blue-500'>Đăng kí</Link>
+            <Link to={'/auth/signup'} className='hover:text-blue-500'>Đăng ký</Link>
           </div>
         )
       }

@@ -13,6 +13,8 @@ import ProductDetails from './pages/ProductDetails'
 import DetailUser from './pages/detailUser'
 import Cart from './pages/Cart'
 import RedirectRoute from './routes/RedirectRoute'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
 
@@ -40,6 +42,18 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
+      <ToastContainer 
+        position="top-center"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </>
   )
 }

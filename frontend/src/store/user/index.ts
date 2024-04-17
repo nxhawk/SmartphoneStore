@@ -7,6 +7,7 @@ import {
   createAsyncThunk,
   createSlice,
 } from "@reduxjs/toolkit";
+import { toast } from 'react-toastify';
 
 export const loginUser = createAsyncThunk('user/login', 
   async (user: ILoginForm, {rejectWithValue}) => {
@@ -57,6 +58,7 @@ const userSlice = createSlice({
     .addCase(loginUser.fulfilled, (state: IUserStore, action:PayloadAction<IUser>)=>{
       console.log("user login, save token to local storage");
       state.user = action.payload;
+      toast.success('Login successfully');
     })
     .addCase(getUserProfile.fulfilled, (state: IUserStore, action:PayloadAction<IUser>)=>{
       console.log("user login, save token to local storage");
@@ -71,6 +73,7 @@ const userSlice = createSlice({
         public_id: "",
         gender: false,
       }
+      toast.success('Logout Successfully');
     })
   }
 })
