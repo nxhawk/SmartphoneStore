@@ -1,5 +1,5 @@
 import AxiosClient from "../axios";
-import { ILoginForm, IUpdateProfile } from "../../types/user";
+import { ILoginForm, IUpdatePasswordForm } from "../../types/user";
 import { AxiosRequestConfig } from "axios";
 
 const config: AxiosRequestConfig = { withCredentials: true };
@@ -25,7 +25,12 @@ export const getUserProfile = async () =>{
   return res.data;
 } 
 
-export const updateProfile = async (data: IUpdateProfile) => {
+export const updateProfile = async (data: FormData) => {
   const res = await AxiosClient.post("/user/profile", data, config);
+  return res.data;
+}
+
+export const changePassword = async (data: IUpdatePasswordForm) => {
+  const res = await AxiosClient.post("/auth/password", data, config);
   return res.data;
 }

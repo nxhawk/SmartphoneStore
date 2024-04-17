@@ -4,15 +4,17 @@ import {
   CreateUserDetails,
   FindUserOptions,
   FindUserParams,
+  UpdatePassword,
   UpdateUserInformation,
 } from 'src/utils/types';
 import { User } from './entities/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, UpdateResult } from 'typeorm';
 import { UserAlreadyExists } from './exceptions/UserAlreadyExists';
-import { hashPassword } from 'src/utils/helpers';
+import { compareHash, hashPassword } from 'src/utils/helpers';
 import { Services } from 'src/utils/constants';
 import { IImageStorageService } from 'src/image-storage/image-storage';
+import { InvalidCredentials } from 'src/auth/exceptions/InvalidCredentials';
 
 @Injectable()
 export class UserService implements IUserService {
@@ -35,8 +37,6 @@ export class UserService implements IUserService {
       password: hashedPassword,
       avatar: 'https://ui-avatars.com/api/?name=No+Name',
     };
-
-    console.log(params);
 
     const newUser = this.userRepository.create(params);
     return this.userRepository.save(newUser);
@@ -79,6 +79,26 @@ export class UserService implements IUserService {
       user.avatar = res.url;
       user.public_id = res.public_id;
     }
+    return this.userRepository.update({ email: user.email }, user);
+  }
+
+  async updatePassword(
+    user: User,
+    updatePasswordData: UpdatePassword,
+  ): Promise<UpdateResult> {
+    const getUser = await this.findUser(
+      { email: user.email },
+      { selectAll: true },
+    );
+    const isPasswordValid = await compareHash(
+      updatePasswordData.oldPassword,
+      getUser.password,
+    );
+
+    if (!isPasswordValid) throw new InvalidCredentials();
+    const hashedPassword = await hashPassword(updatePasswordData.newPassword);
+    user.password = hashedPassword;
+
     return this.userRepository.update({ email: user.email }, user);
   }
 }

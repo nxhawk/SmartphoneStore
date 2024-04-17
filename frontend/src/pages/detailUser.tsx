@@ -5,7 +5,7 @@ import OrderList from '../components/OrderList';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, AppState } from '../store';
 import { toast } from 'react-toastify';
-import { updateProfile } from '../store/user';
+import { changePassword, updateProfile } from '../store/user';
 import { Loading } from 'notiflix';
 
 const DetailUser = () => {
@@ -69,6 +69,32 @@ const DetailUser = () => {
 
       reader.readAsDataURL(file);
       setAvatarFile(file);
+    }
+  }
+
+  const onChangePassword = async() => {
+    if (newPassword.length < 8 || oldPassword.length < 8) {
+      toast.error('Password must at least 8 characters');
+      return;
+    }
+    if (newPassword != confirmPassword){
+      toast.error('Confirm password does not match with your new password');
+      return;
+    }
+
+    // call API update password
+    const res = await dispatch(changePassword({
+      oldPassword,
+      newPassword,
+    }))
+
+    if (res.meta.requestStatus == 'rejected'){
+      toast.error('Old Password do not match',{ className: 'w-72'});
+    }else {
+      setOldPassword("");
+      setNewPassword("");
+      setConfirmPassword("");
+      setOpenChangePassword(false);
     }
   }
 
@@ -186,6 +212,7 @@ const DetailUser = () => {
                   <div className='flex gap-2 mb-1'>
                     <p className='w-4/12'></p>
                     <button 
+                      onClick={onChangePassword}
                       className='ease-in-out duration-500 border font-medium rounded-lg hover:bg-green-500 hover:border-green-500 bg-gray-300 w-5/12 py-1'
                     >Đồng ý</button>
                     <span className='w-3/12'></span>

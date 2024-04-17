@@ -1,5 +1,5 @@
 import { userApi } from "../../api/axios";
-import { ILoginForm, IRegisterForm, IUser } from "../../types/user";
+import { ILoginForm, IRegisterForm, IUpdatePasswordForm, IUser } from "../../types/user";
 import { IUserStore } from "./type";
 import {
   ActionReducerMapBuilder,
@@ -55,6 +55,15 @@ export const updateProfile = createAsyncThunk('user/profile',
   }
 })
 
+export const changePassword = createAsyncThunk('user/password', 
+  async (data: IUpdatePasswordForm, {rejectWithValue}) => {
+  try {
+    return await userApi.changePassword(data);
+  } catch (error) {
+    return rejectWithValue(error);
+  }
+})
+
 const initialState: IUserStore = {
   token: "",
   user : {
@@ -97,6 +106,11 @@ const userSlice = createSlice({
     }) 
     .addCase(updateProfile.fulfilled, ()=>{
       toast.success('Profile Updated Successfully', {
+        className: 'w-72'
+      });
+    })
+    .addCase(changePassword.fulfilled, ()=>{
+      toast.success('Password updated Successfully', {
         className: 'w-72'
       });
     })

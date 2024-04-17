@@ -18,3 +18,8 @@ export interface IRegisterForm {
   password: string;
   phoneNumber: string;
 }
+
+export interface IUpdatePasswordForm {
+  oldPassword: string;
+  newPassword: string;
+}

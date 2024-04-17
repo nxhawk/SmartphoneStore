@@ -38,3 +38,8 @@ export type UserProfileFiles = Partial<{
 export type UploadImageParams = {
   file: Express.Multer.File;
 };
+
+export type UpdatePassword = {
+  oldPassword: string;
+  newPassword: string;
+};

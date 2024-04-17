@@ -14,6 +14,9 @@ import { Routes, Services } from 'src/utils/constants';
 import { AuthenticatedGuard, LocalAuthGuard } from './utils/Guards';
 import { Response, Request } from 'express';
 import { IUserService } from 'src/user/user';
+import { UpdatePasswordDto } from './dtos/update-password';
+import { AuthUser } from 'src/utils/decorators';
+import { User } from 'src/user/entities/user.entity';
 
 @Controller(Routes.AUTH)
 export class AuthController {
@@ -45,5 +48,14 @@ export class AuthController {
     req.logout((err) => {
       return err ? res.send(400) : res.send(200);
     });
+  }
+
+  @Post('/password')
+  @UseGuards(AuthenticatedGuard)
+  changePassword(
+    @AuthUser() user: User,
+    @Body() updatePasswordDto: UpdatePasswordDto,
+  ) {
+    return this.userService.updatePassword(user, updatePasswordDto);
   }
 }

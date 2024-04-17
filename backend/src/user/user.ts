@@ -2,6 +2,7 @@ import {
   CreateUserDetails,
   FindUserOptions,
   FindUserParams,
+  UpdatePassword,
   UpdateUserInformation,
 } from 'src/utils/types';
 import { User } from './entities/user.entity';
@@ -17,5 +18,9 @@ export interface IUserService {
     user: User,
     file: Express.Multer.File,
     updateUserInformation: UpdateUserInformation,
+  ): Promise<UpdateResult>;
+  updatePassword(
+    user: User,
+    updatePasswordData: UpdatePassword,
   ): Promise<UpdateResult>;
 }
