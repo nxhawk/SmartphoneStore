@@ -12,6 +12,7 @@ import AllProduct from './pages/AllProduct'
 import ProductDetails from './pages/ProductDetails'
 import DetailUser from './pages/detailUser'
 import Cart from './pages/Cart'
+import RedirectRoute from './routes/RedirectRoute'
 
 function App() {
 
@@ -33,7 +34,7 @@ function App() {
             <Route path='/detailUser' element={<DetailUser/>}/>
             <Route path='/cart' element={<Cart/>}/>
           </Route>
-          <Route path='/auth'>
+          <Route path='/auth' element={<RedirectRoute/>}>
             <Route path='login' element={<Login/>}/>
             <Route path='signup' element={<Signup/>}/>
           </Route>
