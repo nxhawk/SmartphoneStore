@@ -17,12 +17,15 @@ import { IUserService } from 'src/user/user';
 import { UpdatePasswordDto } from './dtos/update-password';
 import { AuthUser } from 'src/utils/decorators';
 import { User } from 'src/user/entities/user.entity';
+import { GetCodeDto } from './dtos/getCode.dto';
+import { SendMail } from './send-mail.service';
 
 @Controller(Routes.AUTH)
 export class AuthController {
   constructor(
     @Inject(Services.AUTH) private readonly authService: IAuthService,
     @Inject(Services.USERS) private readonly userService: IUserService,
+    private readonly sendMail: SendMail,
   ) {}
 
   @Post('/register')
@@ -57,5 +60,10 @@ export class AuthController {
     @Body() updatePasswordDto: UpdatePasswordDto,
   ) {
     return this.userService.updatePassword(user, updatePasswordDto);
+  }
+
+  @Post('/getCode')
+  getCode(@Body() emailDto: GetCodeDto) {
+    return this.sendMail.sendMail(emailDto.email, 'Hello');
   }
 }

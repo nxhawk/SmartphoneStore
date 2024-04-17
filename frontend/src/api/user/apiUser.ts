@@ -34,3 +34,8 @@ export const changePassword = async (data: IUpdatePasswordForm) => {
   const res = await AxiosClient.post("/auth/password", data, config);
   return res.data;
 }
+
+export const getCodeForgotPassword = async (data: string) => {
+  const res = await AxiosClient.post("/auth/getCode", {email:data}, config);
+  return res.data;
+}
