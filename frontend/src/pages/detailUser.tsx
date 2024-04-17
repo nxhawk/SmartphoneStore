@@ -1,13 +1,16 @@
-import avatar from '../assets/images/chitietsanpham/avatar.jpg'
 import banner from '../assets/images/banners/blackFriday.gif'
 import { MdModeEdit } from "react-icons/md";
 import { useEffect, useRef, useState } from 'react';
 import OrderList from '../components/OrderList';
+import { useSelector } from 'react-redux';
+import { AppState } from '../store';
 
 const DetailUser = () => {
+  const user = useSelector((state: AppState) => state?.user?.user);
+  
   // todo: data here
-  const [name, setName] = useState("Nguyễn Nhật Hào");
-  const [phoneNumber, setPhoneNumber] = useState("0123456789")
+  const [name, setName] = useState(user?.name);
+  const [phoneNumber, setPhoneNumber] = useState(user?.phoneNumber);
   const [oldPassword, setOldPassword] = useState("")
   const [newPassword, setNewPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
@@ -34,7 +37,7 @@ const DetailUser = () => {
       </div>
       <div className='flex flex-col items-center md:flex-row'>
         <div className='flex flex-col w-4/12 justify-center items-center'>
-          <img src={avatar} alt='avatar' 
+          <img src={user?.avatar} alt='avatar' 
           className='w-32 h-32 md:w-60 md:h-60 object-fit'/>
           <input type="file" className="
             block w-full text-sm text-slate-500
@@ -92,7 +95,7 @@ const DetailUser = () => {
             </div>
             <div className='flex mb-3 gap-2'>
               <p className='font-bold w-4/12 text-end'>Email:</p>
-              <p className='w-5/12 text-center'>haonhat2729@gmail.com</p>
+              <p className='w-5/12 text-center'>{user?.email}</p>
               <span className='w-3/12'></span>
             </div>
             {/* change password */}

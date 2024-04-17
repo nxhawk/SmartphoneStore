@@ -26,7 +26,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   '&:last-child td, &:last-child th': {
     border: 0,
   },
-  '&:nth-child(n) td, &:nth-child(n) th, &:nth-child(2n) td, &:nth-child(2n) th': {
+  '&:nth-of-type(odd) td, &:nth-of-type(odd) th, &:nth-of-type(even) td, &:nth-of-type(even) th': {
     fontSize: 18,
   }
 }));

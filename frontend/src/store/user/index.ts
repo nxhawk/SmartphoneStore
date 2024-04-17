@@ -61,7 +61,6 @@ const userSlice = createSlice({
       toast.success('Login successfully');
     })
     .addCase(getUserProfile.fulfilled, (state: IUserStore, action:PayloadAction<IUser>)=>{
-      console.log("user login, save token to local storage");
       state.user = action.payload;
     })
     .addCase(logoutUser.fulfilled, (state: IUserStore) => {

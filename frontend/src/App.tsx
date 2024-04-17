@@ -16,6 +16,7 @@ import RedirectRoute from './routes/RedirectRoute'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import PrivateRoute from './routes/PrivateRoute'
+import CheckLoginRoute from './routes/CheckLoginRoute'
 
 function App() {
 
@@ -23,21 +24,24 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<Layout/>}>
-            <Route index element={<Home/>}/>
-            <Route path='/news' element={<News/>}/>
-            <Route path='/hiring' element={<Hiring/>}/>
-            <Route path='/about' element={<About/>}/>
-            <Route path='/maintenance' element={<Maintenance/>}/>
-            <Route path='/contact' element={<Contact/>}/>
-            <Route path='/showall' element={<AllProduct/>}/>
-            <Route path='/product/:productId' element={<ProductDetails/>}/>
+            <Route path='/' element={<Layout/>}>
+              <Route element={<CheckLoginRoute/>}>
+                <Route index element={<Home/>}/>
+                <Route path='/news' element={<News/>}/>
+                <Route path='/hiring' element={<Hiring/>}/>
+                <Route path='/about' element={<About/>}/>
+                <Route path='/maintenance' element={<Maintenance/>}/>
+                <Route path='/contact' element={<Contact/>}/>
+                <Route path='/showall' element={<AllProduct/>}/>
+                <Route path='/product/:productId' element={<ProductDetails/>}/>
+              
+                // authentication
+                <Route element={<PrivateRoute/>}>
+                  <Route path='/detailUser' element={<DetailUser/>}/>
+                  <Route path='/cart' element={<Cart/>}/>
+                </Route>
+              </Route>
 
-            // authentication
-            <Route element={<PrivateRoute/>}>
-              <Route path='/detailUser' element={<DetailUser/>}/>
-              <Route path='/cart' element={<Cart/>}/>
-            </Route>
           </Route>
           <Route path='/auth' element={<RedirectRoute/>}>
             <Route path='login' element={<Login/>}/>
