@@ -77,7 +77,7 @@ const Login = () => {
           </div>
         </div>
         <div className='flex justify-between'>
-          <Link to={'/'} className='text-sky-600 underline'>Forgot Password</Link>
+          <Link to={'/auth/forgotPassword'} className='text-sky-600 underline'>Forgot Password</Link>
           <button type='submit' className={`border p-2 px-4 rounded-md bg-sky-500 text-white hover:bg-sky-600 ease-in-out shadow ${isLoading&&'opacity-20'}`}>Login</button>
         </div>
       </form>
