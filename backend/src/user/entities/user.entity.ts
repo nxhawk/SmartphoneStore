@@ -50,6 +50,6 @@ export class User {
   lastOnline: Timestamp;
 
   // relationship
-  @OneToOne(() => ForgotCode)
+  @OneToOne(() => ForgotCode, (fc) => fc.user)
   forgotCode: ForgotCode;
 }

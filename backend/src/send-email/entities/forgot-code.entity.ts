@@ -16,9 +16,11 @@ export class ForgotCode {
   code: string;
 
   // relationship
-  @OneToOne(() => User, (user) => user.forgotCode)
+  @OneToOne(() => User, (user) => user.forgotCode, {
+    cascade: ['update'],
+  })
   @JoinColumn({
     name: 'userId',
   })
-  userId: User;
+  user: User;
 }
