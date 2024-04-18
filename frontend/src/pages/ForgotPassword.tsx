@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import ForgotPasswordForm from "../components/ForgotPasswordForm";
 import ResetPasswordForm from "../components/ResetPasswordForm";
 import { toast } from 'react-toastify';

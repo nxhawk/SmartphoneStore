@@ -4,10 +4,12 @@ import { ISendEmailService } from './send-email';
 import { contentEmailCode, randomCode } from 'src/utils/helpers';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ForgotCode } from './entities/forgot-code.entity';
-import { Repository } from 'typeorm';
+import { DeleteResult, Repository } from 'typeorm';
 import { IUserService } from 'src/user/user';
 import { Services } from 'src/utils/constants';
 import { UserNotFound } from 'src/user/exceptions/UserNotFound';
+import { User } from 'src/user/entities/user.entity';
+import { CodeNotMatch } from './exceptions/CodeNotMatch';
 
 @Injectable()
 export class SendEmailService implements ISendEmailService {
@@ -43,5 +45,23 @@ export class SendEmailService implements ISendEmailService {
       subject: 'Code reset password',
       html: contentEmailCode(code),
     });
+  }
+
+  async getCode(code: string): Promise<User> {
+    const codeMatch = await this.forgotCodeRepository.findOne({
+      where: { code },
+      relations: { user: true },
+    });
+
+    if (!codeMatch) throw new CodeNotMatch();
+    return codeMatch.user;
+  }
+
+  async deleteCode(code: string): Promise<DeleteResult> {
+    const codeMatch = await this.forgotCodeRepository.findOne({
+      where: { code },
+    });
+
+    return await this.forgotCodeRepository.delete(codeMatch);
   }
 }

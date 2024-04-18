@@ -1,5 +1,5 @@
 import AxiosClient from "../axios";
-import { ILoginForm, IUpdatePasswordForm } from "../../types/user";
+import { ILoginForm, IResetPasswordForm, IUpdatePasswordForm } from "../../types/user";
 import { AxiosRequestConfig } from "axios";
 
 const config: AxiosRequestConfig = { withCredentials: true };
@@ -37,5 +37,10 @@ export const changePassword = async (data: IUpdatePasswordForm) => {
 
 export const getCodeForgotPassword = async (data: string) => {
   const res = await AxiosClient.post("/auth/getCode", {email:data}, config);
+  return res.data;
+}
+
+export const resetPassword = async (data: IResetPasswordForm) => {
+  const res = await AxiosClient.post("/auth/resetPassword", data, config);
   return res.data;
 }

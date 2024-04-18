@@ -1,5 +1,9 @@
 import * as yup from 'yup'
 import { useFormik } from 'formik'
+import { useMutation } from "@tanstack/react-query";
+import { toast } from 'react-toastify';
+import { resetPassword } from '../api/user/apiUser';
+import { useNavigate } from 'react-router-dom';
 
 const ResetPasswordSchema = yup.object().shape({
   code: yup.string()
@@ -19,6 +23,24 @@ interface Props {
 
 
 const ResetPasswordForm = ({ email }: Props) => {
+  const navigate = useNavigate();
+
+  const resetPasswordMutation = useMutation({
+    mutationFn: async ({code, password}: {code: string, password: string}) => resetPassword({
+      code,
+      password,
+    }),
+    onError: (err: Error) =>{
+      toast.error(err.message)
+    },
+    onSuccess: () => {
+      toast.success("Password reset succesfully", {className:'w-96'})
+      setTimeout(() => {
+        navigate('/auth/login');
+      },300);
+    },
+  })
+
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
@@ -28,7 +50,11 @@ const ResetPasswordForm = ({ email }: Props) => {
     },
     validationSchema: ResetPasswordSchema,
     onSubmit: async (values) => {
-      
+      if (resetPasswordMutation.isPending) return;
+      resetPasswordMutation.mutate({
+        code: values.code,
+        password: values.password,
+      })
     }
   })
 
@@ -88,7 +114,7 @@ const ResetPasswordForm = ({ email }: Props) => {
           </div>
         </div>
         <div className='flex items-center justify-center'>
-          <button className='rounded bg-blue-500 w-fit text-white px-4 py-2 text-lg hover:bg-blue-700 shadow'>Reset Password</button>
+          <button type='submit' className={`rounded bg-blue-500 w-fit text-white px-4 py-2 text-lg hover:bg-blue-700 shadow ${resetPasswordMutation.isPending&&'opacity-40'}`}>Reset Password</button>
         </div>
       </form>
     </div>

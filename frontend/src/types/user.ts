@@ -23,3 +23,8 @@ export interface IUpdatePasswordForm {
   oldPassword: string;
   newPassword: string;
 }
+
+export interface IResetPasswordForm {
+  code: string;
+  password: string;
+}

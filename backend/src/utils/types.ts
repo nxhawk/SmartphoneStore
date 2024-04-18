@@ -43,3 +43,8 @@ export type UpdatePassword = {
   oldPassword: string;
   newPassword: string;
 };
+
+export type ResetPasswordForm = {
+  password: string;
+  code: string;
+};

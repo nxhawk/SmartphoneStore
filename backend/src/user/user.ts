@@ -23,4 +23,5 @@ export interface IUserService {
     user: User,
     updatePasswordData: UpdatePassword,
   ): Promise<UpdateResult>;
+  resetPassword(user: User, password: string): Promise<UpdateResult>;
 }

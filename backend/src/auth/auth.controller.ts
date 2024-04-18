@@ -19,6 +19,7 @@ import { AuthUser } from 'src/utils/decorators';
 import { User } from 'src/user/entities/user.entity';
 import { GetCodeDto } from './dtos/getCode.dto';
 import { ISendEmailService } from 'src/send-email/send-email';
+import { ResetPasswordDto } from './dtos/reset-password.dto';
 
 @Controller(Routes.AUTH)
 export class AuthController {
@@ -66,5 +67,10 @@ export class AuthController {
   @Post('/getCode')
   getCode(@Body() emailDto: GetCodeDto) {
     return this.sendMailService.sendCode(emailDto.email);
+  }
+
+  @Post('/resetPassword')
+  resetPassword(@Body() resetPasswordDto: ResetPasswordDto) {
+    return this.authService.resetPassword(resetPasswordDto);
   }
 }
