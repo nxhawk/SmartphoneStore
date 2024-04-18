@@ -1,16 +1,17 @@
 import { MailerService } from '@nestjs-modules/mailer';
 import { Injectable } from '@nestjs/common';
+import { ISendEmailService } from './send-email';
 
 @Injectable()
-export class SendMail {
+export class SendEmailService implements ISendEmailService {
   constructor(private readonly mailService: MailerService) {}
 
-  async sendMail(to: string, message: string) {
+  async sendCode(to: string) {
     return await this.mailService.sendMail({
       to,
       from: 'admin@gmail.com',
       subject: 'Verify Email Address',
-      text: message,
+      text: 'hello',
     });
   }
 }

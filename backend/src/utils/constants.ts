@@ -9,6 +9,7 @@ export enum Services {
   USERS = 'USERS_SERVICE',
   CLOUDINARY_SERVICE = 'CLOUDINARY_SERVICE',
   IMAGE_UPLOAD_SERVICE = 'IMAGE_UPLOAD_SERVICE',
+  SEND_MAIL_SERVICE = 'SEND_MAIL_SERVICE',
 }
 
 export const UserProfileFileFields: MulterField[] = [

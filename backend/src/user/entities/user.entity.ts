@@ -1,9 +1,11 @@
 import { Exclude } from 'class-transformer';
+import { ForgotCode } from 'src/send-email/entities/forgot-code.entity';
 import { Roles } from 'src/utils/enums/roles.enum';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  OneToOne,
   PrimaryGeneratedColumn,
   Timestamp,
 } from 'typeorm';
@@ -46,4 +48,8 @@ export class User {
 
   @CreateDateColumn()
   lastOnline: Timestamp;
+
+  // relationship
+  @OneToOne(() => ForgotCode)
+  forgotCode: ForgotCode;
 }

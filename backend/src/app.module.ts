@@ -7,6 +7,7 @@ import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
 import { PassportModule } from '@nestjs/passport';
 import { ImageStorageModule } from './image-storage/image-storage.module';
+import { SendEmailModule } from './send-email/send-email.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { ImageStorageModule } from './image-storage/image-storage.module';
     UserModule,
     AuthModule,
     ImageStorageModule,
+    SendEmailModule,
   ],
   providers: [],
 })
