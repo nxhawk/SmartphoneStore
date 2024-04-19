@@ -4,6 +4,7 @@ import { useMutation } from "@tanstack/react-query";
 import { toast } from 'react-toastify';
 import { resetPassword } from '../api/user/apiUser';
 import { useNavigate } from 'react-router-dom';
+import { AxiosError } from 'axios';
 
 const ResetPasswordSchema = yup.object().shape({
   code: yup.string()
@@ -21,6 +22,10 @@ interface Props {
   email: string;
 }
 
+interface ServerError {
+  message: string;
+  statusCode: number;
+}
 
 const ResetPasswordForm = ({ email }: Props) => {
   const navigate = useNavigate();
@@ -30,8 +35,11 @@ const ResetPasswordForm = ({ email }: Props) => {
       code,
       password,
     }),
-    onError: (err: Error) =>{
-      toast.error(err.message)
+    onError: (error: AxiosError) =>{
+      if (error.response) {
+        const errorMessage = error.response.data as ServerError;
+        toast.error(errorMessage.message || "Server error");
+      }
     },
     onSuccess: () => {
       toast.success("Password reset succesfully", {className:'w-96'})
