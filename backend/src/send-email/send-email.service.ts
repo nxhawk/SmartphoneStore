@@ -3,6 +3,7 @@ import { Inject, Injectable, forwardRef } from '@nestjs/common';
 import { ISendEmailService } from './send-email';
 import {
   contentEmailCode,
+  convertVNPhoneNumberToInternational,
   generateToken,
   randomCode,
   verifyToken,
@@ -19,6 +20,7 @@ import { VerifyCode } from './entities/verify-code.entity';
 import { contentEmailToken } from 'src/utils/contentEmailToken';
 import { VerifyAccountDto } from 'src/auth/dtos/verify-account.dto';
 import { TokenNotExist } from './exceptions/TokenNotExist';
+import { TwilioService } from 'nestjs-twilio';
 
 @Injectable()
 export class SendEmailService implements ISendEmailService {
@@ -30,6 +32,7 @@ export class SendEmailService implements ISendEmailService {
     private readonly forgotCodeRepository: Repository<ForgotCode>,
     @InjectRepository(VerifyCode)
     private readonly verifyCodeRepository: Repository<VerifyCode>,
+    private readonly twilioService: TwilioService,
   ) {}
 
   async sendCode(to: string) {
@@ -50,7 +53,15 @@ export class SendEmailService implements ISendEmailService {
       user,
     });
     await this.forgotCodeRepository.save(newCode);
-
+    try {
+      await this.twilioService.client.messages.create({
+        body: 'SMS Body, sent to the phone!',
+        from: process.env.TWILIO_PHONENUMBER,
+        to: convertVNPhoneNumberToInternational(user.phoneNumber),
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
     return await this.mailService.sendMail({
       to,
       from: 'admin@gmail.com',

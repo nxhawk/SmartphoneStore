@@ -53,3 +53,7 @@ export function verifyToken(token: string) {
     return null;
   }
 }
+
+export function convertVNPhoneNumberToInternational(phoneNumber: string) {
+  return '+84' + phoneNumber.slice(1, phoneNumber.length);
+}

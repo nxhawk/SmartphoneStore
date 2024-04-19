@@ -6,4 +6,6 @@ export default () => ({
   username: process.env.DB_USERNAME,
   password: process.env.DB_PASSWORD,
   dbName: process.env.DB_DATABASE,
+  TWILIO_ACCOUNT_SID: process.env.TWILIO_ACCOUNT,
+  TWILIO_AUTH_TOKEN: process.env.TWILIO_AUTH_TOKEN,
 });
