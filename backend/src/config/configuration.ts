@@ -1,6 +1,7 @@
 export default () => ({
   port: parseInt(process.env.PORT),
   cookie_secret: process.env.COOKIE_SECRET,
+  dbDatabase: process.env.DB_DB,
   dbHost: process.env.DB_HOST,
   dbPort: parseInt(process.env.DB_PORT),
   dbUsername: process.env.DB_USERNAME,

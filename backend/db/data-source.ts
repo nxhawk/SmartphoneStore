@@ -17,6 +17,8 @@ export const dataSourceOptions: DataSourceOptions = {
   synchronize: true,
 };
 
+type DatabseUnion = 'postgres' | 'mysql' | 'mariadb' | 'oracle';
+
 export const typeOrmAsyncConfig: TypeOrmModuleAsyncOptions = {
   imports: [ConfigModule],
   inject: [ConfigService],
@@ -24,7 +26,7 @@ export const typeOrmAsyncConfig: TypeOrmModuleAsyncOptions = {
     configService: ConfigService,
   ): Promise<TypeOrmModuleOptions> => {
     return {
-      type: 'postgres',
+      type: configService.get<DatabseUnion>('dbDatabase'),
       host: configService.get<string>('dbHost'),
       port: configService.get<number>('dbPort'),
       username: configService.get<string>('dbUsername'),
