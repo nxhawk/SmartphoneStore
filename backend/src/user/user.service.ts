@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { Inject, Injectable, forwardRef } from '@nestjs/common';
 import { IUserService } from './user';
 import {
   CreateUserDetails,
@@ -15,6 +15,7 @@ import { compareHash, hashPassword } from 'src/utils/helpers';
 import { Services } from 'src/utils/constants';
 import { IImageStorageService } from 'src/image-storage/image-storage';
 import { InvalidCredentials } from 'src/auth/exceptions/InvalidCredentials';
+import { ISendEmailService } from 'src/send-email/send-email';
 
 @Injectable()
 export class UserService implements IUserService {
@@ -22,6 +23,8 @@ export class UserService implements IUserService {
     @InjectRepository(User) private readonly userRepository: Repository<User>,
     @Inject(Services.IMAGE_UPLOAD_SERVICE)
     private readonly imageStorageService: IImageStorageService,
+    @Inject(forwardRef(() => Services.SEND_MAIL_SERVICE))
+    private readonly sendMailService: ISendEmailService,
   ) {}
 
   async createUser(userDetails: CreateUserDetails) {
@@ -39,7 +42,8 @@ export class UserService implements IUserService {
     };
 
     const newUser = this.userRepository.create(params);
-    return this.userRepository.save(newUser);
+    await this.userRepository.save(newUser);
+    return this.sendMailService.sendToken(userDetails.email);
   }
 
   async findUser(

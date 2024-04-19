@@ -1,7 +1,7 @@
 import { MailerService } from '@nestjs-modules/mailer';
-import { Inject, Injectable } from '@nestjs/common';
+import { Inject, Injectable, forwardRef } from '@nestjs/common';
 import { ISendEmailService } from './send-email';
-import { contentEmailCode, randomCode } from 'src/utils/helpers';
+import { contentEmailCode, generateToken, randomCode } from 'src/utils/helpers';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ForgotCode } from './entities/forgot-code.entity';
 import { DeleteResult, Repository } from 'typeorm';
@@ -10,14 +10,19 @@ import { Services } from 'src/utils/constants';
 import { UserNotFound } from 'src/user/exceptions/UserNotFound';
 import { User } from 'src/user/entities/user.entity';
 import { CodeNotMatch } from './exceptions/CodeNotMatch';
+import { VerifyCode } from './entities/verify-code.entity';
+import { contentEmailToken } from 'src/utils/contentEmailToken';
 
 @Injectable()
 export class SendEmailService implements ISendEmailService {
   constructor(
-    @Inject(Services.USERS) private readonly userService: IUserService,
+    @Inject(forwardRef(() => Services.USERS))
+    private readonly userService: IUserService,
     private readonly mailService: MailerService,
     @InjectRepository(ForgotCode)
     private readonly forgotCodeRepository: Repository<ForgotCode>,
+    @InjectRepository(VerifyCode)
+    private readonly verifyCodeRepository: Repository<VerifyCode>,
   ) {}
 
   async sendCode(to: string) {
@@ -63,5 +68,24 @@ export class SendEmailService implements ISendEmailService {
     });
 
     return await this.forgotCodeRepository.delete(codeMatch);
+  }
+
+  async sendToken(to: string) {
+    const user = await this.userService.findUser({ email: to });
+    if (!user) throw new UserNotFound();
+
+    const token = generateToken(user);
+    const newToken = await this.verifyCodeRepository.create({
+      token,
+    });
+    await this.verifyCodeRepository.save(newToken);
+
+    const link = `${process.env.CLIENT_URL}/auth/verify/${token}`;
+    return await this.mailService.sendMail({
+      to,
+      from: 'admin@gmail.com',
+      subject: 'Verify Email Address',
+      html: contentEmailToken(link),
+    });
   }
 }

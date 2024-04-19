@@ -5,4 +5,5 @@ export interface ISendEmailService {
   sendCode(to: string);
   getCode(code: string): Promise<User>;
   deleteCode(code: string): Promise<DeleteResult>;
+  sendToken(to: string);
 }

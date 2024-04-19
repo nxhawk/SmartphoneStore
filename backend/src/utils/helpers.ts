@@ -1,4 +1,6 @@
 import * as bcrypt from 'bcrypt';
+import { sign, verify } from 'jsonwebtoken';
+import { User } from 'src/user/entities/user.entity';
 
 export async function hashPassword(rawPassword: string) {
   const salt = await bcrypt.genSalt();
@@ -28,4 +30,26 @@ export function randomCode() {
   }
 
   return result;
+}
+
+export function generateToken(user: User) {
+  try {
+    return sign(
+      { id: user.userId, email: user.email },
+      process.env.ACCESS_TOKEN_SECRET_KEY,
+      { expiresIn: process.env.ACCESS_TOKEN_EXPIRE_TIME + 'd' },
+    );
+  } catch (error) {
+    console.log(`Error in generate token:  + ${error}`);
+    return null;
+  }
+}
+
+export function verifyToken(token: string) {
+  try {
+    return verify(token, process.env.ACCESS_TOKEN_SECRET_KEY);
+  } catch (error) {
+    console.log(`Error in verify token:  + ${error}`);
+    return null;
+  }
 }

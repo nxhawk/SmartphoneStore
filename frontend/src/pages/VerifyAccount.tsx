@@ -17,7 +17,7 @@ const VerifyAccount = () => {
           <p className="font-base text-lg text-center mb-2">Your account is verified successfully!</p>
           <p>Are you ready to join with us?</p>
           <Link to={'/auth/login'}
-          className="ease-in-out duration-300 mt-6 rounded-2xl border border-green-600 text-green-600 font-semibold px-5 py-2 hover:bg-green-600 hover:text-white text-lg"
+          className="ease-in-out duration-300 mt-6 rounded-xl border border-green-600 text-green-600 font-semibold px-5 py-2 hover:bg-green-600 hover:text-white text-lg"
           >Login now</Link>
         </div>
       </div>
