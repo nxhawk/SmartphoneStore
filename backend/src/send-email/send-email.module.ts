@@ -11,6 +11,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 
 @Module({
   imports: [
+    forwardRef(() => UserModule),
     TypeOrmModule.forFeature([ForgotCode, VerifyCode]),
     TwilioModule.forRootAsync({
       imports: [ConfigModule],
@@ -20,18 +21,20 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
       }),
       inject: [ConfigService],
     }),
-    forwardRef(() => UserModule),
-    MailerModule.forRoot({
-      transport: {
-        service: 'gmail',
-        host: 'smtp.gmail.com',
-        port: 587,
-        secure: false,
-        auth: {
-          user: 'nguyennhathao01012003@gmail.com',
-          pass: 'jvvs tjjh vgbb jekt',
+    MailerModule.forRootAsync({
+      useFactory: async (config: ConfigService) => ({
+        transport: {
+          service: 'gmail',
+          host: 'smtp.gmail.com',
+          port: 587,
+          secure: false,
+          auth: {
+            user: config.get('MAIL_USER'),
+            pass: config.get('MAIL_PASS'),
+          },
         },
-      },
+      }),
+      inject: [ConfigService],
     }),
   ],
   providers: [

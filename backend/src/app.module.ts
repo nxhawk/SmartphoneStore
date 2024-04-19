@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import configuration from './config/configuration';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { dataSourceOptions } from 'db/data-source';
+import { typeOrmAsyncConfig } from 'db/data-source';
 import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
 import { PassportModule } from '@nestjs/passport';
@@ -17,7 +17,8 @@ import { SendEmailModule } from './send-email/send-email.module';
       load: [configuration],
     }),
     PassportModule.register({ session: true }),
-    TypeOrmModule.forRoot(dataSourceOptions),
+    // TypeOrmModule.forRoot(dataSourceOptions),
+    TypeOrmModule.forRootAsync(typeOrmAsyncConfig),
     UserModule,
     AuthModule,
     ImageStorageModule,
