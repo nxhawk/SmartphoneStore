@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import { resetPassword } from '../api/user/apiUser';
 import { useNavigate } from 'react-router-dom';
 import { AxiosError } from 'axios';
+import { ServerError } from '../types/global';
 
 const ResetPasswordSchema = yup.object().shape({
   code: yup.string()
@@ -22,11 +23,6 @@ interface Props {
   email: string;
 }
 
-interface ServerError {
-  message: string;
-  statusCode: number;
-}
-
 const ResetPasswordForm = ({ email }: Props) => {
   const navigate = useNavigate();
 
@@ -39,6 +35,8 @@ const ResetPasswordForm = ({ email }: Props) => {
       if (error.response) {
         const errorMessage = error.response.data as ServerError;
         toast.error(errorMessage.message || "Server error");
+      } else{
+        toast.error(error.message);
       }
     },
     onSuccess: () => {
