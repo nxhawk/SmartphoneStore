@@ -37,7 +37,7 @@ const Login = () => {
       );
       setIsLoading(false); 
       if (res.meta.requestStatus=='rejected'){
-        toast.error('Invalid email or password')
+        toast.error(res.payload.response.data.message || 'Server error');
       }
     }
   })

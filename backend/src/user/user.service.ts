@@ -54,6 +54,7 @@ export class UserService implements IUserService {
       'public_id',
       'gender',
       'userId',
+      'active',
     ];
     const selectionsWithPassword: (keyof User)[] = [...selections, 'password'];
     return this.userRepository.findOne({

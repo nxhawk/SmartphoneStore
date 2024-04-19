@@ -54,7 +54,7 @@ const Signup = () => {
       if (res.meta.requestStatus=='rejected'){
         toast.error('Email is already rejected')
       }else if (res.meta.requestStatus=='fulfilled'){
-        navigate('/auth/login');
+        navigate('/auth/success');
       }
     }
   })

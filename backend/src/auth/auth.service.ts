@@ -9,6 +9,7 @@ import { compareHash } from 'src/utils/helpers';
 import { UpdateResult } from 'typeorm';
 import { ISendEmailService } from 'src/send-email/send-email';
 import { UserNotFound } from 'src/user/exceptions/UserNotFound';
+import { AccountNotValid } from './exceptions/AccountNotValid';
 
 @Injectable()
 export class AuthService implements IAuthService {
@@ -25,6 +26,8 @@ export class AuthService implements IAuthService {
     );
 
     if (!user) throw new InvalidCredentials();
+    // check account is valid
+    if (!user.active) throw new AccountNotValid();
     // check password
     const isPasswordValid = await compareHash(
       userCredentials.password,

@@ -18,6 +18,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import PrivateRoute from './routes/PrivateRoute'
 import CheckLoginRoute from './routes/CheckLoginRoute'
 import ForgotPassword from './pages/ForgotPassword'
+import RegisterSuccess from './pages/RegisterSuccess'
 
 function App() {
 
@@ -48,6 +49,7 @@ function App() {
             <Route path='login' element={<Login/>}/>
             <Route path='signup' element={<Signup/>}/>
             <Route path='forgotPassword' element={<ForgotPassword/>}/>
+            <Route path='success' element={<RegisterSuccess/>}/>
           </Route>
         </Routes>
       </BrowserRouter>
