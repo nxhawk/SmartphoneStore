@@ -44,3 +44,8 @@ export const resetPassword = async (data: IResetPasswordForm) => {
   const res = await AxiosClient.post("/auth/resetPassword", data, config);
   return res.data;
 }
+
+export const verifyAccount = async (data: string) => {
+  const res = await AxiosClient.post("/auth/verify", {token: data}, config);
+  return res.data;
+}

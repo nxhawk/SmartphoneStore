@@ -114,4 +114,9 @@ export class UserService implements IUserService {
 
     return this.userRepository.update({ email: user.email }, user);
   }
+
+  async updateActiveAccount(user: User, state: boolean): Promise<User> {
+    user.active = state;
+    return await this.userRepository.save(user);
+  }
 }

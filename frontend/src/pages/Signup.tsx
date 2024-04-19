@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../store';
 import { registerUser } from '../store/user';
 import { toast } from 'react-toastify';
+import { useState } from 'react';
 
 const SignupSchema = yup.object().shape({
   email: yup.string()
@@ -29,6 +30,7 @@ const SignupSchema = yup.object().shape({
 
 const Signup = () => {
   const dispatch = useDispatch<AppDispatch>();
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const formik = useFormik({
@@ -42,7 +44,8 @@ const Signup = () => {
     },
     validationSchema: SignupSchema,
     onSubmit: async (values) => {
-      console.log(JSON.stringify(values));
+      if (isLoading) return;
+      setIsLoading(true);
       const res = await dispatch(
         registerUser({
           name: values.name,
@@ -51,6 +54,7 @@ const Signup = () => {
           password: values.password,
         })
       );
+      setIsLoading(false);
       if (res.meta.requestStatus=='rejected'){
         toast.error('Email is already rejected')
       }else if (res.meta.requestStatus=='fulfilled'){
@@ -134,7 +138,7 @@ const Signup = () => {
         <div className=''>
           <p className='text-slate-500 text-sm mb-2 text-wrap'>By registering you agree with our terms and condition.</p>
           <div className='flex justify-end'>
-            <button type='submit' className='border p-2 px-4 rounded-md bg-sky-500 text-white hover:bg-sky-600 ease-in-out shadow'>Signup</button>
+            <button type='submit' className={`border p-2 px-4 rounded-md bg-sky-500 text-white hover:bg-sky-600 ease-in-out shadow ${isLoading&&'opacity-40'}`}>Signup</button>
           </div>
         </div>
       </form>

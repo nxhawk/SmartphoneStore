@@ -1,7 +1,12 @@
 import { MailerService } from '@nestjs-modules/mailer';
 import { Inject, Injectable, forwardRef } from '@nestjs/common';
 import { ISendEmailService } from './send-email';
-import { contentEmailCode, generateToken, randomCode } from 'src/utils/helpers';
+import {
+  contentEmailCode,
+  generateToken,
+  randomCode,
+  verifyToken,
+} from 'src/utils/helpers';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ForgotCode } from './entities/forgot-code.entity';
 import { DeleteResult, Repository } from 'typeorm';
@@ -12,6 +17,8 @@ import { User } from 'src/user/entities/user.entity';
 import { CodeNotMatch } from './exceptions/CodeNotMatch';
 import { VerifyCode } from './entities/verify-code.entity';
 import { contentEmailToken } from 'src/utils/contentEmailToken';
+import { VerifyAccountDto } from 'src/auth/dtos/verify-account.dto';
+import { TokenNotExist } from './exceptions/TokenNotExist';
 
 @Injectable()
 export class SendEmailService implements ISendEmailService {
@@ -87,5 +94,23 @@ export class SendEmailService implements ISendEmailService {
       subject: 'Verify Email Address',
       html: contentEmailToken(link),
     });
+  }
+
+  async verifyAccount(tokenDto: VerifyAccountDto) {
+    const checkToken = await this.verifyCodeRepository.findOne({
+      where: { token: tokenDto.token },
+    });
+    if (!checkToken) throw new TokenNotExist();
+
+    const account = await verifyToken(tokenDto.token);
+    const user = await this.userService.findUser({
+      userId: account?.id,
+      email: account?.email,
+    });
+
+    if (!user) throw new UserNotFound();
+    await this.userService.updateActiveAccount(user, true);
+    await this.verifyCodeRepository.remove(checkToken);
+    return true;
   }
 }

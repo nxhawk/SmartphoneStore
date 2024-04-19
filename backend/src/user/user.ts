@@ -24,4 +24,5 @@ export interface IUserService {
     updatePasswordData: UpdatePassword,
   ): Promise<UpdateResult>;
   resetPassword(user: User, password: string): Promise<UpdateResult>;
+  updateActiveAccount(user: User, state: boolean): Promise<User>;
 }

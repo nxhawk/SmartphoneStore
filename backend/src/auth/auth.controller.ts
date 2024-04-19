@@ -20,6 +20,7 @@ import { User } from 'src/user/entities/user.entity';
 import { GetCodeDto } from './dtos/getCode.dto';
 import { ISendEmailService } from 'src/send-email/send-email';
 import { ResetPasswordDto } from './dtos/reset-password.dto';
+import { VerifyAccountDto } from './dtos/verify-account.dto';
 
 @Controller(Routes.AUTH)
 export class AuthController {
@@ -72,5 +73,10 @@ export class AuthController {
   @Post('/resetPassword')
   resetPassword(@Body() resetPasswordDto: ResetPasswordDto) {
     return this.authService.resetPassword(resetPasswordDto);
+  }
+
+  @Post('/verify')
+  verifyAccout(@Body() tokenDto: VerifyAccountDto) {
+    return this.sendMailService.verifyAccount(tokenDto);
   }
 }
