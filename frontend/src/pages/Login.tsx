@@ -12,6 +12,9 @@ import { useState } from 'react';
 import DocumentMeta from 'react-document-meta';
 import {LoginMeta} from '../utils/meta';
 
+import { BsFacebook } from "react-icons/bs";
+import { FcGoogle } from "react-icons/fc";
+
 const LoginSchema = yup.object().shape({
   email: yup.string()
   .email("Email should be valid")
@@ -20,8 +23,6 @@ const LoginSchema = yup.object().shape({
   .required('Password is required')
   .min(8, "Password must be at least 8 characters"),
 });
-
-
 
 const Login = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -95,9 +96,14 @@ const Login = () => {
           </div>
 
           <Link to={`${import.meta.env.VITE_REACT_APP_BASE_URL}/auth/google/login`}
-          className='w-full flex items-center justify-center shadow-lg bg-slate-100 rounded py-2 text-gray-700 hover:text-black gap-1 hover:bg-slate-200'>
-            <img src="https://img.icons8.com/color/16/000000/google-logo.png" className='w-5'/>
+          className='w-full flex items-center justify-center shadow-lg bg-slate-100 rounded py-2 text-gray-700 hover:text-black gap-2 hover:bg-slate-200'>
+            <FcGoogle className='text-xl'/>
             <p className='uppercase'>Login with google</p>
+          </Link>
+          <Link to={`${import.meta.env.VITE_REACT_APP_BASE_URL}/auth/facebook/login`}
+          className='w-full mt-3 flex items-center justify-center shadow-lg bg-blue-700 rounded py-2 text-white gap-2 hover:bg-blue-800'>
+            <BsFacebook className='text-xl'/>
+            <p className='uppercase'>Login with facebook</p>
           </Link>
         </div>
 
