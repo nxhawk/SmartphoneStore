@@ -9,7 +9,7 @@ import { User } from './entities/user.entity';
 import { UpdateResult } from 'typeorm';
 
 export interface IUserService {
-  createUser(createUserDetails: CreateUserDetails);
+  createUser(createUserDetails: CreateUserDetails): Promise<User>;
   findUser(
     findUserParams: FindUserParams,
     options?: FindUserOptions,

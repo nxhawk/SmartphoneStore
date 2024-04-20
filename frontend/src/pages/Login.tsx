@@ -49,7 +49,7 @@ const Login = () => {
 
   return (
     <DocumentMeta {...LoginMeta}>
-      <div className='flex flex-col items-center justify-center w-100 mt-2'>
+      <div className='flex flex-col items-center justify-center w-100 m-2'>
         <Link to={'/'}>
           <img src={logo} alt="logo" className='w-80 mb-4'/>
         </Link>

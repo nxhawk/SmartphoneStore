@@ -39,7 +39,11 @@ export class AuthService implements IAuthService {
 
   async validateUserGoogle(details: CreateGoogleDto) {
     const user = await this.userService.findUser({ email: details.email });
-    if (user) return user;
+    if (user) {
+      if (user.active) return user;
+      const UpdateUser = await this.userService.updateActiveAccount(user, true);
+      return UpdateUser;
+    }
     return this.userService.createUser({
       email: details.email,
       name: details.name || 'Anonymous',

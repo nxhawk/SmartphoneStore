@@ -62,7 +62,7 @@ export function changeSizeAvatarFromGoogle(
   picture: string,
   size: number = 300,
 ) {
-  if (picture.indexOf('googleusercontent') > 0)
+  if (picture && picture.indexOf('googleusercontent') > 0)
     return picture.split('=')[0] + `=s${size}-c`;
   return picture;
 }

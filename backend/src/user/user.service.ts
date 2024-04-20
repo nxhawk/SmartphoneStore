@@ -39,17 +39,18 @@ export class UserService implements IUserService {
     if (existingUser) throw new UserAlreadyExists();
     const hashedPassword = await hashPassword(userDetails.password);
 
+    const avatarGoogle = changeSizeAvatarFromGoogle(userDetails.avatar);
     const params = {
       ...userDetails,
       password: hashedPassword,
-      avatar:
-        changeSizeAvatarFromGoogle(userDetails.avatar) ||
-        'https://ui-avatars.com/api/?name=No+Name',
+      avatar: avatarGoogle || 'https://ui-avatars.com/api/?name=No+Name',
+      active: avatarGoogle ? true : false,
     };
 
     const newUser = this.userRepository.create(params);
-    await this.userRepository.save(newUser);
-    return this.sendMailService.sendToken(userDetails.email);
+    const newUserSaved = await this.userRepository.save(newUser);
+    if (!avatarGoogle) await this.sendMailService.sendToken(userDetails.email);
+    return newUserSaved;
   }
 
   async findUser(
