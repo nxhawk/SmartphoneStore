@@ -72,15 +72,12 @@ export class UserService implements IUserService {
     file: Express.Multer.File,
     updateUserInformation: UpdateUserInformation,
   ): Promise<UpdateResult> {
-    const getUser = await this.findUser(
-      { email: user.email },
-      { selectAll: true },
-    );
     user.phoneNumber = updateUserInformation.phoneNumber;
     user.name = updateUserInformation.name;
-    user.password = getUser.password;
     if (file !== undefined) {
-      await this.imageStorageService.destroy(user.public_id);
+      if (user.public_id !== null)
+        await this.imageStorageService.destroy(user.public_id);
+
       const res = await this.imageStorageService.upload({ file });
       user.avatar = res.url;
       user.public_id = res.public_id;
