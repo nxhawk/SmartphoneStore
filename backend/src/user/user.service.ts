@@ -12,7 +12,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, UpdateResult } from 'typeorm';
 import { UserAlreadyExists } from './exceptions/UserAlreadyExists';
 import {
-  changeSizeAvatarFromGoogle,
+  changeSizeAvatarFromOAuth,
   compareHash,
   hashPassword,
 } from 'src/utils/helpers';
@@ -39,7 +39,7 @@ export class UserService implements IUserService {
     if (existingUser) throw new UserAlreadyExists();
     const hashedPassword = await hashPassword(userDetails.password);
 
-    const avatarGoogle = changeSizeAvatarFromGoogle(userDetails.avatar);
+    const avatarGoogle = changeSizeAvatarFromOAuth(userDetails.avatar);
     const params = {
       ...userDetails,
       password: hashedPassword,

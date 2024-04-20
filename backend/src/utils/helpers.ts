@@ -58,10 +58,7 @@ export function convertVNPhoneNumberToInternational(phoneNumber: string) {
   return '+84' + phoneNumber.slice(1, phoneNumber.length);
 }
 
-export function changeSizeAvatarFromGoogle(
-  picture: string,
-  size: number = 300,
-) {
+export function changeSizeAvatarFromOAuth(picture: string, size: number = 300) {
   if (picture && picture.indexOf('googleusercontent') > 0)
     return picture.split('=')[0] + `=s${size}-c`;
   return picture;

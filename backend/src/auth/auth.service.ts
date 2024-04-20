@@ -10,7 +10,7 @@ import { UpdateResult } from 'typeorm';
 import { ISendEmailService } from 'src/send-email/send-email';
 import { UserNotFound } from 'src/user/exceptions/UserNotFound';
 import { AccountNotValid } from './exceptions/AccountNotValid';
-import { CreateGoogleDto } from './dtos/create-user-google.dto';
+import { CreateOAuthDto } from './dtos/create-user-oauth.dto';
 
 @Injectable()
 export class AuthService implements IAuthService {
@@ -37,7 +37,7 @@ export class AuthService implements IAuthService {
     return isPasswordValid ? user : null;
   }
 
-  async validateUserGoogle(details: CreateGoogleDto) {
+  async validateUserOAuth(details: CreateOAuthDto) {
     const user = await this.userService.findUser({ email: details.email });
     if (user) {
       if (user.active) return user;

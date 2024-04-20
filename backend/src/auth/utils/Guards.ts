@@ -22,6 +22,16 @@ export class GoogleAuthGuard extends AuthGuard('google') {
 }
 
 @Injectable()
+export class FacebookAuthGuard extends AuthGuard('facebook') {
+  async canActivate(context: ExecutionContext) {
+    const activate = (await super.canActivate(context)) as boolean;
+    const request = context.switchToHttp().getRequest();
+    await super.logIn(request);
+    return activate;
+  }
+}
+
+@Injectable()
 export class AuthenticatedGuard implements CanActivate {
   async canActivate(context: ExecutionContext): Promise<any> {
     const req = context.switchToHttp().getRequest();

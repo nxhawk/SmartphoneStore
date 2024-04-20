@@ -13,6 +13,7 @@ import { CreateAuthDto } from './dtos/create-auth.dto';
 import { Routes, Services } from 'src/utils/constants';
 import {
   AuthenticatedGuard,
+  FacebookAuthGuard,
   GoogleAuthGuard,
   LocalAuthGuard,
 } from './utils/Guards';
@@ -96,6 +97,19 @@ export class AuthController {
   @Get('google/redirect')
   @UseGuards(GoogleAuthGuard)
   handleRedirect(@Res() res: Response) {
+    return res.redirect(process.env.CLIENT_URL);
+  }
+
+  // login with facebook
+  @Get('/facebook/login')
+  @UseGuards(FacebookAuthGuard)
+  async facebookLogin(): Promise<any> {
+    return { msg: 'Facebook Authentication' };
+  }
+
+  @Get('/facebook/redirect')
+  @UseGuards(FacebookAuthGuard)
+  async facebookLoginRedirect(@Res() res: Response) {
     return res.redirect(process.env.CLIENT_URL);
   }
 }

@@ -1,6 +1,6 @@
 import { IsEmail } from 'class-validator';
 
-export class CreateGoogleDto {
+export class CreateOAuthDto {
   name?: string;
 
   phoneNumber?: string;
