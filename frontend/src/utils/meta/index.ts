@@ -130,6 +130,18 @@ export const ProductsMeta = {
   }
 }
 
+export const CartMeta = { 
+  title: 'Cart page',
+  description: 'This is cart page smartphone store',
+  canonical: 'http://example.com/path/to/page',
+  meta: {
+    charset: 'utf-8',
+    name: {
+      keywords: 'react,meta,document,html,tags'
+    }
+  }
+}
+
 export const ProfileMeta = { 
   title: 'Profile page',
   description: 'This is profile page smartphone store',
