@@ -1,9 +1,11 @@
+import DocumentMeta from "react-document-meta"
 import CustomMarquee from "../components/CustomMarquee"
 import about from "../constants/data.json"
+import { AboutMeta } from "../utils/meta"
 
 const About = () => {
   return (
-    <div>
+    <DocumentMeta {...AboutMeta}>
       <CustomMarquee message="Chào mừng đến với Thế Giới Di Động!"/>
       <div className="py-5 px-2 md:px-5 grid lg:grid-cols-2 grid-cols-1 gap-6 my-2">
         {
@@ -17,7 +19,7 @@ const About = () => {
           )
         }
       </div>
-    </div>
+    </DocumentMeta>
   )
 }
 

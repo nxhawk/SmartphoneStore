@@ -9,6 +9,8 @@ import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import TableBody from '@mui/material/TableBody';
 import maintenance from "../constants/data.json"
 import { Link } from "react-router-dom";
+import { MaintenanceMeta } from "../utils/meta";
+import DocumentMeta from "react-document-meta";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -32,7 +34,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 const Maintenance = () => {
   return (
-    <div>
+    <DocumentMeta {...MaintenanceMeta}>
       <CustomMarquee message="Các trung tâm bảo hành của Smartphone Store"/>
       <div className="p-2 lg:p-5 mb-5">
         <TableContainer component={Paper}>
@@ -64,7 +66,7 @@ const Maintenance = () => {
           </Table>
         </TableContainer>
       </div>
-    </div>
+    </DocumentMeta>
   )
 }
 

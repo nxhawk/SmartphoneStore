@@ -1,9 +1,11 @@
 import { Link } from 'react-router-dom'
 import CustomMarquee from '../components/CustomMarquee'
+import DocumentMeta from 'react-document-meta'
+import { HiringMeta } from '../utils/meta'
 
 const Hiring = () => {
   return (
-    <div>
+    <DocumentMeta {...HiringMeta}>
         <CustomMarquee message="Yêu cầu tuyển dụng"/>
         <div className='py-6 px-5 md:pt-10 pt-4'>
           <div className='mb-2 text-center text-2xl font-bold text-sky-400'>NHÂN VIÊN BÁN HÀNG</div>
@@ -106,7 +108,7 @@ const Hiring = () => {
             </div>
           </div>
         </div>
-    </div>
+    </DocumentMeta>
   )
 }
 

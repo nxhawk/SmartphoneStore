@@ -4,6 +4,8 @@ import ResetPasswordForm from "../components/ResetPasswordForm";
 import { toast } from 'react-toastify';
 import { getCodeForgotPassword } from "../api/user/apiUser";
 import { useMutation } from "@tanstack/react-query";
+import DocumentMeta from "react-document-meta";
+import { ForgotPasswordMeta } from "../utils/meta";
 
 const ForgotPassword = () => {
   const [openResetPassPage, setOpenResetPassPage] = useState(false);
@@ -27,22 +29,24 @@ const ForgotPassword = () => {
 
 
   return (
-    <div className='min-h-screen bg-gray-200 flex justify-center items-center px-1 pb-2'>
-      {
-        openResetPassPage?(
-          <ResetPasswordForm
-            email={email}
-          />
-        ):(
-          <ForgotPasswordForm
-            email={email}
-            setEmail={setEmail}
-            handleOppenResetPassPage={handleOppenResetPassPage}
-            isLoading={sendMailMutation.isPending}
-          />
-        )
-      }
-    </div>
+    <DocumentMeta {...ForgotPasswordMeta}>
+      <div className='min-h-screen bg-gray-200 flex justify-center items-center px-1 pb-2'>
+        {
+          openResetPassPage?(
+            <ResetPasswordForm
+              email={email}
+            />
+          ):(
+            <ForgotPasswordForm
+              email={email}
+              setEmail={setEmail}
+              handleOppenResetPassPage={handleOppenResetPassPage}
+              isLoading={sendMailMutation.isPending}
+            />
+          )
+        }
+      </div>
+    </DocumentMeta>
   )
 }
 
