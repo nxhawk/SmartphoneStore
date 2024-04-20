@@ -5,6 +5,7 @@ export type CreateUserDetails = {
   phoneNumber: string;
   email: string;
   password: string;
+  avatar?: string;
 };
 
 export type UpdateUserInformation = {

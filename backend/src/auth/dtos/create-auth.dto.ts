@@ -14,4 +14,6 @@ export class CreateAuthDto {
   @IsNotEmpty({ message: 'passsword is required' })
   @MinLength(8, { message: 'passsword must be at least 8 characters' })
   password: string;
+
+  avatar?: string;
 }

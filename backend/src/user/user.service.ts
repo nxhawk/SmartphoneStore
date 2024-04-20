@@ -11,7 +11,11 @@ import { User } from './entities/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, UpdateResult } from 'typeorm';
 import { UserAlreadyExists } from './exceptions/UserAlreadyExists';
-import { compareHash, hashPassword } from 'src/utils/helpers';
+import {
+  changeSizeAvatarFromGoogle,
+  compareHash,
+  hashPassword,
+} from 'src/utils/helpers';
 import { Services } from 'src/utils/constants';
 import { IImageStorageService } from 'src/image-storage/image-storage';
 import { InvalidCredentials } from 'src/auth/exceptions/InvalidCredentials';
@@ -38,7 +42,9 @@ export class UserService implements IUserService {
     const params = {
       ...userDetails,
       password: hashedPassword,
-      avatar: 'https://ui-avatars.com/api/?name=No+Name',
+      avatar:
+        changeSizeAvatarFromGoogle(userDetails.avatar) ||
+        'https://ui-avatars.com/api/?name=No+Name',
     };
 
     const newUser = this.userRepository.create(params);

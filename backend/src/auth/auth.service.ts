@@ -10,6 +10,7 @@ import { UpdateResult } from 'typeorm';
 import { ISendEmailService } from 'src/send-email/send-email';
 import { UserNotFound } from 'src/user/exceptions/UserNotFound';
 import { AccountNotValid } from './exceptions/AccountNotValid';
+import { CreateGoogleDto } from './dtos/create-user-google.dto';
 
 @Injectable()
 export class AuthService implements IAuthService {
@@ -34,6 +35,18 @@ export class AuthService implements IAuthService {
       user.password,
     );
     return isPasswordValid ? user : null;
+  }
+
+  async validateUserGoogle(details: CreateGoogleDto) {
+    const user = await this.userService.findUser({ email: details.email });
+    if (user) return user;
+    return this.userService.createUser({
+      email: details.email,
+      name: details.name || 'Anonymous',
+      password: details.password || '1234567890',
+      phoneNumber: details.phoneNumber || '',
+      avatar: details.avatar || 'https://ui-avatars.com/api/?name=No+Name',
+    });
   }
 
   async resetPassword(

@@ -11,7 +11,11 @@ import {
 import { IAuthService } from './auth';
 import { CreateAuthDto } from './dtos/create-auth.dto';
 import { Routes, Services } from 'src/utils/constants';
-import { AuthenticatedGuard, LocalAuthGuard } from './utils/Guards';
+import {
+  AuthenticatedGuard,
+  GoogleAuthGuard,
+  LocalAuthGuard,
+} from './utils/Guards';
 import { Response, Request } from 'express';
 import { IUserService } from 'src/user/user';
 import { UpdatePasswordDto } from './dtos/update-password';
@@ -49,7 +53,7 @@ export class AuthController {
   }
 
   @Post('/logout')
-  @UseGuards(AuthenticatedGuard)
+  //@UseGuards(AuthenticatedGuard)
   logout(@Req() req: Request, @Res() res: Response) {
     req.logout((err) => {
       return err ? res.send(400) : res.send(200);
@@ -78,5 +82,20 @@ export class AuthController {
   @Post('/verify')
   verifyAccout(@Body() tokenDto: VerifyAccountDto) {
     return this.sendMailService.verifyAccount(tokenDto);
+  }
+
+  //login with google
+  // api/auth/google/login
+  @Get('google/login')
+  @UseGuards(GoogleAuthGuard)
+  handleLogin() {
+    return { msg: 'Google Authentication' };
+  }
+
+  // api/auth/google/redirect
+  @Get('google/redirect')
+  @UseGuards(GoogleAuthGuard)
+  handleRedirect(@Res() res: Response) {
+    return res.redirect(process.env.CLIENT_URL);
   }
 }
