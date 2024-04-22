@@ -1,3 +1,4 @@
+import { Product } from 'src/product/entities/product.entity';
 import { User } from 'src/user/entities/user.entity';
 
 export type CreateUserDetails = {
@@ -48,4 +49,11 @@ export type UpdatePassword = {
 export type ResetPasswordForm = {
   password: string;
   code: string;
+};
+
+export type IGetProductsResponse = {
+  products: Product[];
+  perPage: number;
+  totalPage: number;
+  currentPage: number;
 };

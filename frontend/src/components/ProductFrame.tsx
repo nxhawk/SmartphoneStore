@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom'
 import Product from './Product'
-import phones from "../constants/phone.json"
 import Pagination from '@mui/material/Pagination';
 import { useState } from 'react';
 import { filterProps } from '../pages/AllProduct';
@@ -23,36 +22,31 @@ interface Product {
   comments: number;
 }
 
-// TODO: call API get Product by page, filter
-
 const ProductFrame = ({ more = true, title, filter}: ProductProps) => {
   const [page, setPage] = useState(1);
+  const [storePage, setStorePage] = useState(1);
   const [perPage, setperPage] = useState(10);
   const [countPage, setcountPage] = useState(0);
 
   const handleChangePage = (e: React.ChangeEvent<unknown>, value: number) =>{
     setPage(value);
-    changePage(value, perPage);
+    changePage(value);
   } 
 
-  const changePage=(page: number, perPage: number)=>{
-    const from = (page - 1) * perPage;
-    const to = Math.min(phones["phones"].length, page * perPage);
-
-    setProducts(phones["phones"].slice(from, to))
+  const changePage=(page: number)=>{
+    if (page > countPage) setPage(1);
+    setPage(page);
   }
 
-  // useEffect(() =>{
-  //   const pageCount = Math.floor(phones["phones"].length / perPage) + (phones["phones"].length % perPage > 0?1:0);
-  //   setcountPage(pageCount);
-  //   changePage(1, perPage);
-  // },[])
-
   const { isLoading, data: products} = useQuery({
-    queryKey: ['products', filter],
+    queryKey: ['products', filter, page],
     queryFn: async () => {
-      const data = await getAllProduct(filter);
-      return data;
+      if (page === storePage) setPage(1);
+      setStorePage(page);
+      const data = await getAllProduct(filter, page);
+      setcountPage(data.totalPage);
+      setperPage(data.perPage);
+      return data.products;
     },
   })
 

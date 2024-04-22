@@ -2,10 +2,8 @@ import { filterProps } from '../pages/AllProduct'
 import { IoCloseSharp } from "react-icons/io5";
 
 interface Props {
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  clearFilterOption: Function;
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  removeOneFilterOption: Function;
+  clearFilterOption: () => void;
+  removeOneFilterOption: (option_root: string, option_name?: string) => void;
   filter: filterProps[] 
 }
 

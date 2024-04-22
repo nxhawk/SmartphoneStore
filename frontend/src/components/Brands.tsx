@@ -1,9 +1,9 @@
 import brandsData from "../constants/brands.json" 
 import filterOption from "../constants/filter.json" 
+import { filterProps } from "../pages/AllProduct"
 import ButtonFilter from "./ButtonFilter"
 
-// eslint-disable-next-line @typescript-eslint/ban-types
-const Brands = ({ addFilterOption }: { addFilterOption: Function }) => {
+const Brands = ({ addFilterOption }: {  addFilterOption: (option: filterProps) =>void }) => {
   return (
     <div>
       <div className="flex flex-wrap items-center justify-center cursor-pointer">

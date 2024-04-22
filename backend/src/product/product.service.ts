@@ -2,9 +2,10 @@ import { Injectable } from '@nestjs/common';
 import { IProduct } from './interfaces/product';
 import { Product } from './entities/product.entity';
 import { InjectRepository } from '@nestjs/typeorm';
-import { In, LessThan, MoreThan, Repository } from 'typeorm';
+import { In, Repository } from 'typeorm';
 import { ProductDetail } from './entities/product-details.entity';
 import { SortByOption, filterByPrice } from 'src/utils/helpers';
+import { IGetProductsResponse } from 'src/utils/types';
 
 @Injectable()
 export class ProductService implements IProduct {
@@ -15,9 +16,11 @@ export class ProductService implements IProduct {
     private readonly productDetailRepository: Repository<ProductDetail>,
   ) {}
 
-  getAll(query): Promise<Product[]> {
-    // console.log(query);
-    return this.productRepository.find({
+  async getAll(query): Promise<IGetProductsResponse> {
+    const perPage = 10;
+    const currentPage = Number(query['page']) || 1;
+
+    const [products, totalProduct] = await this.productRepository.findAndCount({
       where: {
         productType: {
           name: Array.isArray(query['brand'])
@@ -31,6 +34,19 @@ export class ProductService implements IProduct {
         productType: true,
       },
       ...SortByOption(query['sort']),
+      skip: (currentPage - 1) * perPage,
+      take: perPage,
     });
+
+    const totalPage =
+      Math.floor(totalProduct / perPage) + (totalProduct % perPage > 0 ? 1 : 0);
+
+    const response: IGetProductsResponse = {
+      products,
+      totalPage,
+      perPage,
+      currentPage: 1,
+    };
+    return response;
   }
 }
