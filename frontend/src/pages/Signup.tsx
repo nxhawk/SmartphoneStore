@@ -1,5 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom';
-import logo from '../assets/images/logo.jpg';
+import logo from '../assets/images/logo-removebg.png';
 
 import * as yup from 'yup'
 import { useFormik } from 'formik'

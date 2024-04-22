@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import logo from '../assets/images/logo.jpg';
+import logo from '../assets/images/logo-removebg.png';
 
 import * as yup from 'yup'
 import { useFormik } from 'formik'
@@ -14,6 +14,9 @@ import {LoginMeta} from '../utils/meta';
 
 import { BsFacebook } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
+import { BsGithub } from "react-icons/bs";
+
+import OAuth2Button from '../components/OAuth2Button';
 
 const LoginSchema = yup.object().shape({
   email: yup.string()
@@ -95,16 +98,18 @@ const Login = () => {
             <p className='bg-white z-10 px-2'>or</p>
           </div>
 
-          <Link to={`${import.meta.env.VITE_REACT_APP_BASE_URL}/auth/google/login`}
-          className='w-full flex items-center justify-center shadow-lg bg-slate-100 rounded py-2 text-gray-700 hover:text-black gap-2 hover:bg-slate-200'>
+          <OAuth2Button name='google' 
+            className='bg-slate-100 text-gray-700 hover:text-black hover:bg-slate-200'>
             <FcGoogle className='text-xl'/>
-            <p className='uppercase'>Login with google</p>
-          </Link>
-          <Link to={`${import.meta.env.VITE_REACT_APP_BASE_URL}/auth/facebook/login`}
-          className='w-full mt-3 flex items-center justify-center shadow-lg bg-blue-700 rounded py-2 text-white gap-2 hover:bg-blue-800'>
+          </OAuth2Button>
+          <OAuth2Button name='facebook' 
+            className='text-white bg-blue-700 hover:bg-blue-800'>
             <BsFacebook className='text-xl'/>
-            <p className='uppercase'>Login with facebook</p>
-          </Link>
+          </OAuth2Button>
+          <OAuth2Button name='github' 
+            className='text-white bg-stone-900 hover:bg-black'>
+            <BsGithub className='text-xl'/>
+          </OAuth2Button>
         </div>
 
 

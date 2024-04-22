@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import logo from '../assets/images/logo.jpg';
+import logo from '../assets/images/logo-removebg.png';
 import { BiSolidUser } from "react-icons/bi";
 import { FaShoppingCart } from "react-icons/fa";
 import { useState } from 'react';
