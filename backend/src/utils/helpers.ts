@@ -1,6 +1,14 @@
 import * as bcrypt from 'bcrypt';
 import { sign, verify } from 'jsonwebtoken';
+import { Product } from 'src/product/entities/product.entity';
 import { User } from 'src/user/entities/user.entity';
+import {
+  FindOneOptions,
+  LessThan,
+  LessThanOrEqual,
+  MoreThan,
+  MoreThanOrEqual,
+} from 'typeorm';
 
 export async function hashPassword(rawPassword: string) {
   const salt = await bcrypt.genSalt();
@@ -62,4 +70,66 @@ export function changeSizeAvatarFromOAuth(picture: string, size: number = 300) {
   if (picture && picture.indexOf('googleusercontent') > 0)
     return picture.split('=')[0] + `=s${size}-c`;
   return picture;
+}
+
+export function filterByPrice(query: string) {
+  switch (query) {
+    case 'under2':
+      return LessThan(2000000);
+    case '2_4':
+      return MoreThanOrEqual(2000000) && LessThanOrEqual(4000000);
+    case '4_7':
+      return MoreThanOrEqual(4000000) && LessThanOrEqual(7000000);
+    case '7_13':
+      return MoreThanOrEqual(7000000) && LessThanOrEqual(13000000);
+    case 'more13':
+      return MoreThan(13000000);
+    default:
+      undefined;
+  }
+}
+
+export function SortByOption(query: string): FindOneOptions<Product> {
+  switch (query) {
+    case 'PINC':
+      return {
+        order: {
+          price: 'ASC',
+        },
+      };
+    case 'PDEC':
+      return {
+        order: {
+          price: 'DESC',
+        },
+      };
+    case 'SINC':
+      return {
+        order: {
+          rate: 'ASC',
+        },
+      };
+    case 'SDEC':
+      return {
+        order: {
+          rate: 'DESC',
+        },
+      };
+    case 'A-Z':
+      return {
+        order: {
+          name: 'ASC',
+        },
+      };
+    case 'Z-A':
+      return {
+        order: {
+          name: 'DESC',
+        },
+      };
+    default:
+      return {
+        order: {},
+      };
+  }
 }

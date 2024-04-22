@@ -1,4 +1,4 @@
-import { Controller, Get, Inject } from '@nestjs/common';
+import { Controller, Get, Inject, Query } from '@nestjs/common';
 import { Routes, Services } from 'src/utils/constants';
 import { IProduct } from './interfaces/product';
 import { IProductDetail } from './interfaces/product-detail';
@@ -13,7 +13,7 @@ export class ProductController {
   ) {}
 
   @Get('/all')
-  async getAll() {
-    return await this.productService.getAll();
+  async getAll(@Query() query) {
+    return await this.productService.getAll(query);
   }
 }
