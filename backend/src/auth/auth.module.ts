@@ -8,6 +8,7 @@ import { SessionSerializer } from './utils/SessionSerializer';
 import { SendEmailModule } from 'src/send-email/send-email.module';
 import { GoogleStrategy } from './utils/GoogleStrategy';
 import { FacebookStrategy } from './utils/FacebookStrategy';
+import { GithubStrategy } from './utils/GithubStrategy';
 
 @Module({
   imports: [UserModule, SendEmailModule],
@@ -16,6 +17,7 @@ import { FacebookStrategy } from './utils/FacebookStrategy';
     LocalStrategy,
     GoogleStrategy,
     FacebookStrategy,
+    GithubStrategy,
     SessionSerializer,
     {
       provide: Services.AUTH,

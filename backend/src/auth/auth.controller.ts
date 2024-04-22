@@ -14,6 +14,7 @@ import { Routes, Services } from 'src/utils/constants';
 import {
   AuthenticatedGuard,
   FacebookAuthGuard,
+  GithubAuthGuard,
   GoogleAuthGuard,
   LocalAuthGuard,
 } from './utils/Guards';
@@ -110,6 +111,19 @@ export class AuthController {
   @Get('/facebook/redirect')
   @UseGuards(FacebookAuthGuard)
   async facebookLoginRedirect(@Res() res: Response) {
+    return res.redirect(process.env.CLIENT_URL);
+  }
+
+  // login with github
+  @Get('/github/login')
+  @UseGuards(GithubAuthGuard)
+  async githubLogin(): Promise<any> {
+    return { msg: 'Github Authentication' };
+  }
+
+  @Get('/github/redirect')
+  @UseGuards(GithubAuthGuard)
+  async githubLoginRedirect(@Res() res: Response) {
     return res.redirect(process.env.CLIENT_URL);
   }
 }
