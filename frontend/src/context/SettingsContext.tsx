@@ -15,7 +15,7 @@ interface SettingsProviderProps {
 
 const SettingsProvider: React.FC<SettingsProviderProps> = ({children}) =>{
 
-  const [theme, setTheme] = useState<string>('#fff');
+  const [theme, setTheme] = useState<string>('Light');
   const [language, setLanguage] = useState<string>('VN');
 
   return (
