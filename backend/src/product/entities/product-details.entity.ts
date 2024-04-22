@@ -38,7 +38,9 @@ export class ProductDetail {
 
   // relationship
   @PrimaryGeneratedColumn()
-  @OneToOne(() => Product, (product) => product.productDetail)
+  @OneToOne(() => Product, (product) => product.productDetail, {
+    cascade: true,
+  })
   @JoinColumn({
     name: 'productId',
   })

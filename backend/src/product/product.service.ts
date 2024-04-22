@@ -6,6 +6,7 @@ import { In, Repository } from 'typeorm';
 import { ProductDetail } from './entities/product-details.entity';
 import { SortByOption, filterByPrice } from 'src/utils/helpers';
 import { IGetProductsResponse } from 'src/utils/types';
+import { ProductNotFound } from './exceptions/ProductNotFound';
 
 @Injectable()
 export class ProductService implements IProduct {
@@ -48,5 +49,21 @@ export class ProductService implements IProduct {
       currentPage: 1,
     };
     return response;
+  }
+
+  async getById(productId: string) {
+    const product = await this.productRepository.findOne({
+      where: { productId: Number(productId) },
+    });
+    if (!product) throw new ProductNotFound();
+
+    const productDetail = await this.productDetailRepository
+      .createQueryBuilder('productDetail')
+      .where('productDetail.productId = :id', { id: product.productId })
+      .leftJoinAndSelect('productDetail.productId', 'product')
+      .getOne();
+
+    if (!productDetail) throw new ProductNotFound();
+    return productDetail;
   }
 }

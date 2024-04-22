@@ -1,4 +1,4 @@
-import { Controller, Get, Inject, Query } from '@nestjs/common';
+import { Controller, Get, Inject, Param, Query } from '@nestjs/common';
 import { Routes, Services } from 'src/utils/constants';
 import { IProduct } from './interfaces/product';
 import { IProductDetail } from './interfaces/product-detail';
@@ -15,5 +15,10 @@ export class ProductController {
   @Get('/all')
   async getAll(@Query() query) {
     return await this.productService.getAll(query);
+  }
+
+  @Get('/:productId')
+  async getById(@Param() { productId }) {
+    return await this.productService.getById(productId);
   }
 }
