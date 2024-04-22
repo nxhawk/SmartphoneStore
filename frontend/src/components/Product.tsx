@@ -7,13 +7,13 @@ interface Props {
   image: string;
   name: string;
   price: number;
-  sale: number;
-  star: number;
-  comments: number;
+  rate: number;
+  comments?: number;
   link: string;
+  discount: number;
 }
 
-const Product = ({ image, name, price, sale, star, comments, link }: Props) => {
+const Product = ({ image, name, price, rate, discount, comments, link }: Props) => {
   const [hover, setHover] = useState(false)
 
   return (
@@ -27,13 +27,13 @@ const Product = ({ image, name, price, sale, star, comments, link }: Props) => {
       </div>
       <div>
         <div className="flex flex-wrap gap-2 justify-between text-xs mt-2 items-center">
-          <strong className="text-red-600">{convertToVND(price)}</strong>
-          <s>{convertToVND(sale)}</s>
+          <strong className="text-red-600">{convertToVND(price * (100 - discount)/100)}</strong>
+          <s>{convertToVND(price)}</s>
         </div>
         <div className="flex flex-wrap items-center justify-between mt-1">
           <ReactStars
             count={5}
-            value={star}
+            value={Number(rate)}
             size={24}
             edit={false}
             activeColor="#ffd700"

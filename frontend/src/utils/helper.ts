@@ -1,3 +1,5 @@
+import { filterProps } from "../pages/AllProduct";
+
 export function convertToVND(money: number){
   return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(money);
 }
@@ -11,4 +13,12 @@ export function isNumber(value?: string | number): boolean
   return ((value != null) &&
           (value !== '') &&
           !isNaN(Number(value.toString())));
+}
+
+export function convertFilterParams (filter: filterProps[] | undefined) {
+  let params = ''
+  filter && filter.forEach(f => {
+    params +=`${f.option_root}=${f.option_key}&`
+  })
+  return params ?`?${params}`:'';
 }

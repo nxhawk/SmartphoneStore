@@ -2,8 +2,11 @@ import { Link } from 'react-router-dom'
 import Product from './Product'
 import phones from "../constants/phone.json"
 import Pagination from '@mui/material/Pagination';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { filterProps } from '../pages/AllProduct';
+import { IProduct } from '../types/product';
+import { useQuery } from '@tanstack/react-query';
+import { getAllProduct } from '../api/product/apiProduct';
 
 interface ProductProps {
   more?: boolean;
@@ -22,10 +25,9 @@ interface Product {
 
 // TODO: call API get Product by page, filter
 
-const ProductFrame = ({ more = true, title, filter }: ProductProps) => {
+const ProductFrame = ({ more = true, title, filter}: ProductProps) => {
   const [page, setPage] = useState(1);
   const [perPage, setperPage] = useState(10);
-  const [products, setProducts] = useState<Product[]>([]);
   const [countPage, setcountPage] = useState(0);
 
   const handleChangePage = (e: React.ChangeEvent<unknown>, value: number) =>{
@@ -40,11 +42,22 @@ const ProductFrame = ({ more = true, title, filter }: ProductProps) => {
     setProducts(phones["phones"].slice(from, to))
   }
 
-  useEffect(() =>{
-    const pageCount = Math.floor(phones["phones"].length / perPage) + (phones["phones"].length % perPage > 0?1:0);
-    setcountPage(pageCount);
-    changePage(1, perPage);
-  },[])
+  // useEffect(() =>{
+  //   const pageCount = Math.floor(phones["phones"].length / perPage) + (phones["phones"].length % perPage > 0?1:0);
+  //   setcountPage(pageCount);
+  //   changePage(1, perPage);
+  // },[])
+
+  const { isLoading, data: products} = useQuery({
+    queryKey: ['products', filter],
+    queryFn: async () => {
+      const data = await getAllProduct(filter);
+      return data;
+    },
+  })
+
+
+  if (isLoading) return <div>Loading..</div>
 
   return (
     <div className={`mt-10 border-sky-600 border-2 rounded-lg p-10 relative mb-8 ${!more?'pb-4':''}`}>
@@ -65,15 +78,14 @@ const ProductFrame = ({ more = true, title, filter }: ProductProps) => {
                 {/* list product */}
         <div className='grid lg:grid-cols-5 md:grid-cols-3 grid-cols-1'>
           {
-            products.map((product, key) =>
+            products.map((product: IProduct, key: number) =>
               <Product
                 key={key}
                 image={product.image}
                 name={product.name}
-                sale={product.sale}
                 price={product.price}
-                comments={product.comments}
-                star={product.star}
+                rate={product.rate}
+                discount={product.discount}
                 link="/product/1"
               />
             )
@@ -98,7 +110,7 @@ const ProductFrame = ({ more = true, title, filter }: ProductProps) => {
           )
         }
         {
-          products.length <= 0 && (
+          (products.length <= 0) && (
             <div>Product Empty</div>
           )
         }
