@@ -146,7 +146,6 @@ const ProductDetails = () => {
 
             <ProductFrame
               title='* BẠN CÓ THỂ THÍCH *' 
-              more={false}
             />
             <ScrollButton /> 
           </div>
