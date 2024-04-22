@@ -20,6 +20,8 @@ import CheckLoginRoute from './routes/CheckLoginRoute'
 import ForgotPassword from './pages/ForgotPassword'
 import RegisterSuccess from './pages/RegisterSuccess'
 import VerifyAccount from './pages/VerifyAccount'
+import ButtonSetting from './components/ButtonSetting/ButtonSetting'
+import Settings from './pages/Settings'
 
 function App() {
 
@@ -27,23 +29,24 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-            <Route path='/' element={<Layout/>}>
-              <Route element={<CheckLoginRoute/>}>
-                <Route index element={<Home/>}/>
-                <Route path='/news' element={<News/>}/>
-                <Route path='/hiring' element={<Hiring/>}/>
-                <Route path='/about' element={<About/>}/>
-                <Route path='/maintenance' element={<Maintenance/>}/>
-                <Route path='/contact' element={<Contact/>}/>
-                <Route path='/showall' element={<AllProduct/>}/>
-                <Route path='/product/:productId' element={<ProductDetails/>}/>
-              
-                // authentication
-                <Route element={<PrivateRoute/>}>
-                  <Route path='/detailUser' element={<DetailUser/>}/>
-                  <Route path='/cart' element={<Cart/>}/>
-                </Route>
+          <Route path='/' element={<Layout/>}>
+            <Route element={<CheckLoginRoute/>}>
+              <Route index element={<Home/>}/>
+              <Route path='/news' element={<News/>}/>
+              <Route path='/hiring' element={<Hiring/>}/>
+              <Route path='/about' element={<About/>}/>
+              <Route path='/maintenance' element={<Maintenance/>}/>
+              <Route path='/contact' element={<Contact/>}/>
+              <Route path='/showall' element={<AllProduct/>}/>
+              <Route path='/product/:productId' element={<ProductDetails/>}/>
+            
+              // authentication
+              <Route element={<PrivateRoute/>}>
+                <Route path='/detailUser' element={<DetailUser/>}/>
+                <Route path='/cart' element={<Cart/>}/>
               </Route>
+            </Route>
+            <Route path='/settings' element={<Settings/>}/>
 
           </Route>
           <Route path='/auth' element={<RedirectRoute/>}>
@@ -54,6 +57,7 @@ function App() {
             <Route path='verify/:token' element={<VerifyAccount/>}/>
           </Route>
         </Routes>
+        <ButtonSetting/>
       </BrowserRouter>
       <ToastContainer 
         position="top-center"
