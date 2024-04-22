@@ -9,3 +9,16 @@ export interface IProduct {
   rate: number;
   releaseDate: string;
 }
+
+export interface IProductDetails {
+  productId: IProduct;
+  screen: string;
+  os: string;
+  cameraBehind: string;
+  cameraFront: string;
+  cpu: string;
+  ram: string;
+  rom: string;
+  battery: string;
+  sim: string;
+}

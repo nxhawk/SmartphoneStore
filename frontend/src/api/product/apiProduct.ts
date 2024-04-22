@@ -6,3 +6,8 @@ export const getAllProduct = async (filter: filterProps[] | undefined, page: num
   const res = await AxiosClient.get(`/product/all${convertFilterParams(filter, page, perPage)}`);
   return res.data;
 }
+
+export const getOneProduct = async (productId: number) => {
+  const res = await AxiosClient.get(`/product/${productId}`);
+  return res.data;
+}

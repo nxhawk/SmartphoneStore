@@ -80,7 +80,7 @@ const ProductFrame = ({ more = true, title, filter}: ProductProps) => {
                 price={product.price}
                 rate={product.rate}
                 discount={product.discount}
-                link="/product/1"
+                link={'/product/' + product.productId}
               />
             )
           }
