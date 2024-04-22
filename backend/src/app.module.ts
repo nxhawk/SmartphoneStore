@@ -8,6 +8,7 @@ import { AuthModule } from './auth/auth.module';
 import { PassportModule } from '@nestjs/passport';
 import { ImageStorageModule } from './image-storage/image-storage.module';
 import { SendEmailModule } from './send-email/send-email.module';
+import { ProductTypeModule } from './product-type/product-type.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { SendEmailModule } from './send-email/send-email.module';
     AuthModule,
     ImageStorageModule,
     SendEmailModule,
+    ProductTypeModule,
   ],
   providers: [],
 })
