@@ -17,7 +17,7 @@ export class ProductService implements IProduct {
   ) {}
 
   async getAll(query): Promise<IGetProductsResponse> {
-    const perPage = 10;
+    const perPage = Number(query['perPage']) || 10;
     const currentPage = Number(query['page']) || 1;
 
     const [products, totalProduct] = await this.productRepository.findAndCount({

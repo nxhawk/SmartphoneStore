@@ -25,7 +25,7 @@ interface Product {
 const ProductFrame = ({ more = true, title, filter}: ProductProps) => {
   const [page, setPage] = useState(1);
   const [storePage, setStorePage] = useState(1);
-  const [perPage, setperPage] = useState(10);
+  const [perPage, setperPage] = useState(more?5:10);
   const [countPage, setcountPage] = useState(0);
 
   const handleChangePage = (e: React.ChangeEvent<unknown>, value: number) =>{
@@ -43,7 +43,7 @@ const ProductFrame = ({ more = true, title, filter}: ProductProps) => {
     queryFn: async () => {
       if (page === storePage) setPage(1);
       setStorePage(page);
-      const data = await getAllProduct(filter, page);
+      const data = await getAllProduct(filter, page, perPage);
       setcountPage(data.totalPage);
       setperPage(data.perPage);
       return data.products;

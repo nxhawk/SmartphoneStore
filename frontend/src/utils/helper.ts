@@ -15,10 +15,10 @@ export function isNumber(value?: string | number): boolean
           !isNaN(Number(value.toString())));
 }
 
-export function convertFilterParams (filter: filterProps[] | undefined, page: number = 1) {
+export function convertFilterParams (filter: filterProps[] | undefined, page: number = 1, perPage: number = 10) {
   let params = ''
   filter && filter.forEach(f => {
     params +=`${f.option_root}=${f.option_key}&`
   })
-  return params ?`?${params}page=${page}`:`?page=${page}`;
+  return params ?`?${params}page=${page}&perPage=${perPage}`:`?page=${page}&perPage=${perPage}`;
 }
