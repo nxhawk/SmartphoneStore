@@ -10,6 +10,7 @@ import { IProduct } from 'src/product/interfaces/product';
 import { UserNotFound } from 'src/user/exceptions/UserNotFound';
 import { ProductNotFound } from 'src/product/exceptions/ProductNotFound';
 import { ProductInCart } from './exceptions/ProductInCart';
+import { CartError } from './exceptions/CartError';
 
 @Injectable()
 export class CartService implements ICartService {
@@ -47,5 +48,42 @@ export class CartService implements ICartService {
     });
 
     return this.cartRepository.save(cart);
+  }
+
+  async changeNumberOfProduct(
+    user: User,
+    productId: number,
+    value: number,
+  ): Promise<Cart> {
+    const checkUser = await this.userService.findUser({ userId: user.userId });
+    if (!checkUser) throw new UserNotFound();
+    const product = await this.productService.getPById(productId);
+    if (!product) throw new ProductNotFound();
+    const checkCart = await this.findCartByProductId(
+      checkUser.userId,
+      product.productId,
+    );
+    if (!checkCart) {
+      if (value == 1) return this.addToCart(user, productId);
+      throw new CartError();
+    }
+
+    if (value == -1 && checkCart.quantity == 1) throw new CartError();
+
+    checkCart.quantity += value;
+    return this.cartRepository.save(checkCart);
+  }
+
+  async deleteProductFromCart(user: User, productId: number): Promise<Cart> {
+    const checkUser = await this.userService.findUser({ userId: user.userId });
+    if (!checkUser) throw new UserNotFound();
+    const product = await this.productService.getPById(productId);
+    if (!product) throw new ProductNotFound();
+    const checkCart = await this.findCartByProductId(
+      checkUser.userId,
+      product.productId,
+    );
+    if (!checkCart) throw new CartError();
+    return this.cartRepository.remove(checkCart);
   }
 }
