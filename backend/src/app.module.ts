@@ -10,6 +10,7 @@ import { ImageStorageModule } from './image-storage/image-storage.module';
 import { SendEmailModule } from './send-email/send-email.module';
 import { ProductTypeModule } from './product-type/product-type.module';
 import { ProductModule } from './product/product.module';
+import { CommentModule } from './comment/comment.module';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import { ProductModule } from './product/product.module';
     SendEmailModule,
     ProductTypeModule,
     ProductModule,
+    CommentModule,
   ],
   providers: [],
 })

@@ -13,5 +13,5 @@ export class ProductType {
   active: boolean;
 
   @OneToMany(() => Product, (p) => p.productType)
-  productType: Product;
+  productType: Product[];
 }
