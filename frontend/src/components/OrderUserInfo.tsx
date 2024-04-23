@@ -9,37 +9,39 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import RadioGroup from "@mui/material/RadioGroup";
 import Radio from "@mui/material/Radio";
 import { convertToVND } from "../utils/helper";
+import { useTranslation } from "react-i18next";
 
 const OrderUserInfo = () => {
+  const [t] = useTranslation('global');
   return (
     <div className="rounded-lg shadow-lg px-4 pt-1 pb-4 mb-8">
-      <div className="mb-3 font-bold text-lg text-center">Xác nhận thông tin đặt hàng</div>
+      <div className="mb-3 font-bold text-lg text-center">{t('page.cart.confirm')}</div>
       <form>
         <div className="mb-3">
           <label htmlFor="address" className="text-gray-600 font-semibold px-1 flex gap-2 items-center">
               <ImUsers />
-              <span>Họ và tên người nhận hàng</span>
+              <span>{t('page.cart.fullname')}</span>
           </label>
           <input id="name" type="text" className="shadow-lg rounded px-2 py-1 outline-none w-full" placeholder="Nguyễn Văn A" required/>
         </div>
         <div className="mb-3">
           <label htmlFor="address" className="text-gray-600 font-semibold px-1 flex gap-2 items-center">
               <AiFillHome />
-              <span>Địa chỉ nhận hàng</span>
+              <span>{t('page.cart.address')}</span>
           </label>
           <input id="address" type="text" className="shadow-lg rounded px-2 py-1 outline-none w-full" placeholder="Thủ Đức, Thành phố Hồ Chí Minh" required/>
         </div>
         <div className="mb-3">
           <label htmlFor="phoneNumber" className="text-gray-600 font-semibold px-1 flex gap-2 items-center">
             <BsTelephoneFill />
-            <span>Số điện thoại người nhận</span>
+            <span>{t('page.cart.phoneNumber')}</span>
           </label>
           <input id="phoneNumber" type="text" className="shadow-lg rounded px-2 py-1 outline-none w-full" placeholder="+845010203" required/>
         </div>
         <div className="mb-3">
           <label htmlFor="note" className="text-gray-600 font-semibold px-1 flex gap-2 items-center">
             <HiMiniPencilSquare className="text-xl" />
-            <span>Ghi chú</span>
+            <span>{t('page.cart.note')}</span>
           </label>
           <textarea id="note" className="shadow-lg rounded px-2 py-1 outline-none w-full min-h-16 max-h-64" placeholder="Ghi chú thêm..."/>
         </div>
@@ -47,7 +49,7 @@ const OrderUserInfo = () => {
           <FormControl className="w-full">
             <label htmlFor="note" className="text-gray-600 font-semibold px-1 flex gap-2 items-center">
               <FaMoneyCheck className="text-xl" />
-              <span>Phương thức thanh toán</span>
+              <span>{t('page.cart.paymentMethods')}</span>
             </label>
             <RadioGroup
               aria-labelledby="demo-radio-buttons-group-label"
@@ -55,7 +57,7 @@ const OrderUserInfo = () => {
               name="radio-buttons-group"
             >
               <div className="flex gap-10 text-black px-2 w-full justify-start">
-                <FormControlLabel value="offline" control={<Radio />} label="Tiền mặt"/>
+                <FormControlLabel value="offline" control={<Radio />} label={t('page.cart.cash')}/>
                 <FormControlLabel value="online" control={<Radio />} label="Online" />
               </div>
             </RadioGroup>
@@ -63,10 +65,10 @@ const OrderUserInfo = () => {
         </div>
         <hr className="border-gray-700 mb-4"/>
         <div className="flex items-center justify-between">
-          <p className="font-bold">Tổng cộng:</p>
+          <p className="font-bold">{t('page.cart.total')}:</p>
           <p className="font-bold text-red-700 lg:text-xl text-lg">{convertToVND(245000000)}</p>
         </div>
-        <button className="shadow rounded mt-8 w-full text-center bg-amber-600 py-1 font-medium text-white text-lg hover:bg-amber-700">Xác nhận đặt hàng</button>
+        <button className="shadow rounded mt-8 w-full text-center bg-amber-600 py-1 font-medium text-white text-lg hover:bg-amber-700">{t('page.cart.orderConfirm')}</button>
       </form>
     </div>
   )

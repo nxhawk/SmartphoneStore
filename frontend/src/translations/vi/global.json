@@ -34,10 +34,23 @@
       "title_right": "Gửi phản hồi cho chúng tôi",
       "title_left": "Thông tin liên hệ",
       "desc_left": "Gửi phản hồi của bạn vào form. Chúng tôi sẽ trả lời sớm nhất cho bạn!"
+    },
+    "cart": {
+      "confirm": "Xác nhận cài đặt thông tin",
+      "fullname": "Họ và tên người nhận hàng",
+      "address": "Địa chỉ nhận hàng",
+      "phoneNumber": "Số điện thoại người nhận",
+      "note": "Ghi chú",
+      "paymentMethods": "Phương thức thanh toán",
+      "cash": "Tiền mặt",
+      "total": "Tổng cộng",
+      "orderConfirm": "Xác nhận đặt hàng",
+      "cartCount": "GIỎ HÀNG CỦA BẠN BAO GỒM"
     }
   },
   "numberPhone": "Số điện thoại",
   "address": "Địa chỉ",
   "workingTime": "Thời Gian Làm Việc",
-  "showAllProduct": "Xem tất cả các sản phẩm"
+  "showAllProduct": "Xem tất cả các sản phẩm",
+  "product": "sản phẩm"
 }

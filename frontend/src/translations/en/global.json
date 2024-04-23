@@ -34,10 +34,23 @@
       "title_right": "Send us feedback",
       "title_left": "Contact Info",
       "desc_left": "Submit your feedback to the form. We will reply to you as soon as possible!"
+    },
+    "cart": {
+      "confirm": "Confirm information settings",
+      "fullname": "Full name of consignee",
+      "address": "Delivery address",
+      "phoneNumber": "Recipient phone number",
+      "note": "Note",
+      "paymentMethods": "Payment methods",
+      "cash": "Cash",
+      "total": "Total",
+      "orderConfirm": "Order confirmation",
+      "cartCount": "YOUR CART INCLUDES"
     }
   },
   "numberPhone": "Phone number",
   "address": "Address",
   "workingTime": "Working Time",
-  "showAllProduct": "View all products"
+  "showAllProduct": "View all products",
+  "product": "product"
 }

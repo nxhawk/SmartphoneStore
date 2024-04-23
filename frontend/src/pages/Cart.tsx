@@ -8,8 +8,10 @@ import { IProductCart } from "../types/cart"
 import { toast } from "react-toastify"
 import { ServerError } from "../types/global"
 import { AxiosError } from "axios"
+import { useTranslation } from "react-i18next";
 
 const Cart = () => {
+  const [t] = useTranslation('global');
   const { isLoading, isError, data: products, refetch } = useQuery({
     queryKey: ['cart'],
     queryFn: async () => {
@@ -41,7 +43,7 @@ const Cart = () => {
       <div className='mt-4 px-2'>
         <div className="flex flex-wrap gap-4 justify-center">
           <div className="md:w-7/12 w-full mb-6 flex-1">
-            <div className="rounded-sm shadow uppercase px-4 py-1 font-semibold">Giỏ hàng của bạn bao gồm {products.length} sản phẩm</div>
+            <div className="rounded-sm shadow uppercase px-4 py-1 font-semibold">{t('page.cart.cartCount')}{' '}{products.length}{' '}{t('product')}</div>
             <div className="rounded-sm shadow-lg p-2 bg-slate-50 mt-3">
               {
                 products.length <= 0 &&<div className="py-10 text-amber-400 text-4xl text-center">Cart Empty</div>
