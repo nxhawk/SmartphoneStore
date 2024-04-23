@@ -14,12 +14,12 @@ const Settings = () => {
           <ButtonSetting 
             action={setLanguage}
             currentValue={language}
-            name="VN"
+            name="vi"
           />
           <ButtonSetting 
             action={setLanguage}
             currentValue={language}
-            name="EN"
+            name="en"
           />
         </div>
       </div>
@@ -29,12 +29,12 @@ const Settings = () => {
           <ButtonSetting 
             action={setTheme}
             currentValue={theme}
-            name="Light"
+            name="light"
           />
           <ButtonSetting 
             action={setTheme}
             currentValue={theme}
-            name="Dark"
+            name="dark"
           />
         </div>
       </div>

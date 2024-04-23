@@ -1,3 +1,5 @@
+import { useTranslation } from "react-i18next";
+
 interface ButtonSettingProps {
   name: string;
   action: (name: string) => void;
@@ -5,10 +7,18 @@ interface ButtonSettingProps {
 }
 
 const ButtonSetting = ({ name, action, currentValue }: ButtonSettingProps) => {
+  const [, i18n] = useTranslation("global");
+
+  const handleClick = () => {
+    if (name== 'vi' || name == 'en'){
+      i18n.changeLanguage(name);
+    }
+    action(name)
+  }
   return (
     <button 
-      onClick={() => action(name)}
-      className={`border px-4 py-1 rounded-lg outline-none hover:text-white hover:bg-black hover:border-black ${currentValue==name&&'bg-black border-black text-white'}`}>
+      onClick={handleClick}
+      className={`border px-4 py-1 rounded-lg outline-none hover:text-white hover:bg-black hover:border-black ${currentValue==name&&'bg-black border-black text-white'} uppercase`}>
         {name}
     </button>
   )

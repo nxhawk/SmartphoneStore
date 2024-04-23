@@ -6,11 +6,13 @@ import { useState } from 'react';
 import { AppDispatch, AppState } from '../store';
 import { useDispatch, useSelector } from 'react-redux';
 import { logoutUser } from '../store/user';
+import { useTranslation } from 'react-i18next';
 
 const Usernavbar = () => {
   const [show, setShow] = useState(false);
   const [hover, setHover] = useState(false);
   const dispatch = useDispatch<AppDispatch>();
+  const [t] = useTranslation("global");
 
   const user = useSelector((state:AppState)=>state?.user?.user);
 
@@ -66,8 +68,8 @@ const Usernavbar = () => {
         :
         (
           <div className='flex gap-8 w-full mb-2 md:w-fit justify-center'>
-            <Link to={'/auth/login'} className='hover:text-blue-500'>Đăng nhập</Link>
-            <Link to={'/auth/signup'} className='hover:text-blue-500'>Đăng ký</Link>
+            <Link to={'/auth/login'} className='hover:text-blue-500'>{t('login')}</Link>
+            <Link to={'/auth/signup'} className='hover:text-blue-500'>{t('register')}</Link>
           </div>
         )
       }

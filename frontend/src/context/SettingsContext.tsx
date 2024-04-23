@@ -1,4 +1,4 @@
-import { Dispatch, ReactNode, SetStateAction, createContext, useState } from "react";
+import { Dispatch, ReactNode, SetStateAction, createContext } from "react";
 import { useLocalStorageState } from "../hooks/useLocalStorageState";
 
 interface SettingsContextType {
@@ -18,11 +18,11 @@ const SettingsProvider: React.FC<SettingsProviderProps> = ({children}) =>{
   
   const [theme, setTheme] = useLocalStorageState({
     key: 'theme',
-    initialState: 'Light',
+    initialState: 'light',
   });
   const [language, setLanguage] = useLocalStorageState({
     key: 'language',
-    initialState: 'VN',
+    initialState: 'vi',
   });
 
   return (
