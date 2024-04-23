@@ -7,9 +7,13 @@ import AddComment from './AddComment';
 import { useQuery } from '@tanstack/react-query';
 import { getCommentsByProductId } from '../api/comment/apiComment';
 import { FaCommentAlt } from "react-icons/fa";
+import { AppState } from '../store';
+import { useSelector } from 'react-redux';
 
 const CommentList = ({ productId }: {productId: string|undefined}) => {
-  const [perPage, setperPage] = useState(4);
+  const user = useSelector((state:AppState)=>state?.user?.user);
+
+  const [, setperPage] = useState(4);
   const [countPage, setcountPage] = useState(4);
   const [page, setPage] = useState(1);
   const [totalComments, setTotalComments] = useState(1);
@@ -104,7 +108,9 @@ const CommentList = ({ productId }: {productId: string|undefined}) => {
           <div className='text-center font-bold text-2xl mb-2'>Chưa có bình luận nào</div>
         )
       }
-      <AddComment/>
+      {
+        user.email &&  <AddComment user={user} productId={productId}/>
+      }
     </div>
   )
 }

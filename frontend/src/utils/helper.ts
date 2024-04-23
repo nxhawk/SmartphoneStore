@@ -22,3 +22,8 @@ export function convertFilterParams (filter: filterProps[] | undefined, page: nu
   })
   return params ?`?${params}page=${page}&perPage=${perPage}`:`?page=${page}&perPage=${perPage}`;
 }
+
+export function convertDate(date: string) {
+  const convertDate = new Date(date).toLocaleDateString("vi-VN");
+  return convertDate;
+}

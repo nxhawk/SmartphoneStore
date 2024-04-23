@@ -3,5 +3,10 @@ export interface IComment {
   name: string;
   content: string;
   rate: number;
-  date: string;
+  date?: string;
+}
+
+export interface CommentForm {
+  comment: IComment;
+  productId: number;
 }

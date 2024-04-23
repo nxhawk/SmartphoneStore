@@ -1,5 +1,6 @@
 import ReactStars from "react-rating-stars-component";
 import avatarDefault from '../assets/images/chitietsanpham/avatar.jpg';
+import { convertDate } from "../utils/helper";
 
 export interface CommentProps {
   commentId: number;
@@ -19,7 +20,7 @@ const Comment = ({ comment } : {comment: CommentProps}) => {
       <div className='flex flex-col gap-0'>
         <div className='font-semibold text-sm'>{comment.name}</div>
         <div className='flex gap-4 justify-start items-center'>
-          <p className="font-normal text-sm">{comment.date}</p>
+          <p className="font-normal text-sm">{convertDate(comment.date)}</p>
           <ReactStars
             count={5}
             value={comment.rate || 0}
