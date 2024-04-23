@@ -1,10 +1,12 @@
 import { Exclude } from 'class-transformer';
+import { Cart } from 'src/cart/entities/cart.entity';
 import { ForgotCode } from 'src/send-email/entities/forgot-code.entity';
 import { Roles } from 'src/utils/enums/roles.enum';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
   Timestamp,
@@ -52,4 +54,7 @@ export class User {
   // relationship
   @OneToOne(() => ForgotCode, (fc) => fc.user)
   forgotCode: ForgotCode;
+
+  @OneToMany(() => Cart, (c) => c.userId)
+  cart: Cart[];
 }

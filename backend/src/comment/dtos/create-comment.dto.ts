@@ -4,7 +4,6 @@ export class CreateCommentDto {
   @IsNotEmpty({ message: 'name is required' })
   name: string;
 
-  @IsNotEmpty({ message: 'content is required' })
   content: string;
 
   @IsNotEmpty({ message: 'rate is required' })

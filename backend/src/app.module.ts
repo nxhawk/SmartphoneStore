@@ -11,6 +11,7 @@ import { SendEmailModule } from './send-email/send-email.module';
 import { ProductTypeModule } from './product-type/product-type.module';
 import { ProductModule } from './product/product.module';
 import { CommentModule } from './comment/comment.module';
+import { CartModule } from './cart/cart.module';
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { CommentModule } from './comment/comment.module';
     ProductTypeModule,
     ProductModule,
     CommentModule,
+    CartModule,
   ],
   providers: [],
 })

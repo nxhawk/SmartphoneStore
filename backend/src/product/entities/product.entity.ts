@@ -10,6 +10,7 @@ import {
 } from 'typeorm';
 import { ProductDetail } from './product-details.entity';
 import { CommentEntity } from 'src/comment/entities/comment.entity';
+import { Cart } from 'src/cart/entities/cart.entity';
 
 @Entity('Product')
 export class Product {
@@ -55,4 +56,7 @@ export class Product {
 
   @OneToMany(() => CommentEntity, (cmt) => cmt.product)
   comment: CommentEntity[];
+
+  @OneToMany(() => Cart, (c) => c.productId)
+  cart: Cart[];
 }
