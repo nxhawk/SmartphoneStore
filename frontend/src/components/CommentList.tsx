@@ -1,39 +1,28 @@
-import { useEffect, useState } from 'react';
-import commentsData from '../constants/comments.json'
+import { useState } from 'react';
 import Comment, { CommentProps } from './Comment'
 import Pagination from '@mui/material/Pagination';
 import FilterStarButton from './FilterStarButton';
 import { valueInArray } from '../utils/helper';
 import AddComment from './AddComment';
+import { useQuery } from '@tanstack/react-query';
+import { getCommentsByProductId } from '../api/comment/apiComment';
 
-const CommentList = () => {
-  const [numberPage, setnumberPage] = useState(10);
+const CommentList = ({ productId }: {productId: string|undefined}) => {
   const [perPage, setperPage] = useState(4);
+  const [countPage, setcountPage] = useState(4);
   const [page, setPage] = useState(1);
-  const [comments, setComments] = useState<CommentProps[]>([])
+  const [storePage, setStorePage] = useState(1);
   const [star, setStar] = useState([1, 2, 3, 4, 5])
 
   const handleChangePage = (e: React.ChangeEvent<unknown>, value: number) =>{
     setPage(value);
-    changePage(value, perPage);
+    changePage(value);
   } 
 
-  const changePage=(page: number, perPage: number)=>{
-    const from = (page - 1) * perPage;
-    const to = Math.min(commentsData["comments"].length, page * perPage);
-
-    setComments(commentsData["comments"].slice(from, to))
+  const changePage=(page: number)=>{
+    if (page > countPage) setPage(1);
+    setPage(page);
   }
-
-  useEffect(() =>{
-    const pageCount = Math.floor(commentsData["comments"].length / perPage) + (commentsData["comments"].length % perPage > 0?1:0);
-    setnumberPage(pageCount);
-    changePage(1, perPage);
-  },[])
-
-  useEffect(()=>{
-    // call api here
-  },[star, page])
 
   const toggleStar=(newStar: number) =>{
     if (valueInArray(newStar, star)){
@@ -44,7 +33,22 @@ const CommentList = () => {
       setStar([...star, newStar]);
     }
   }
-  
+
+  const { isLoading, data: comments} = useQuery({
+    queryKey: ['comments', page],
+    queryFn: async () => {
+      if (page === storePage) setPage(1);
+      setStorePage(page);
+      const data = await getCommentsByProductId(productId, page);
+      setcountPage(data.totalPage);
+      setperPage(data.perPage);
+      const response: CommentProps[] = data.comments; 
+      return response;
+    },
+  })
+
+  if (isLoading)return <div>Loading...</div>
+  if (!comments) return <div>Not found</div>
   return (
     <div className="py-3 bg-gray-200 rounded shadow-xl mb-5">
       <div className='gap-2 font-bold mb-5 px-5 text-lg justify-between flex flex-wrap'>
@@ -73,13 +77,13 @@ const CommentList = () => {
               comments.map(comment =>(
                 <Comment
                   comment={comment}
-                  key={comment.id}
+                  key={comment.commentId}
                 />
               ))
             }
             <div className='mt-5 flex item-center justify-center'>
               <Pagination 
-                count={numberPage} 
+                count={countPage} 
                 page={page}
                 color="primary" size="large" 
                 onChange={handleChangePage}  

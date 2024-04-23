@@ -37,7 +37,7 @@ const ProductDetails = () => {
 
   if (isLoading) return <div>Loading...</div>
   if (isError || !productDetails) return <div>Not found</div>
-
+  console.log(productDetails);
   return (
     <DocumentMeta {...DetailsProductMeta}>
     <div className="p-2">
@@ -142,7 +142,9 @@ const ProductDetails = () => {
             </div>
 
             {/* comments */}
-            <CommentList/>
+            <CommentList
+              productId={productId}
+            />
 
             <ProductFrame
               title='* BẠN CÓ THỂ THÍCH *' 

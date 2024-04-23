@@ -7,6 +7,7 @@ import { IProduct } from '../types/product';
 import { useQuery } from '@tanstack/react-query';
 import { getAllProduct } from '../api/product/apiProduct';
 import { useTranslation } from 'react-i18next';
+import { IComment } from '../types/comment';
 
 interface ProductProps {
   more?: boolean;
@@ -20,7 +21,7 @@ interface Product {
   price: number;
   sale: number;
   star: number;
-  comments: number;
+  comment: IComment[];
 }
 
 const ProductFrame = ({ more = true, title, filter}: ProductProps) => {
@@ -82,6 +83,7 @@ const ProductFrame = ({ more = true, title, filter}: ProductProps) => {
                 price={product.price}
                 rate={product.rate}
                 discount={product.discount}
+                comments={product.comment?.length || 0}
                 link={'/product/' + product.productId}
               />
             )

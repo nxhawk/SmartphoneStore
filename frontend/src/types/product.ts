@@ -1,3 +1,5 @@
+import { IComment } from "./comment";
+
 export interface IProduct {
   productId: number;
   name: string;
@@ -8,6 +10,7 @@ export interface IProduct {
   discount: number;
   rate: number;
   releaseDate: string;
+  comment?: IComment[];
 }
 
 export interface IProductDetails {
