@@ -9,7 +9,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { ProductDetail } from './product-details.entity';
-import { Comment } from 'src/comment/entities/comment.entity';
+import { CommentEntity } from 'src/comment/entities/comment.entity';
 
 @Entity('Product')
 export class Product {
@@ -53,6 +53,6 @@ export class Product {
   @OneToOne(() => ProductDetail, (pd) => pd.productId)
   productDetail: ProductDetail;
 
-  @OneToMany(() => Comment, (cmt) => cmt.product)
-  comment: Comment[];
+  @OneToMany(() => CommentEntity, (cmt) => cmt.product)
+  comment: CommentEntity[];
 }

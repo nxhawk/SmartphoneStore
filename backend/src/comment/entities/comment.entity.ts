@@ -8,7 +8,7 @@ import {
 } from 'typeorm';
 
 @Entity('Comment')
-export class Comment {
+export class CommentEntity {
   @PrimaryGeneratedColumn()
   commentId: number;
 
@@ -16,7 +16,7 @@ export class Comment {
   name: string;
 
   @Column()
-  context: string;
+  content: string;
 
   @Column()
   rate: number;

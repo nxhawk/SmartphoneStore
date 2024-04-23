@@ -32,7 +32,7 @@ export class ProductService implements IProduct {
         rate: query['star'] ? Number(query['star']) : undefined,
       },
       relations: {
-        productType: true,
+        comment: true,
       },
       ...SortByOption(query['sort']),
       skip: (currentPage - 1) * perPage,
@@ -54,6 +54,9 @@ export class ProductService implements IProduct {
   async getById(productId: string) {
     const product = await this.productRepository.findOne({
       where: { productId: Number(productId) },
+      relations: {
+        comment: true,
+      },
     });
     if (!product) throw new ProductNotFound();
 

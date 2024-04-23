@@ -1,3 +1,4 @@
+import { CommentEntity } from 'src/comment/entities/comment.entity';
 import { Product } from 'src/product/entities/product.entity';
 import { User } from 'src/user/entities/user.entity';
 
@@ -53,6 +54,14 @@ export type ResetPasswordForm = {
 
 export type IGetProductsResponse = {
   products: Product[];
+  perPage: number;
+  totalPage: number;
+  currentPage: number;
+};
+
+export type ICommentResponse = {
+  comments: CommentEntity[];
+  totalComments: number;
   perPage: number;
   totalPage: number;
   currentPage: number;

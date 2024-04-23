@@ -3,6 +3,7 @@ import { MulterField } from '@nestjs/platform-express/multer/interfaces/multer-o
 export enum Routes {
   AUTH = 'auth',
   PRODUCT = 'product',
+  COMMENT = 'comment',
 }
 
 export enum Services {
@@ -14,6 +15,7 @@ export enum Services {
   PRODUCT_SERVICE = 'PRODUCT_SERVICE',
   PRODUCT_DETAIL_SERVICE = 'PRODUCT_DETAIL_SERVICE',
   PRODUCT_TYPE_SERVICE = 'PRODUCT_TYPE_SERVICE',
+  COMMENT_SERVICE = 'COMMENT_SERVICE',
 }
 
 export const UserProfileFileFields: MulterField[] = [
