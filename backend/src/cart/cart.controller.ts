@@ -1,11 +1,4 @@
-import {
-  Body,
-  Controller,
-  Delete,
-  Inject,
-  Post,
-  UseGuards,
-} from '@nestjs/common';
+import { Body, Controller, Get, Inject, Post, UseGuards } from '@nestjs/common';
 import { Routes, Services } from 'src/utils/constants';
 import { ICartService } from './cart';
 import { AuthenticatedGuard } from 'src/auth/utils/Guards';
@@ -20,6 +13,12 @@ export class CartController {
     @Inject(Services.CART_SERVICE)
     private readonly cartService: ICartService,
   ) {}
+
+  @Get()
+  @UseGuards(AuthenticatedGuard)
+  async getCart(@AuthUser() user: User) {
+    return this.cartService.getCart(user);
+  }
 
   @Post('/add')
   @UseGuards(AuthenticatedGuard)
@@ -36,7 +35,7 @@ export class CartController {
     return this.cartService.changeNumberOfProduct(user, productId, value);
   }
 
-  @Delete('/delete')
+  @Post('/delete')
   @UseGuards(AuthenticatedGuard)
   async deleteProductFromCart(
     @AuthUser() user: User,

@@ -5,24 +5,71 @@ import { RiSubtractFill } from "react-icons/ri";
 import { HiOutlinePlusSm } from "react-icons/hi";
 import { BsFillTrash3Fill } from "react-icons/bs";
 import { useState } from 'react';
+import { IProduct } from '../types/product';
+import { UseMutationResult, useMutation } from '@tanstack/react-query';
+import { changeProductFromCart } from '../api/cart/apiCart';
+import { AxiosError } from 'axios';
+import { ServerError } from '../types/global';
+import { toast } from 'react-toastify';
+import { confirmAlert } from 'react-confirm-alert'; 
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
-const ProductOrder = () => {
-  const [numberProduct, setNumberProduct] = useState<number>(5);
+interface Props {
+  product: IProduct;
+  quantity: number;
+  remove:  UseMutationResult<string, AxiosError<unknown, string>, number, unknown>
+}
+
+const ProductOrder = ({ product, quantity, remove }: Props) => {
+  const [numberProduct, setNumberProduct] = useState<number>(quantity);
+
+  const changeProductNumberCartMutation = useMutation({
+    mutationFn: async ({productId, value}:{productId: number, value: number}) => changeProductFromCart (productId, value),
+    onError: (error: AxiosError) =>{
+      if (error.response){
+        const errorMessage = error.response.data as ServerError;
+        toast.error(errorMessage.message || "Server error");
+      } else{
+        toast.error('Server error');
+      }
+    },
+    onSuccess: (data) => {
+      setNumberProduct(data.quantity);
+    }
+  })
+  
   const changeNumberProduct = (cnt: number) => {
-    if (numberProduct <= 1 && cnt < 0) return;
-    if (numberProduct >= 50 && cnt > 0) return;
+    changeProductNumberCartMutation.mutate({
+      productId: product.productId,
+      value: cnt,
+    });
+  }
 
-    setNumberProduct(numberProduct + cnt);
+  const handleDeleteProduct = () =>{
+    confirmAlert({
+      title: 'Confirm delete product',
+      message: 'Are you sure to remove from cart.',
+      buttons: [
+        {
+          label: 'Yes',
+          onClick: () => 
+            remove.mutate(product.productId)
+        },
+        {
+          label: 'No',
+        }
+      ]
+    });
   }
   return (
     <div className="border-b border-gray-800 p-2 mb-3 flex items-center gap-1 hover:bg-gray-200">
       <Link to={'/product/1'} className='flex items-center gap-1 w-8/12'>
-        <img src={phone} alt="image}" className='w-14 h-14'/>
+        <img src={product.image || phone} alt="image}" className='w-14 h-14'/>
         <div className='flex max-w-full text-wrap h-full items-start flex-col justify-between truncate'>
-          <p className='truncate max-w-full'>Điện thoại Samsung Galaxy S23+ 5G 256GB 1 asd fdsf sdfds sdsad asdsdadad adasda adsada adsadsad asdsadsad asdsadsa </p>
+          <p className='truncate max-w-full'>{product.name}</p>
           <div className='flex gap-4 mt-2 flex-wrap'>
-            <p className='text-red-600 font-semibold'>{convertToVND(12345680)}</p>
-            <s className='text-gray-700'>{convertToVND(15345680)}</s>
+            <p className='text-red-600 font-semibold'>{convertToVND(product.price * (100 - product.discount)/100)}</p>
+            <s className='text-gray-700'>{convertToVND(product.price)}</s>
           </div>
         </div>
       </Link>
@@ -37,7 +84,9 @@ const ProductOrder = () => {
           onClick={() => changeNumberProduct(1)}
           ><HiOutlinePlusSm /></button>
         </div>
-        <button className='px-3 py-1 rounded flex items-center justify-center text-center hover:bg-gray-300 text-red-500 hover:text-red-600'>
+        <button className='px-3 py-1 rounded flex items-center justify-center text-center hover:bg-gray-300 text-red-500 hover:text-red-600'
+        onClick={handleDeleteProduct}
+        >
           <BsFillTrash3Fill className='text-xl'/>
         </button>
       </div>

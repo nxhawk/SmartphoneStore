@@ -21,6 +21,7 @@
     "i18next": "^23.11.2",
     "notiflix": "^3.2.7",
     "react": "^18.2.0",
+    "react-confirm-alert": "^3.0.6",
     "react-document-meta": "^3.0.0-beta.2",
     "react-dom": "^18.2.0",
     "react-fast-marquee": "^1.6.4",

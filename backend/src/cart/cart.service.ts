@@ -23,6 +23,16 @@ export class CartService implements ICartService {
     private readonly productService: IProduct,
   ) {}
 
+  async getCart(user: User): Promise<Cart[]> {
+    const checkUser = await this.userService.findUser({ userId: user.userId });
+    if (!checkUser) throw new UserNotFound();
+    return this.cartRepository
+      .createQueryBuilder('cart')
+      .where('cart.userId = :userId', { userId: checkUser.userId })
+      .leftJoinAndSelect('cart.productId', 'p')
+      .getMany();
+  }
+
   async findCartByProductId(userId: number, productId: number): Promise<Cart> {
     return this.cartRepository
       .createQueryBuilder('cart')

@@ -13,16 +13,36 @@ import ScrollButton from "../components/ScrollButton/ScrollButton";
 import { DetailsProductMeta } from "../utils/meta";
 import DocumentMeta from "react-document-meta";
 import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { getOneProduct } from "../api/product/apiProduct";
 import { IProductDetails } from "../types/product";
+import { addToCart } from "../api/cart/apiCart";
+import { toast } from "react-toastify";
+import { AxiosError } from "axios";
+import { ServerError } from "../types/global";
 
 const ProductDetails = () => {
   const [productDetails, setProductDetails] = useState<IProductDetails|null>(null)
-
   const { productId }  = useParams()
-  const addToCart = (productId: number) => {
-    alert(productId);
+
+  const addToCartMutation = useMutation({
+    mutationFn: async (productId: number) => addToCart(productId),
+    onError: (error: AxiosError) =>{
+      if (error.response){
+        const errorMessage = error.response.data as ServerError;
+        toast.error(errorMessage.message || "Server error");
+      } else{
+        toast.error('Server error');
+      }
+    },
+    onSuccess: () => {
+      toast.success('Add to cart successfully')
+    }
+  })
+
+  const handleAddToCart = (productId: number) => {
+    if (addToCartMutation.isPending) return;
+    addToCartMutation.mutate(productId);
   }
 
   const { isLoading, isError } = useQuery({
@@ -90,7 +110,7 @@ const ProductDetails = () => {
                   </div>
                 </div>
                 <button className="shadow-lg ease-in border pb-2 pt-1 mt-3 rounded bg-gradient-to-b from-amber-500 to-orange-500 hover:to-amber-500 hover:from-orange-500 text-white flex flex-col items-center"
-                  onClick={() => addToCart(productDetails.productId.productId)}
+                  onClick={() => handleAddToCart(productDetails.productId.productId)}
                 >
                     <p className="text-base font-bold flex gap-2 items-center">
                       <FaCartPlus />
