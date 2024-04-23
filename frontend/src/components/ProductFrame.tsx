@@ -6,6 +6,7 @@ import { filterProps } from '../pages/AllProduct';
 import { IProduct } from '../types/product';
 import { useQuery } from '@tanstack/react-query';
 import { getAllProduct } from '../api/product/apiProduct';
+import { useTranslation } from 'react-i18next';
 
 interface ProductProps {
   more?: boolean;
@@ -23,6 +24,7 @@ interface Product {
 }
 
 const ProductFrame = ({ more = true, title, filter}: ProductProps) => {
+  const [t] = useTranslation("global");
   const [page, setPage] = useState(1);
   const [storePage, setStorePage] = useState(1);
   const [perPage, setperPage] = useState(more?5:10);
@@ -60,7 +62,7 @@ const ProductFrame = ({ more = true, title, filter}: ProductProps) => {
           more &&(
         <div className='bottom-0 left-0 translate-y-1/2 absolute w-full flex items-center py-1 rounded-full bg-stone-200 text-stone-400 ease-in-out hover:text-black hover:bg-stone-300 border-x-2 border-cyan-500'>
             <Link to={'/showall'} className='text-xl font-bold text-center w-full'>
-              Xem tất cả các sản phẩm
+            {t('showAllProduct')}
             </Link>
         </div>
           )

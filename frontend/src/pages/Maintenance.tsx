@@ -11,6 +11,7 @@ import maintenance from "../constants/data.json"
 import { Link } from "react-router-dom";
 import { MaintenanceMeta } from "../utils/meta";
 import DocumentMeta from "react-document-meta";
+import { useTranslation } from "react-i18next";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -33,18 +34,20 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 const Maintenance = () => {
+  const [t] = useTranslation("global");
+  
   return (
     <DocumentMeta {...MaintenanceMeta}>
-      <CustomMarquee message="Các trung tâm bảo hành của Smartphone Store"/>
+      <CustomMarquee message={t('navbar.MaintenanceText')}/>
       <div className="p-2 lg:p-5 mb-5">
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 700 }} aria-label="customized table">
             <TableHead>
               <TableRow>
                 <StyledTableCell>STT</StyledTableCell>
-                <StyledTableCell align="left">Địa Chỉ</StyledTableCell>
-                <StyledTableCell align="left">Điện Thoại</StyledTableCell>
-                <StyledTableCell align="left">Thời Gian Làm Việc</StyledTableCell>
+                <StyledTableCell align="left">{t('address')}</StyledTableCell>
+                <StyledTableCell align="left">{t('numberPhone')}</StyledTableCell>
+                <StyledTableCell align="left">{t('workingTime')}</StyledTableCell>
               </TableRow>
             </TableHead>
             <TableBody>

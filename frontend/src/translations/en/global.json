@@ -1,10 +1,43 @@
 {
-  "navbarHome": "Home",
-  "navbarNews": "News",
-  "navbarHiring": "Hiring",
-  "navbarAbout": "About",
-  "navbarMaintenance": "Maintenance",
-  "navbarContact": "Contact",
-  "login": "Login",
-  "register": "Signup"
+  "navbar": {
+    "Home": "Home",
+    "News": "News",
+    "Hiring": "Hiring",
+    "About": "About",
+    "Maintenance": "Maintenance",
+    "Contact": "Contact",
+
+    "NewsText": "The latest news about SMART PHONE",
+    "HiringText": "Recruitment requirements",
+    "AboutText": "Welcome to SMARTPHONE Store!",
+    "MaintenanceText": "Smartphone Store warranty centers"
+  },
+  "user": {
+    "login": "Login",
+    "register": "Signup",
+    "logout": "Logout",
+    "account": "Account",
+    "userPage": "User Page",
+    "cart": "My Cart"
+  },
+  "footer": {
+    "bottom": "Smartphone Store - Web Project © 2024 - Designed by",
+    "group": "Bee group",
+    "col_1": "Express delivery within 1 hour",
+    "col_2": "Flexible payment: cash, visa/master, installments",
+    "col_3": "Experience the product at home",
+    "col_4": "Errors can be exchanged at home within 1 day",
+    "col_5": "Lifetime support.\nHotline: 12345678"
+  },
+  "page": {
+    "contact": {
+      "title_right": "Send us feedback",
+      "title_left": "Contact Info",
+      "desc_left": "Submit your feedback to the form. We will reply to you as soon as possible!"
+    }
+  },
+  "numberPhone": "Phone number",
+  "address": "Address",
+  "workingTime": "Working Time",
+  "showAllProduct": "View all products"
 }

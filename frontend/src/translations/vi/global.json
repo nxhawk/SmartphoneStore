@@ -1,10 +1,43 @@
 {
-  "navbarHome": "Trang chủ",
-  "navbarNews": "Tin tức",
-  "navbarHiring": "Tuyển dụng",
-  "navbarAbout": "Giới thiệu",
-  "navbarMaintenance": "Bảo trì",
-  "navbarContact": "Liên hệ",
-  "login": "Đăng nhập",
-  "register": "Đăng ký"
+  "navbar": {
+    "Home": "Trang chủ",
+    "News": "Tin tức",
+    "Hiring": "Tuyển dụng",
+    "About": "Giới thiệu",
+    "Maintenance": "Bảo trì",
+    "Contact": "Liên hệ",
+
+    "NewsText": "Các tin tức mới nhất về SMART PHONE",
+    "HiringText": "Yêu cầu tuyển dụng",
+    "AboutText": "Chào mừng đến với Thế Giới Di Động!",
+    "MaintenanceText": "Các trung tâm bảo hành của Smartphone Store"
+  },
+  "user": {
+    "login": "Đăng nhập",
+    "register": "Đăng ký",
+    "logout": "Đăng xuất",
+    "account": "Tài khoản",
+    "userPage": "Trang người dùng",
+    "cart": "Giỏ hàng"
+  },
+  "footer": {
+    "bottom": "Thế giới di động - Đồ án web © 2024 - Được thiết kế bởi",
+    "group": "nhóm Bee",
+    "col_1": "Giao hàng hỏa tốc trong 1 giờ",
+    "col_2": "Thanh toán linh hoạt: tiền mặt, visa / master, trả góp",
+    "col_3": "Trải nghiệm sản phẩm tại nhà",
+    "col_4": "Lỗi đổi tại nhà trong 1 ngày",
+    "col_5": "Hỗ trợ suốt thời gian sử dụng.\nHotline: 12345678"
+  },
+  "page": {
+    "contact": {
+      "title_right": "Gửi phản hồi cho chúng tôi",
+      "title_left": "Thông tin liên hệ",
+      "desc_left": "Gửi phản hồi của bạn vào form. Chúng tôi sẽ trả lời sớm nhất cho bạn!"
+    }
+  },
+  "numberPhone": "Số điện thoại",
+  "address": "Địa chỉ",
+  "workingTime": "Thời Gian Làm Việc",
+  "showAllProduct": "Xem tất cả các sản phẩm"
 }

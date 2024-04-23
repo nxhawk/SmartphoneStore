@@ -45,8 +45,8 @@ function App() {
                 <Route path='/detailUser' element={<DetailUser/>}/>
                 <Route path='/cart' element={<Cart/>}/>
               </Route>
+              <Route path='/settings' element={<Settings/>}/>
             </Route>
-            <Route path='/settings' element={<Settings/>}/>
 
           </Route>
           <Route path='/auth' element={<RedirectRoute/>}>

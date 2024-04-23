@@ -42,42 +42,42 @@ const Navbar = () => {
             <Link to={'/'} title="Trang chủ">
               <div className={`flex items-center lg:border-b-4  ${pathname===''?'border-black text-black':'hover:border-black hover:text-black'}`}>
                 <AiFillHome className="mr-1 mt-2 lg:mt-0" />
-                <span className="hidden lg:block">{t("navbarHome")}</span>
+                <span className="hidden lg:block">{t("navbar.Home")}</span>
               </div>
             </Link>
 
             <Link to={'/news'} title="Tin tức">
               <div className={`flex items-center lg:border-b-4  ${pathname==='news'?'border-black text-black':'hover:border-black hover:text-black'}`}>
                 <FaRegNewspaper className="mr-1 mt-2 lg:mt-0" />
-                <span className="hidden lg:block">{t("navbarNews")}</span>
+                <span className="hidden lg:block">{t("navbar.News")}</span>
               </div>
             </Link>
 
             <Link to={'/hiring'} title="Tuyển dụng">
               <div className={`flex items-center lg:border-b-4  ${pathname==='hiring'?'border-black text-black':'hover:border-black hover:text-black'}`}>
                 <FaRegHandshake className="mr-1 mt-2 lg:mt-0" />
-                <span className="hidden lg:block">{t("navbarHiring")}</span>
+                <span className="hidden lg:block">{t("navbar.Hiring")}</span>
               </div>
             </Link>
 
             <Link to={'/about'} title="Giới thiệu">
               <div className={`flex items-center lg:border-b-4  ${pathname==='about'?'border-black text-black':'hover:border-black hover:text-black'}`}>
                 <FaInfoCircle className="mr-1 mt-2 lg:mt-0" />
-                <span className="hidden lg:block">{t("navbarAbout")}</span>
+                <span className="hidden lg:block">{t("navbar.About")}</span>
               </div>
             </Link>
 
             <Link to={'/maintenance'} title="Bảo hành">
               <div className={`flex items-center lg:border-b-4  ${pathname==='maintenance'?'border-black text-black':'hover:border-black hover:text-black'}`}>
                 <BiSolidWrench className="mr-1 mt-2 lg:mt-0" />
-                <span className="hidden lg:block">{t("navbarMaintenance")}</span>
+                <span className="hidden lg:block">{t("navbar.Maintenance")}</span>
               </div>
             </Link>
 
             <Link to={'/contact'} title="Liên hệ">
               <div className={`flex items-center lg:border-b-4  ${pathname==='contact'?'border-black text-black':'hover:border-black hover:text-black'}`}>
                 <BsFillTelephoneFill className="mr-1 mt-2 lg:mt-0" />
-                <span className="hidden lg:block">{t("navbarContact")}</span>
+                <span className="hidden lg:block">{t("navbar.Contact")}</span>
               </div>
             </Link>
           </div>

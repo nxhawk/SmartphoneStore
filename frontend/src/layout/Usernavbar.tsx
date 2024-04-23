@@ -36,16 +36,18 @@ const Usernavbar = () => {
               <BiSolidUser />
             </div>
             <span className='font-semibold'>
-              Tài khoản
+            {t('user.account')}
             </span>
             {
               show && (
             <div className='z-50 absolute top-[42px] left-[-80px] w-40 bg-slate-300 text-green-700 font-semibold text-center rounded-sm'>
               <Link to={'/detailUser'}>
-                <div className='hover:text-white hover:bg-neutral-700 p-2 hover:rounded-sm'>Trang người dùng</div>
+                <div className='hover:text-white hover:bg-neutral-700 p-2 hover:rounded-sm'>
+                {t('user.userPage')}
+                </div>
               </Link>
               <div onClick={logout} className='cursor-pointer'>
-                <div className='hover:text-white hover:bg-neutral-700 p-2 hover:rounded-sm'>Đăng xuất</div>
+                <div className='hover:text-white hover:bg-neutral-700 p-2 hover:rounded-sm'>{t('user.logout')}</div>
               </div>
             </div>
               )
@@ -60,7 +62,7 @@ const Usernavbar = () => {
               <span className='absolute text-sm -bottom-2 -right-1 text-red-600 font-bold'>10</span>
             </div>
             <span className='font-semibold'>
-              Giỏ hàng
+            {t('user.cart')}
             </span>
           </Link>
           </div>
@@ -68,8 +70,8 @@ const Usernavbar = () => {
         :
         (
           <div className='flex gap-8 w-full mb-2 md:w-fit justify-center'>
-            <Link to={'/auth/login'} className='hover:text-blue-500'>{t('login')}</Link>
-            <Link to={'/auth/signup'} className='hover:text-blue-500'>{t('register')}</Link>
+            <Link to={'/auth/login'} className='hover:text-blue-500'>{t('user.login')}</Link>
+            <Link to={'/auth/signup'} className='hover:text-blue-500'>{t('user.register')}</Link>
           </div>
         )
       }
