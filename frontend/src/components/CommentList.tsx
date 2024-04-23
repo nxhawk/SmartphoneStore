@@ -6,13 +6,15 @@ import { valueInArray } from '../utils/helper';
 import AddComment from './AddComment';
 import { useQuery } from '@tanstack/react-query';
 import { getCommentsByProductId } from '../api/comment/apiComment';
+import { FaCommentAlt } from "react-icons/fa";
 
 const CommentList = ({ productId }: {productId: string|undefined}) => {
   const [perPage, setperPage] = useState(4);
   const [countPage, setcountPage] = useState(4);
   const [page, setPage] = useState(1);
+  const [totalComments, setTotalComments] = useState(1);
   const [storePage, setStorePage] = useState(1);
-  const [star, setStar] = useState([1, 2, 3, 4, 5])
+  const [star, setStar] = useState([])
 
   const handleChangePage = (e: React.ChangeEvent<unknown>, value: number) =>{
     setPage(value);
@@ -34,14 +36,16 @@ const CommentList = ({ productId }: {productId: string|undefined}) => {
     }
   }
 
+  
   const { isLoading, data: comments} = useQuery({
-    queryKey: ['comments', page],
+    queryKey: ['comments', page, star],
     queryFn: async () => {
       if (page === storePage) setPage(1);
       setStorePage(page);
-      const data = await getCommentsByProductId(productId, page);
+      const data = await getCommentsByProductId(productId, page, star);
       setcountPage(data.totalPage);
       setperPage(data.perPage);
+      setTotalComments(data.totalComments);
       const response: CommentProps[] = data.comments; 
       return response;
     },
@@ -52,7 +56,13 @@ const CommentList = ({ productId }: {productId: string|undefined}) => {
   return (
     <div className="py-3 bg-gray-200 rounded shadow-xl mb-5">
       <div className='gap-2 font-bold mb-5 px-5 text-lg justify-between flex flex-wrap'>
-        <span className=''>Bình luận về sản phẩm</span>
+        <div>
+          <span className=''>Bình luận về sản phẩm</span>
+          <div className="text-xl font-bold text-amber-700 flex items-center gap-2">
+            <FaCommentAlt />
+            <span>{totalComments} đánh giá</span>
+          </div>
+        </div>
         {
           comments.length > 0 && (
             <div className='flex items-center justify-around gap-4 pr-5'>

@@ -51,7 +51,6 @@ const ProductDetails = () => {
                     edit={false}
                     activeColor="#ffd700"
                   />
-                <div className="text-xl font-normal">6 đánh giá</div>
               </div>
             </div>
             <div className="flex flex-wrap py-3 px-2 gap-2 justify-between mb-2 md:mb-10">

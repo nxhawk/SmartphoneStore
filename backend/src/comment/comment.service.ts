@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import { IComment } from './comment';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CommentEntity } from './entities/comment.entity';
-import { Repository } from 'typeorm';
+import { In, Repository } from 'typeorm';
 import { ICommentResponse } from 'src/utils/types';
 import { Services } from 'src/utils/constants';
 import { IProduct } from 'src/product/interfaces/product';
@@ -36,7 +36,12 @@ export class CommentService implements IComment {
 
     const [comments, totalComments] = await this.commentRepository.findAndCount(
       {
-        where: { product: product.productId },
+        where: {
+          product: product.productId,
+          rate: Array.isArray(query['star'])
+            ? In([...query['star']])
+            : query['star'],
+        },
         skip: (currentPage - 1) * perPage,
         take: perPage,
       },
