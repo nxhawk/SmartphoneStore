@@ -14,7 +14,7 @@ const CommentList = ({ productId }: {productId: string|undefined}) => {
   const [page, setPage] = useState(1);
   const [totalComments, setTotalComments] = useState(1);
   const [storePage, setStorePage] = useState(1);
-  const [star, setStar] = useState([])
+  const [star, setStar] = useState<number[]>([])
 
   const handleChangePage = (e: React.ChangeEvent<unknown>, value: number) =>{
     setPage(value);
