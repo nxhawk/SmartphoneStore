@@ -3,7 +3,7 @@ import { IComment } from './comment';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CommentEntity } from './entities/comment.entity';
 import { In, Repository } from 'typeorm';
-import { ICommentResponse } from 'src/utils/types';
+import { ICommentData, ICommentResponse } from 'src/utils/types';
 import { Services } from 'src/utils/constants';
 import { IProduct } from 'src/product/interfaces/product';
 import { ProductNotFound } from 'src/product/exceptions/ProductNotFound';
@@ -44,6 +44,9 @@ export class CommentService implements IComment {
         },
         skip: (currentPage - 1) * perPage,
         take: perPage,
+        order: {
+          date: 'DESC',
+        },
       },
     );
 
@@ -60,5 +63,18 @@ export class CommentService implements IComment {
     };
 
     return response;
+  }
+
+  async createComment(
+    productId: number,
+    createComment: ICommentData,
+  ): Promise<CommentEntity> {
+    const product = await this.productService.getPById(productId);
+    if (!product) throw new ProductNotFound();
+
+    const comment = await this.commentRepository.create(createComment);
+    comment.product = product;
+
+    return this.commentRepository.save(comment);
   }
 }

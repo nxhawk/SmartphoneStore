@@ -59,6 +59,12 @@ export type IGetProductsResponse = {
   currentPage: number;
 };
 
+export type ICommentData = {
+  name: string;
+  content: string;
+  rate: number;
+};
+
 export type ICommentResponse = {
   comments: CommentEntity[];
   totalComments: number;

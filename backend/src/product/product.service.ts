@@ -69,4 +69,10 @@ export class ProductService implements IProduct {
     if (!productDetail) throw new ProductNotFound();
     return productDetail;
   }
+
+  async getPById(productId: number): Promise<Product> {
+    return this.productRepository.findOne({
+      where: { productId },
+    });
+  }
 }

@@ -1,10 +1,12 @@
 import { Product } from 'src/product/entities/product.entity';
 import {
   Column,
+  CreateDateColumn,
   Entity,
   JoinColumn,
   ManyToOne,
   PrimaryGeneratedColumn,
+  Timestamp,
 } from 'typeorm';
 
 @Entity('Comment')
@@ -21,8 +23,8 @@ export class CommentEntity {
   @Column()
   rate: number;
 
-  @Column({ type: 'date' })
-  date: string;
+  @CreateDateColumn()
+  date: Timestamp;
 
   // relationship
   @ManyToOne(() => Product, (p) => p.comment)
