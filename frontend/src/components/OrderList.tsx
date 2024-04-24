@@ -6,6 +6,7 @@ import TableRow from '@mui/material/TableRow';
 import { styled } from '@mui/material/styles';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import TableBody from '@mui/material/TableBody';
+import { useTranslation } from "react-i18next";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -32,17 +33,19 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 const OrderList = () => {
+  const [t] = useTranslation("global");
+
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
         <TableHead>
           <TableRow>
             <StyledTableCell>STT</StyledTableCell>
-            <StyledTableCell align="center">Tổng tiền</StyledTableCell>
-            <StyledTableCell align="center">Trạng thái</StyledTableCell>
-            <StyledTableCell align="center">Đã thanh toán</StyledTableCell>
-            <StyledTableCell align="center">Ngày đặt</StyledTableCell>
-            <StyledTableCell align="center">Chi tiết</StyledTableCell>
+            <StyledTableCell align="center">{t('page.order.sum')}</StyledTableCell>
+            <StyledTableCell align="center">{t('page.order.status')}</StyledTableCell>
+            <StyledTableCell align="center">{t('page.order.paid')}</StyledTableCell>
+            <StyledTableCell align="center">{t('page.order.date')}</StyledTableCell>
+            <StyledTableCell align="center">{t('page.order.detail')}</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>

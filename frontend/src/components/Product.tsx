@@ -23,7 +23,7 @@ const Product = ({ image, name, price, rate, discount, comments, link }: Props) 
     >
       <div>
         <img src={image} className={`duration-100 ease-out w-fit p-2 ${hover?"text-blue-500":"translate-y-2"}`}/>
-        <p className={`${hover?"text-blue-500":""} text-sm mt-4`}>{name}</p>
+        <p className={`dark:text-white ${hover?"text-blue-500 dark:text-blue-600":""} text-sm mt-4 `}>{name}</p>
       </div>
       <div>
         <div className="flex flex-wrap gap-2 justify-between text-xs mt-2 items-center">

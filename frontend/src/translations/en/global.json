@@ -46,11 +46,31 @@
       "total": "Total",
       "orderConfirm": "Order confirmation",
       "cartCount": "YOUR CART INCLUDES"
+    },
+    "order": {
+      "title": "List of orders",
+      "sum": "Total amount",
+      "status": "Status",
+      "paid": "Paid",
+      "date": "Order date",
+      "detail": "Detail"
     }
   },
   "numberPhone": "Phone number",
   "address": "Address",
   "workingTime": "Working Time",
   "showAllProduct": "View all products",
-  "product": "product"
+  "product": "product",
+  "fullname": "Fullname",
+  "customerInfo": "Customer Information",
+  "password": {
+    "root": "Password",
+    "change": "Change password",
+    "old": "Old password",
+    "new": "New password",
+    "confirm": "Confirm password"
+  },
+  "yes": "Confirm",
+  "sumMoney": "Total amount purchased",
+  "updateInfo": "Update information"
 }

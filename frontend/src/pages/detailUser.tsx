@@ -9,8 +9,10 @@ import { changePassword, updateProfile } from '../store/user';
 import { Loading } from 'notiflix';
 import DocumentMeta from 'react-document-meta';
 import { ProfileMeta } from '../utils/meta';
+import { useTranslation } from 'react-i18next';
 
 const DetailUser = () => {
+  const [t] = useTranslation("global");
   const dispatch = useDispatch<AppDispatch>();
   const user = useSelector((state: AppState) => state?.user?.user);
   
@@ -125,10 +127,10 @@ const DetailUser = () => {
             />
           </div>
           <div className='flex-1 w-full p-2'>
-            <h1 className='text-center font-bold text-2xl'>THÔNG TIN KHÁCH HÀNG</h1>
+            <h1 className='text-center font-bold text-2xl uppercase'>{t('customerInfo')}</h1>
             <div className='mt-4'>
               <div className='flex mb-3 gap-2'>
-                <p className='font-bold w-4/12 text-end'>Họ và tên:</p>
+                <p className='font-bold w-4/12 text-end'>{t('fullname')}:</p>
                 {
                   editName?
                   (<input type='text' className='rounded-sm px-2 w-5/12 border' value={name} 
@@ -143,18 +145,22 @@ const DetailUser = () => {
                     setEditName(!editName)
                   }}>
                     <MdModeEdit />
-                    {editName && <span className='text-sm'>Đồng ý</span>}
+                    {editName && <span className='text-sm'>{t('yes')}</span>}
                   </button>
                 </div>
               </div>
               <div className='flex mb-3 gap-2'>
-                <p className='font-bold w-4/12 text-end'>Số điện thoại:</p>
+                <p className='font-bold w-4/12 text-end'>{t('numberPhone')}:</p>
                 {
                   editPhoneNumber?
-                  (<input type='text' className='rounded-sm px-2 w-5/12 border' value={phoneNumber} 
+                  (
+                  <input type='text' className='rounded-sm px-2 w-5/12 border' value={phoneNumber} 
                   ref={phoneNumberRef}
                   onChange={(e) => setPhoneNumber(e.target.value)}
-                  />)
+                  />
+                  // <PhoneInput 
+                  // country={'us'} value={phoneNumber} onChange={setPhoneNumber}/>
+                )
                   :(<p className='w-5/12 text-center'>{phoneNumber}</p>)
                 }
                 
@@ -163,7 +169,7 @@ const DetailUser = () => {
                     setEditPhoneNumber(!editPhoneNumber)
                   }>
                     <MdModeEdit />
-                    {editPhoneNumber && <span className='text-sm'>Đồng ý</span>}
+                    {editPhoneNumber && <span className='text-sm'>{t('yes')}</span>}
                   </button>
                 </div>
               </div>
@@ -175,13 +181,13 @@ const DetailUser = () => {
               {/* change password */}
               <div className='mb-2'>
                 <div className='flex mb-3 gap-2'>
-                  <p className='font-bold w-4/12 text-end'>Mật khẩu:</p>
+                  <p className='font-bold w-4/12 text-end'>{t('password.root')}:</p>
                   <p className='w-5/12 flex justify-center'>
                     <button className='outline-none flex items-center shadow-md hover:bg-gray-300 rounded px-3 gap-1 py-1'
                       onClick={() => setOpenChangePassword(!openChangePassword)}
                     >
                         <MdModeEdit />
-                        <span className='text-sm'>Đổi mật khẩu</span>
+                        <span className='text-sm'>{t('password.change')}</span>
                     </button>
                   </p>
                   <span className='w-3/12'></span>
@@ -189,7 +195,7 @@ const DetailUser = () => {
                 <div className="border-y-2">
                   <div className={`py-2 ease-in ${!openChangePassword && 'hidden'}`}>
                     <div className='flex mb-2 gap-2'>
-                      <p className='font-bold w-4/12 text-end'>Mật khẩu cũ:</p>
+                      <p className='font-bold w-4/12 text-end'>{t('password.old')}:</p>
                       <input type='password' className='rounded px-2 w-5/12 border border-gray-400'      
                         value={oldPassword} 
                         onChange={(e) => setOldPassword(e.target.value)}
@@ -197,7 +203,7 @@ const DetailUser = () => {
                       <span className='w-3/12'></span>
                     </div>
                     <div className='flex mb-2 gap-2'>
-                      <p className='font-bold w-4/12 text-end'>Mật khẩu mới:</p>
+                      <p className='font-bold w-4/12 text-end'>{t('password.new')}:</p>
                       <input type='password' className='rounded px-2 w-5/12 border border-gray-400'      
                         value={newPassword} 
                         onChange={(e) => setNewPassword(e.target.value)}
@@ -205,7 +211,7 @@ const DetailUser = () => {
                       <span className='w-3/12'></span>
                     </div>
                     <div className='flex mb-2 gap-2'>
-                      <p className='font-bold w-4/12 text-end'>Xác nhận mật khẩu:</p>
+                      <p className='font-bold w-4/12 text-end'>{t('password.confirm')}:</p>
                       <input type='password' className='rounded px-2 w-5/12 border border-gray-400'      
                         value={confirmPassword} 
                         onChange={(e) => setConfirmPassword(e.target.value)}
@@ -217,14 +223,14 @@ const DetailUser = () => {
                       <button 
                         onClick={onChangePassword}
                         className='ease-in-out duration-500 border font-medium rounded-lg hover:bg-green-500 hover:border-green-500 bg-gray-300 w-5/12 py-1'
-                      >Đồng ý</button>
+                      >{t('yes')}</button>
                       <span className='w-3/12'></span>
                     </div>
                   </div>
                 </div>
               </div>
               {/* end change password */}
-              <div className='flex mb-1 gap-2'>
+              {/* <div className='flex mb-1 gap-2'>
                 <p className='font-bold w-4/12 text-end'>Số dư tài khoản:</p>
                 <p className='w-5/12 text-center'>100.000.000 VNĐ</p>
                 <div className='w-3/12'>
@@ -232,9 +238,9 @@ const DetailUser = () => {
                     Nạp tiền
                   </button>
                 </div>
-              </div>
+              </div> */}
               <div className='flex mb-3 lg:mb-5 gap-2'>
-                <p className='font-bold w-4/12 text-end'>Tổng tiền đã mua:</p>
+                <p className='font-bold w-4/12 text-end'>{t('sumMoney')}:</p>
                 <p className='w-5/12 text-center'>0 VNĐ</p>
                 <span className='w-3/12'></span>
               </div>
@@ -242,7 +248,7 @@ const DetailUser = () => {
                 <p className='w-4/12'></p>
                 <p className='w-5/12 text-center'>
                   <button onClick={handleUpdateInfo} className="shadow-2xl w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 rounded sm:text-base text-xs">
-                  Cập nhật thông tin
+                  {t('updateInfo')}
                   </button>
                 </p>
                 <span className='w-3/12'></span>
@@ -252,7 +258,7 @@ const DetailUser = () => {
         </div>
         <hr className='mt-2 mb-3'/>
         <div className='mb-5'>
-          <div className='text-center mb-3 font-bold text-2xl sm:text-3xl text-gray-800'>DANH SÁCH ĐƠN HÀNG</div>
+          <div className='text-center mb-3 font-bold text-2xl sm:text-3xl text-gray-800'>{t('page.order.title')}</div>
           <OrderList/>
         </div>
       </div>

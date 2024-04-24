@@ -33,9 +33,9 @@ const Usernavbar = () => {
             onMouseLeave={() => setShow(false)}
           >
             <div className={`border rounded-full p-2 ${show?'text-white bg-slate-400':''}`}>
-              <BiSolidUser />
+              <BiSolidUser className='dark:text-white'/>
             </div>
-            <span className='font-semibold'>
+            <span className='font-semibold dark:text-white'>
             {t('user.account')}
             </span>
             {
@@ -58,10 +58,10 @@ const Usernavbar = () => {
             onMouseLeave={() => setHover(false)}
           >
             <div className={`relative border rounded-full p-2 ${hover?'text-white bg-slate-400':''}`}>
-              <FaShoppingCart />
+              <FaShoppingCart className='dark:text-white'/>
               <span className='absolute text-sm -bottom-2 -right-1 text-red-600 font-bold'>10</span>
             </div>
-            <span className='font-semibold'>
+            <span className='font-semibold dark:text-white'>
             {t('user.cart')}
             </span>
           </Link>
@@ -70,8 +70,8 @@ const Usernavbar = () => {
         :
         (
           <div className='flex gap-8 w-full mb-2 md:w-fit justify-center'>
-            <Link to={'/auth/login'} className='hover:text-blue-500'>{t('user.login')}</Link>
-            <Link to={'/auth/signup'} className='hover:text-blue-500'>{t('user.register')}</Link>
+            <Link to={'/auth/login'} className='dark:text-white hover:text-blue-500 dark:hover:text-blue-500'>{t('user.login')}</Link>
+            <Link to={'/auth/signup'} className='dark:text-white hover:text-blue-500 dark:hover:text-blue-500'>{t('user.register')}</Link>
           </div>
         )
       }

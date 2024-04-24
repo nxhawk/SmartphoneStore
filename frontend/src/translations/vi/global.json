@@ -46,11 +46,31 @@
       "total": "Tổng cộng",
       "orderConfirm": "Xác nhận đặt hàng",
       "cartCount": "GIỎ HÀNG CỦA BẠN BAO GỒM"
+    },
+    "order": {
+      "title": "Danh sách đơn hàng",
+      "sum": "Tổng tiền",
+      "status": "Trạng thái",
+      "paid": "Đã thanh toán",
+      "date": "Ngày đặt hàng",
+      "detail": "Chi tiết"
     }
   },
   "numberPhone": "Số điện thoại",
   "address": "Địa chỉ",
   "workingTime": "Thời Gian Làm Việc",
   "showAllProduct": "Xem tất cả các sản phẩm",
-  "product": "sản phẩm"
+  "product": "sản phẩm",
+  "fullname": "Họ và tên",
+  "customerInfo": "Thông tin khách hàng",
+  "password": {
+    "root": "Mật khẩu",
+    "change": "Đổi mật khẩu",
+    "old": "Mật khẩu cũ",
+    "new": "Mật khẩu mới",
+    "confirm": "Xác nhận mật khẩu"
+  },
+  "yes": "Đồng ý",
+  "sumMoney": "Tổng tiền đã mua",
+  "updateInfo": "Cập nhật thông tin"
 }
