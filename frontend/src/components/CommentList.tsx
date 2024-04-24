@@ -68,7 +68,7 @@ const CommentList = ({ productId }: {productId: string|undefined}) => {
           </div>
         </div>
         {
-          comments.length > 0 && (
+          (
             <div className='flex items-center justify-around gap-4 pr-5'>
               {
                 [1, 2, 3, 4, 5].map(index => (
