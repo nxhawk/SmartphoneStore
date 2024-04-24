@@ -10,7 +10,7 @@ const ButtonSetting = ({ name, action, currentValue }: ButtonSettingProps) => {
   const [, i18n] = useTranslation("global");
 
   const handleClick = () => {
-    if (name== 'vi' || name == 'en'){
+    if (name== 'vi' || name == 'en' || name == 'ch' ){
       i18n.changeLanguage(name);
     }
     action(name)

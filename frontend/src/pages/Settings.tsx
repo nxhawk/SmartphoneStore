@@ -21,6 +21,11 @@ const Settings = () => {
             currentValue={language}
             name="en"
           />
+          <ButtonSetting 
+            action={setLanguage}
+            currentValue={language}
+            name="ch"
+          />
         </div>
       </div>
       <div className="flex gap-10 items-center">

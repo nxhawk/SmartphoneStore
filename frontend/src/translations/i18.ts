@@ -1,6 +1,7 @@
 import i18next from "i18next";
 import global_en from "./en/global.json";
 import global_vi from "./vi/global.json";
+import global_ch from "./ch/global.json";
 
 i18next.init({
   interpolation: { escapeValue: false }, // React already does escaping
@@ -12,6 +13,9 @@ i18next.init({
     vi: {
       global: global_vi,
     },
+    ch: {
+      global:global_ch,
+    }
   },
 });
 

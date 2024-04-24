@@ -1,0 +1,76 @@
+{
+  "navbar": {
+    "Home": "主页",
+    "News": "消息",
+    "Hiring": "招聘",
+    "About": "介绍",
+    "Maintenance": "维护",
+    "Contact": "接触",
+
+    "NewsText": "有关智能手机的最新消息",
+    "HiringText": "招聘要求",
+    "AboutText": "欢迎来到移动世界！",
+    "MaintenanceText": "智能手机商店保修中心"
+  },
+  "user": {
+    "login": "登录",
+    "register": "登记",
+    "logout": "登出",
+    "account": "帐户",
+    "userPage": "用户页面",
+    "cart": "大车"
+  },
+  "footer": {
+    "bottom": "Smartphone Store - 网络项目 © 2024 - 设计者",
+    "group": "蜜蜂组",
+    "col_1": "快递1小时内送达",
+    "col_2": "灵活支付：现金、visa/master、分期付款",
+    "col_3": "在家体验产品",
+    "col_4": "有错误1天内可在家调换",
+    "col_5": "终身支持。\n热线：12345678"
+  },
+  "page": {
+    "contact": {
+      "title_right": "向我们发送反馈",
+      "title_left": "联系方式",
+      "desc_left": "将您的反馈提交到表格中。 我们将尽快回复您！"
+    },
+    "cart": {
+      "confirm": "确认信息设置",
+      "fullname": "收货人全名",
+      "address": "邮寄地址",
+      "phoneNumber": "收件人电话号码",
+      "note": "笔记",
+      "paymentMethods": "支付方式",
+      "cash": "现金",
+      "total": "全部的",
+      "orderConfirm": "订单确认",
+      "cartCount": "您的购物车包括"
+    },
+    "order": {
+      "title": "订单清单",
+      "sum": "总金额",
+      "status": "地位",
+      "paid": "有薪酬的",
+      "date": "订购日期",
+      "detail": "细节"
+    }
+  },
+  "numberPhone": "电话号码",
+  "address": "地址",
+  "workingTime": "工作时间",
+  "showAllProduct": "查看所有产品",
+  "product": "产品",
+  "fullname": "名字和姓氏",
+  "customerInfo": "客户信息",
+  "password": {
+    "root": "密码",
+    "change": "更改密码",
+    "old": "旧密码",
+    "new": "新密码",
+    "confirm": "确认密码"
+  },
+  "yes": "同意",
+  "sumMoney": "购买总额",
+  "updateInfo": "更新信息"
+}
