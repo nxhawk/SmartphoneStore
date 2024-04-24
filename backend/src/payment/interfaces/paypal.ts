@@ -1,6 +1,6 @@
-import { Request } from 'express';
+import { Request, Response } from 'express';
 
 export interface IPaypalService {
-  withPaypal();
-  paypalSuccess(req: Request);
+  withPaypal(res: Response);
+  paypalSuccess(req: Request, res: Response);
 }

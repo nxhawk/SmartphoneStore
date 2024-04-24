@@ -5,11 +5,12 @@ import {
   Param,
   Post,
   Req,
+  Res,
   UseGuards,
 } from '@nestjs/common';
 import { Routes, Services } from 'src/utils/constants';
 import { IVnpayService } from './interfaces/vnpay';
-import { Request } from 'express';
+import { Request, Response } from 'express';
 import { AuthenticatedGuard } from 'src/auth/utils/Guards';
 import { AuthUser } from 'src/utils/decorators';
 import { User } from 'src/user/entities/user.entity';
@@ -37,13 +38,13 @@ export class PaymentController {
   }
 
   @Post('/paypal')
-  async withPaypal() {
-    return this.paypalService.withPaypal();
+  async withPaypal(@Res() res: Response) {
+    return this.paypalService.withPaypal(res);
   }
 
   @Get('/paypal-success')
-  async withPaypalSuccess(@Req() req: Request) {
-    return this.paypalService.paypalSuccess(req);
+  async withPaypalSuccess(@Req() req: Request, @Res() res: Response) {
+    return this.paypalService.paypalSuccess(req, res);
   }
 
   @Get('/paypal-cancle')

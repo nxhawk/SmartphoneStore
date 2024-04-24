@@ -12,7 +12,7 @@ export class PaypalService implements IPaypalService {
     });
   }
 
-  async withPaypal() {
+  async withPaypal(res) {
     const create_payment_json = {
       intent: 'sale',
       payer: {
@@ -44,34 +44,34 @@ export class PaypalService implements IPaypalService {
       ],
     };
 
-    paypal.payment.create(create_payment_json, function (error, payment) {
+    await paypal.payment.create(create_payment_json, function (error, payment) {
       if (error) {
-        throw error;
+        throw new Error(error);
       } else {
         for (let i = 0; i < payment.links.length; i++) {
           if (payment.links[i].rel === 'approval_url') {
-            console.log(payment.links[i].href);
-            return payment.links[i].href;
+            res.send(payment.links[i].href);
+            return;
           }
         }
       }
     });
   }
 
-  async paypalSuccess(req) {
+  async paypalSuccess(req, res) {
     const payerId = req.query.PayerID;
     const paymentId = req.query.paymentId;
 
     const execute_payment_json = {
       payer_id: payerId,
-      transactions: [
-        {
-          amount: {
-            currency: 'USD',
-            total: '25.00',
-          },
-        },
-      ],
+      // transactions: [
+      //   {
+      //     amount: {
+      //       currency: 'USD',
+      //       total: '25.00',
+      //     },
+      //   },
+      // ],
     };
     paypal.payment.execute(
       paymentId,
@@ -81,10 +81,11 @@ export class PaypalService implements IPaypalService {
           console.log(error.response);
           throw error;
         } else {
-          console.log(JSON.stringify(payment));
-          return true;
+          return res.json(payment);
         }
       },
     );
+
+    return false;
   }
 }
