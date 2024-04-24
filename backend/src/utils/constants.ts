@@ -20,6 +20,7 @@ export enum Services {
   COMMENT_SERVICE = 'COMMENT_SERVICE',
   CART_SERVICE = 'CART_SERVICE',
   VNPAY_SERVICE = 'VNPAY_SERVICE',
+  PAYPAL_SERVICE = 'PAYPAL_SERVICE',
 }
 
 export const UserProfileFileFields: MulterField[] = [
