@@ -5,7 +5,7 @@ const ButtonSetting = () => {
   const navigate = useNavigate();
   return (
     <button className='fixed bottom-2'
-    style={{left: 'calc(100vw - 100px)' }} 
+    style={{left: 'calc(100vw - 140px)' }} 
     onClick={() => {
       navigate('/settings')
     }}
