@@ -10,6 +10,7 @@ import {
   Timestamp,
 } from 'typeorm';
 import { OrderDetail } from './order-detail.entity';
+import { PaymentMethod } from 'src/utils/enums/paymentStatus.enum';
 
 @Entity('Order')
 export class Order {
@@ -31,8 +32,8 @@ export class Order {
   @Column({ default: true })
   isPayment: boolean;
 
-  @Column()
-  status: string;
+  @Column({ type: 'enum', enum: PaymentMethod, default: PaymentMethod.PENDING })
+  status: PaymentMethod;
 
   @CreateDateColumn()
   timeOrder: Timestamp;

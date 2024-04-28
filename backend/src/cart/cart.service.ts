@@ -23,6 +23,22 @@ export class CartService implements ICartService {
     private readonly productService: IProduct,
   ) {}
 
+  async totalCost(user: User): Promise<number> {
+    const checkUser = await this.userService.findUser({ userId: user.userId });
+    if (!checkUser) throw new UserNotFound();
+    const currentCart = await this.getCart(user);
+    let totalCost = 0;
+    currentCart.map((cart: Cart) => {
+      totalCost +=
+        (cart.quantity *
+          cart.productId.price *
+          (100 - cart.productId.discount)) /
+        100;
+    });
+
+    return totalCost;
+  }
+
   async getCart(user: User): Promise<Cart[]> {
     const checkUser = await this.userService.findUser({ userId: user.userId });
     if (!checkUser) throw new UserNotFound();
@@ -95,5 +111,10 @@ export class CartService implements ICartService {
     );
     if (!checkCart) throw new CartError();
     return this.cartRepository.remove(checkCart);
+  }
+
+  async clearCart(user: User) {
+    const currentCart = await this.getCart(user);
+    return this.cartRepository.remove(currentCart);
   }
 }

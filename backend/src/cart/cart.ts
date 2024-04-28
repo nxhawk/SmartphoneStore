@@ -11,4 +11,6 @@ export interface ICartService {
     value: number,
   ): Promise<Cart>;
   deleteProductFromCart(user: User, productId: number): Promise<Cart>;
+  totalCost(user: User): Promise<number>;
+  clearCart(user: User);
 }
