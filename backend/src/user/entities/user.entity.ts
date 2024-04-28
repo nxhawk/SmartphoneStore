@@ -1,5 +1,6 @@
 import { Exclude } from 'class-transformer';
 import { Cart } from 'src/cart/entities/cart.entity';
+import { Order } from 'src/order/entities/order.entity';
 import { ForgotCode } from 'src/send-email/entities/forgot-code.entity';
 import { Roles } from 'src/utils/enums/roles.enum';
 import {
@@ -57,4 +58,7 @@ export class User {
 
   @OneToMany(() => Cart, (c) => c.userId)
   cart: Cart[];
+
+  @OneToMany(() => Order, (o) => o.userId)
+  order: Order[];
 }

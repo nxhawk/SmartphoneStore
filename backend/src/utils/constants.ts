@@ -6,6 +6,7 @@ export enum Routes {
   COMMENT = 'comment',
   CART = 'cart',
   PAYMENT = 'payment',
+  ORDER = 'order',
 }
 
 export enum Services {
@@ -21,6 +22,8 @@ export enum Services {
   CART_SERVICE = 'CART_SERVICE',
   VNPAY_SERVICE = 'VNPAY_SERVICE',
   PAYPAL_SERVICE = 'PAYPAL_SERVICE',
+  ORDER_SERVICE = 'ORDER_SERVICE',
+  ORDER_DETAIL_SERVICE = 'ORDER_DETAIL_SERVICE',
 }
 
 export const UserProfileFileFields: MulterField[] = [
