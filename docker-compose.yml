@@ -1,4 +1,4 @@
-version: '1.0'
+version: '3.8'
 
 services:
   postgres:
@@ -14,7 +14,7 @@ services:
       - "${DB_PORT}:5432"
     volumes:
       - pg_data:/var/lib/postgresql/data/
-      # - ./docker_postgres_init.sql:/docker-entrypoint-initdb.d/docker_postgres_init.sql
+      - ./docker_postgres_init.sql:/docker-entrypoint-initdb.d/docker_postgres_init.sql
     networks:
       - bp-network
     env_file:

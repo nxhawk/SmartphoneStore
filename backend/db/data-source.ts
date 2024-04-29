@@ -25,7 +25,6 @@ export const typeOrmAsyncConfig: TypeOrmModuleAsyncOptions = {
   useFactory: async (
     configService: ConfigService,
   ): Promise<TypeOrmModuleOptions> => {
-    console.log(configService.get<DatabseUnion>('dbDatabase'));
     return {
       type: configService.get<DatabseUnion>('dbDatabase'),
       host: configService.get<string>('dbHost'),
@@ -34,6 +33,7 @@ export const typeOrmAsyncConfig: TypeOrmModuleAsyncOptions = {
       database: configService.get<string>('dbName'),
       password: configService.get<string>('dbPassword'),
       entities: ['dist/**/*.entity.{js, ts}'],
+      // autoLoadEntities: true,
       synchronize: true,
     };
   },
