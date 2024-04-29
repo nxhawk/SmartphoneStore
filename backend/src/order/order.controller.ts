@@ -21,4 +21,10 @@ export class OrderController {
   ) {
     return this.orderService.createNewOrder(user, orderCreateDto);
   }
+
+  @Post('/mycart')
+  @UseGuards(AuthenticatedGuard)
+  async getById(@AuthUser() user: User) {
+    return this.orderService.getOrderById(user);
+  }
 }

@@ -39,7 +39,7 @@ export class Order {
   timeOrder: Timestamp;
 
   // relationship
-  @ManyToOne(() => User, (u) => u.order)
+  @ManyToOne(() => User, (u) => u.order, { cascade: true })
   @JoinColumn({ name: 'userId' })
   userId: User;
 

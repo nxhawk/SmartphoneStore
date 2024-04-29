@@ -1,20 +1,29 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { IVnpayService } from '../interfaces/vnpay';
 import * as moment from 'moment';
 import * as crypto from 'crypto';
 import * as querystring from 'qs';
-import { v4 as uuidv4 } from 'uuid';
 import { generateToken, sortObject, verifyToken } from 'src/utils/helpers';
 import { NotMoneyProvide } from '../exceptions/NotMoneyProvide';
 import { User } from 'src/user/entities/user.entity';
 import { VnpayError } from '../exceptions/VnpayError';
+import { IOrderService } from 'src/order/interfaces/order';
+import { Services } from 'src/utils/constants';
+import { ICartService } from 'src/cart/cart';
 
 @Injectable()
 export class VnpayService implements IVnpayService {
-  async getVnPayReturn(token: string, req) {
+  constructor(
+    @Inject(Services.ORDER_SERVICE)
+    private readonly orderService: IOrderService,
+    @Inject(Services.CART_SERVICE)
+    private readonly cartService: ICartService,
+  ) {}
+
+  async getVnPayReturn(user: User, token: string, req) {
     try {
       const verify = await verifyToken(token);
-      if (!verify || !verify.email) throw new VnpayError();
+      if (!verify || !verify.email || !verify.id) throw new VnpayError();
 
       let vnp_Params = req.query;
 
@@ -44,6 +53,7 @@ export class VnpayService implements IVnpayService {
         //Kiem tra xem du lieu trong db co hop le hay khong va thong bao ket qua
         if (vnp_Params['vnp_ResponseCode'] == '00') {
           // add money to email
+          await this.orderService.updateStatusPayment(user);
           return amount;
         }
         return 'Error';
@@ -56,8 +66,9 @@ export class VnpayService implements IVnpayService {
     }
   }
 
-  payment(user: User, req) {
-    if (!req.body || !req.body.money) throw new NotMoneyProvide();
+  async payment(user: User, req) {
+    const totalCost = (await this.cartService.totalCost(user)) || 0;
+    if (!req.body || totalCost <= 0) throw new NotMoneyProvide();
     const token = generateToken(user);
     try {
       process.env.TZ = 'Asia/Ho_Chi_Minh';
@@ -83,8 +94,16 @@ export class VnpayService implements IVnpayService {
       let vnpUrl = config['vnp_Url'];
       const returnUrl = config['vnp_ReturnUrl'] + '/' + token;
 
-      const orderId = uuidv4();
-      const amount = req.body.money;
+      const newOrder = await this.orderService.createNewOrder(user, {
+        reciverName: req.body?.reciverName,
+        address: req.body?.address,
+        phoneNumber: req.body?.phoneNumber,
+        isPayment: false,
+        paymentMethod: 'vnpay',
+      });
+
+      const orderId = newOrder.orderId;
+      const amount = totalCost;
 
       let locale = null;
       if (locale === null || locale === '') {

@@ -13,4 +13,6 @@ export class OrderCreateDto {
   @MinLength(10, { message: 'phoneNumber is at least 10 characters' })
   @MaxLength(10, { message: 'phoneNumber is at most 10 characters' })
   phoneNumber: string;
+
+  paymentMethod?: string;
 }

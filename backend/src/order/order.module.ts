@@ -21,5 +21,11 @@ import { UserModule } from 'src/user/user.module';
       useClass: OrderService,
     },
   ],
+  exports: [
+    {
+      provide: Services.ORDER_SERVICE,
+      useClass: OrderService,
+    },
+  ],
 })
 export class OrderModule {}

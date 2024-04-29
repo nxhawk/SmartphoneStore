@@ -32,6 +32,7 @@ export class OrderService implements IOrderService {
       reciverName: orderData.reciverName,
       phoneNumber: orderData.phoneNumber,
       userId: user,
+      isPayment: orderData.isPayment,
     });
 
     newOrder = await this.orderRepository.save(newOrder);
@@ -48,7 +49,34 @@ export class OrderService implements IOrderService {
       await this.orderDetailRepository.save(currentOrderDetail);
     });
 
-    await this.cartService.clearCart(user);
+    if (orderData.paymentMethod === 'offline') {
+      await this.cartService.clearCart(user);
+    }
+
     return newOrder;
+  }
+
+  async updateStatusPayment(user: User): Promise<Order> {
+    const order = await this.getOrderById(user);
+    order.isPayment = true;
+    await this.cartService.clearCart(user);
+    return this.orderRepository.save(order);
+  }
+
+  async getAllOrder(user: User): Promise<Order[]> {
+    return this.orderRepository
+      .createQueryBuilder('order')
+      .andWhere('order.userId = :userId', { userId: user.userId })
+      .leftJoinAndSelect('order.orderDetails', 'od')
+      .execute();
+  }
+
+  async getOrderById(user: User): Promise<Order> {
+    return this.orderRepository
+      .createQueryBuilder('order')
+      .andWhere('order.userId = :userId', { userId: user.userId })
+      .leftJoinAndSelect('order.orderDetails', 'od')
+      .orderBy('order.orderId', 'DESC')
+      .getOne();
   }
 }

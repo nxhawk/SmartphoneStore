@@ -28,18 +28,26 @@ export class PaymentController {
   @Post('/vnpay')
   @UseGuards(AuthenticatedGuard)
   async withVnpay(@AuthUser() user: User, @Req() req: Request) {
-    return this.vnpayService.payment(user, req);
+    const url = await this.vnpayService.payment(user, req);
+    return { url };
   }
 
   @Get('/vnpay_return/:token')
-  // @UseGuards(AuthenticatedGuard)
-  async returnVnpay(@Param('token') token: string, @Req() req: Request) {
-    return this.vnpayService.getVnPayReturn(token, req);
+  @UseGuards(AuthenticatedGuard)
+  async returnVnpay(
+    @AuthUser() user: User,
+    @Param('token') token: string,
+    @Req() req: Request,
+    @Res() res: Response,
+  ) {
+    await this.vnpayService.getVnPayReturn(user, token, req);
+    return res.redirect(`${process.env.CLIENT_URL}/cart`);
   }
 
   @Post('/paypal')
   async withPaypal(@Res() res: Response) {
-    return this.paypalService.withPaypal(res);
+    await this.paypalService.withPaypal(res);
+    return res.redirect(`${process.env.CLIENT_URL}/cart`);
   }
 
   @Get('/paypal-success')
