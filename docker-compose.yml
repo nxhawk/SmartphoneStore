@@ -4,51 +4,61 @@ services:
   postgres:
     image: postgres:14.2
     restart: always
+    container_name: postgres
     environment:
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: root
-      POSTGRES_DB: smartphone-store
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 12345
+      POSTGRES_DB: smartphone-shop
+      PGDATA: /var/lib/postgresql/data
     ports:
       - "5432:5432"
     volumes:
       - pg_data:/var/lib/postgresql/data/
       # - ./docker_postgres_init.sql:/docker-entrypoint-initdb.d/docker_postgres_init.sql
-    
+    networks:
+      - bp-network
+    env_file:
+      - ./backend/.env
+
   backend:
     restart: always
+    container_name: backend
     build:
       dockerfile: Dockerfile
       context: './backend'
     depends_on:
       - postgres
+    links:
+      - postgres
     volumes:
-      - /backend/node_modules
-      - ./backend:/app
+      - ./backend:/svr/app
+      - /svr/app/node_modules
     ports:
       - '3003:3003'
-    environment:
-      - PORT = 3003
-      - ROOT_SERVER = http://localhost:3003
-      - CLIENT_URL = http://localhost:5173
-      - DB_DB = postgres
-      - DB_HOST = localhost
-      - DB_PORT = 5432
-      - DB_USERNAME = root
-      - DB_PASSWORD = root
-      - DB_DATABASE = smartphone-shop
+    env_file: ./backend/.env
+    networks:
+      - bp-network
+
   frontend:
+    restart: always
+    container_name: frontend
     build:
       dockerfile: Dockerfile
       context: "./frontend"
     depends_on:
       - backend # todo: might not be necessary
     volumes:
-      - /frontend/node_modules
-      - ./frontend:/app
+      - ./frontend:/usr/app
+      - /usr/app/node_modules
     ports:
       - "5173:5173"
-    environment:
-      - VITE_REACT_APP_BASE_URL = 'http://localhost:3003/api'
+    env_file: ./frontend/.env
+    networks:
+      - bp-network
 
 volumes:
   pg_data:
+
+networks:
+  bp-network:
+    driver: bridge
