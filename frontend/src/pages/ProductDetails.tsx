@@ -12,7 +12,7 @@ import ProductFrame from "../components/ProductFrame";
 import ScrollButton from "../components/ScrollButton/ScrollButton";
 import { DetailsProductMeta } from "../utils/meta";
 import DocumentMeta from "react-document-meta";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { getOneProduct } from "../api/product/apiProduct";
 import { IProductDetails } from "../types/product";
@@ -20,11 +20,13 @@ import { addToCart } from "../api/cart/apiCart";
 import { toast } from "react-toastify";
 import { AxiosError } from "axios";
 import { ServerError } from "../types/global";
+import { CartContext } from "../context/CartContext";
 
 const ProductDetails = () => {
   const [productDetails, setProductDetails] = useState<IProductDetails|null>(null)
   const { productId }  = useParams()
-
+  const { refetch } = useContext(CartContext)!;
+  
   const addToCartMutation = useMutation({
     mutationFn: async (productId: number) => addToCart(productId),
     onError: (error: AxiosError) =>{
@@ -37,6 +39,7 @@ const ProductDetails = () => {
     },
     onSuccess: () => {
       toast.success('Add to cart successfully')
+      refetch();
     }
   })
 

@@ -49,6 +49,15 @@ export class CartService implements ICartService {
       .getMany();
   }
 
+  async getProductInCart(user: User): Promise<number> {
+    const checkUser = await this.userService.findUser({ userId: user.userId });
+    if (!checkUser) throw new UserNotFound();
+    return this.cartRepository
+      .createQueryBuilder('cart')
+      .where('cart.userId = :userId', { userId: checkUser.userId })
+      .getCount();
+  }
+
   async findCartByProductId(userId: number, productId: number): Promise<Cart> {
     return this.cartRepository
       .createQueryBuilder('cart')

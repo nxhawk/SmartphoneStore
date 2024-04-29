@@ -10,6 +10,7 @@ import {
 import { SettingsProvider } from './context/SettingsContext.tsx';
 import { I18nextProvider } from "react-i18next";
 import i18next from "./translations/i18";
+import { CartProvider } from './context/CartContext.tsx';
 
 const queryClient = new QueryClient()
 
@@ -18,7 +19,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <I18nextProvider i18n={i18next}>
       <SettingsProvider>
         <QueryClientProvider client={queryClient}>
-          <App />
+          <CartProvider>
+            <App />
+          </CartProvider>
         </QueryClientProvider>
       </SettingsProvider>
     </I18nextProvider>

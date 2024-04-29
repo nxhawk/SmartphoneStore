@@ -8,8 +8,9 @@ export interface IProductCart {
 }
 
 export enum PaymentMethod {
-  ONLINE = 'online',
   OFFLINE = 'offline',
+  VNPAY = 'vnpay',
+  PAYPAL = 'paypal',
 }
 
 export interface IOrderInfo {

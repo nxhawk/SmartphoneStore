@@ -1,10 +1,19 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { IPaypalService } from '../interfaces/paypal';
 import * as paypal from 'paypal-rest-sdk';
+import { User } from 'src/user/entities/user.entity';
+import { Services } from 'src/utils/constants';
+import { IOrderService } from 'src/order/interfaces/order';
+import { ICartService } from 'src/cart/cart';
 
 @Injectable()
 export class PaypalService implements IPaypalService {
-  constructor() {
+  constructor(
+    @Inject(Services.ORDER_SERVICE)
+    private readonly orderService: IOrderService,
+    @Inject(Services.CART_SERVICE)
+    private readonly cartService: ICartService,
+  ) {
     paypal.configure({
       mode: process.env.PAYPAL_ENVIRONMENT, //sandbox or live
       client_id: process.env.PAYPAL_CLIENT_ID,
@@ -12,7 +21,16 @@ export class PaypalService implements IPaypalService {
     });
   }
 
-  async withPaypal(res) {
+  async withPaypal(user: User, res, req) {
+    await this.orderService.createNewOrder(user, {
+      reciverName: req.body?.reciverName,
+      address: req.body?.address,
+      phoneNumber: req.body?.phoneNumber,
+      isPayment: false,
+      paymentMethod: 'paypal',
+    });
+
+    const totalCost = (await this.cartService.totalCost(user)) || 0;
     const create_payment_json = {
       intent: 'sale',
       payer: {
@@ -37,9 +55,9 @@ export class PaypalService implements IPaypalService {
           },
           amount: {
             currency: 'USD',
-            total: '25.00',
+            total: totalCost,
           },
-          description: 'Iphone 4S cũ giá siêu rẻ',
+          description: 'Thanh toán với Paypal account',
         },
       ],
     };
@@ -50,6 +68,7 @@ export class PaypalService implements IPaypalService {
       } else {
         for (let i = 0; i < payment.links.length; i++) {
           if (payment.links[i].rel === 'approval_url') {
+            console.log(payment.links[i].href);
             res.send(payment.links[i].href);
             return;
           }

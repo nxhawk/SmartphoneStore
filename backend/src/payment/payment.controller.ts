@@ -45,18 +45,23 @@ export class PaymentController {
   }
 
   @Post('/paypal')
-  async withPaypal(@Res() res: Response) {
-    await this.paypalService.withPaypal(res);
-    return res.redirect(`${process.env.CLIENT_URL}/cart`);
+  @UseGuards(AuthenticatedGuard)
+  async withPaypal(
+    @AuthUser() user: User,
+    @Res() res: Response,
+    @Req() req: Request,
+  ) {
+    return this.paypalService.withPaypal(user, res, req);
   }
 
   @Get('/paypal-success')
   async withPaypalSuccess(@Req() req: Request, @Res() res: Response) {
-    return this.paypalService.paypalSuccess(req, res);
+    await this.paypalService.paypalSuccess(req, res);
+    return res.redirect(`${process.env.CLIENT_URL}/cart`);
   }
 
   @Get('/paypal-cancle')
-  async withPaypalCancel() {
-    return 'Cancel';
+  async withPaypalCancel(@Res() res: Response) {
+    return res.redirect(`${process.env.CLIENT_URL}/cart`);
   }
 }

@@ -5,6 +5,11 @@ export const getCart = async () => {
   return res.data;
 }
 
+export const getProductInCart = async () => {
+  const res = await AxiosClient.get("/cart/product");
+  return res.data;
+}
+
 export const addToCart = async (productId: number) => {
   const res = await AxiosClient.post("/cart/add", { productId });
   return res.data;

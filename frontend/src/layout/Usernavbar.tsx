@@ -2,11 +2,12 @@ import { Link } from 'react-router-dom';
 import logo from '../assets/images/logo-removebg.png';
 import { BiSolidUser } from "react-icons/bi";
 import { FaShoppingCart } from "react-icons/fa";
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { AppDispatch, AppState } from '../store';
 import { useDispatch, useSelector } from 'react-redux';
 import { logoutUser } from '../store/user';
 import { useTranslation } from 'react-i18next';
+import { CartContext } from '../context/CartContext';
 
 const Usernavbar = () => {
   const [show, setShow] = useState(false);
@@ -19,6 +20,9 @@ const Usernavbar = () => {
   const logout = async () =>{
     await dispatch(logoutUser());
   }
+
+  const { productInCart } = useContext(CartContext)!;
+
   return (
     <div className="max-w-5xl mx-auto border-b-2 flex justify-between border-gray-100 items-center flex-wrap">
       <Link to={'/'} className='overflow-hidden'>
@@ -59,7 +63,7 @@ const Usernavbar = () => {
           >
             <div className={`relative border rounded-full p-2 ${hover?'text-white bg-slate-400':''}`}>
               <FaShoppingCart className='dark:text-white'/>
-              <span className='absolute text-sm -bottom-2 -right-1 text-red-600 font-bold'>10</span>
+              <span className='absolute text-sm -bottom-2 -right-1 text-red-600 font-bold'>{productInCart}</span>
             </div>
             <span className='font-semibold dark:text-white'>
             {t('user.cart')}

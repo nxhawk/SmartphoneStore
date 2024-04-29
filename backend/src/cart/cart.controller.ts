@@ -20,6 +20,12 @@ export class CartController {
     return this.cartService.getCart(user);
   }
 
+  @Get('/product')
+  @UseGuards(AuthenticatedGuard)
+  async getProductInCart(@AuthUser() user: User) {
+    return this.cartService.getProductInCart(user);
+  }
+
   @Post('/add')
   @UseGuards(AuthenticatedGuard)
   async addToCart(@AuthUser() user: User, @Body() { productId }: AddToCartDto) {

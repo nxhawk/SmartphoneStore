@@ -9,8 +9,14 @@ import { toast } from "react-toastify"
 import { ServerError } from "../types/global"
 import { AxiosError } from "axios"
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom"
+import { CartContext } from "../context/CartContext"
+import { useContext } from "react"
 
 const Cart = () => {
+  const { refetch: refetchCart } = useContext(CartContext)!;
+
+  const navigate = useNavigate();
   const [t] = useTranslation('global');
   const { isLoading, isError, data: products, refetch } = useQuery({
     queryKey: ['cart'],
@@ -31,12 +37,13 @@ const Cart = () => {
       }
     },
     onSuccess: () => {
+      refetchCart();
       refetch();
     }
   })
 
   if (isLoading) return <div>Loading...</div>
-  if (isError) return <div>Empty</div>
+  if (isError) return navigate('/auth/login');
 
   return (
     <DocumentMeta {...CartMeta}>
