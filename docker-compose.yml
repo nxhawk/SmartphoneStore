@@ -6,19 +6,19 @@ services:
     restart: always
     container_name: postgres
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: 12345
-      POSTGRES_DB: smartphone-shop
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${smartphone-shop}
       PGDATA: /var/lib/postgresql/data
     ports:
-      - "5432:5432"
+      - "${DB_PORT}:5432"
     volumes:
       - pg_data:/var/lib/postgresql/data/
       # - ./docker_postgres_init.sql:/docker-entrypoint-initdb.d/docker_postgres_init.sql
     networks:
       - bp-network
     env_file:
-      - ./backend/.env
+      - .env
 
   backend:
     restart: always
@@ -34,8 +34,8 @@ services:
       - ./backend:/svr/app
       - /svr/app/node_modules
     ports:
-      - '3003:3003'
-    env_file: ./backend/.env
+      - '${PORT}:3003'
+    env_file: .env
     networks:
       - bp-network
 
@@ -52,12 +52,31 @@ services:
       - /usr/app/node_modules
     ports:
       - "5173:5173"
-    env_file: ./frontend/.env
+    env_file: .env
+    networks:
+      - bp-network
+
+  pgadmin-portal:
+    image: dpage/pgadmin4
+    restart: always
+    container_name: pgadmin-portal
+    env_file:
+      - ./backend/.env
+    environment:
+      PGADMIN_DEFAULT_PASSWORD: "${PGADMIN_DEFAULT_PASSWORD}"
+      PGADMIN_DEFAULT_EMAIL: "${PGADMIN_DEFAULT_EMAIL}"
+    volumes:
+      - pgadmin:/root/.pgadmin
+    ports:
+      - "5055:80"
+    depends_on:
+      - postgres
     networks:
       - bp-network
 
 volumes:
   pg_data:
+  pgadmin:
 
 networks:
   bp-network:

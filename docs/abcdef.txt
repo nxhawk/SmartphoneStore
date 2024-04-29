@@ -1,0 +1,1 @@
+https://montacerdk.medium.com/setup-dockerize-a-react-nest-monorepo-application-7a800060bd63
