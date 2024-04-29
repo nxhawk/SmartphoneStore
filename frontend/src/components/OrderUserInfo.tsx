@@ -13,6 +13,13 @@ import { useTranslation } from "react-i18next";
 import InputOrder from "./InputOrder";
 import * as yup from 'yup'
 import { useFormik } from 'formik'
+import { IOrderInfo, PaymentMethod } from "../types/cart";
+import { useMutation } from "@tanstack/react-query";
+import { ApiOrderProduct } from "../api/order/apiOrder";
+import { AxiosError } from "axios";
+import { ServerError } from "../types/global";
+import { toast } from "react-toastify";
+import { TailSpin } from 'react-loading-icons'
 
 const OrderSchema = yup.object().shape({
   reciverName: yup.string()
@@ -29,6 +36,23 @@ const OrderSchema = yup.object().shape({
 
 const OrderUserInfo = () => {
   const [t] = useTranslation('global');
+  const orderMutation = useMutation({
+    mutationFn: async (data: IOrderInfo) => ApiOrderProduct(data),
+    onError: (error: AxiosError) =>{
+      if (error.response){
+        const errorMessage = error.response.data as ServerError;
+        toast.error(errorMessage.message || "Server error");
+      } else{
+        toast.error('Server error');
+      }
+    },
+    onSuccess: () => {
+      toast.success('Order was successfully');
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000)
+    }
+  })
 
   const formik = useFormik({
     enableReinitialize: true,
@@ -37,11 +61,20 @@ const OrderUserInfo = () => {
       address: "",
       phoneNumber: "",
       notes: "",
-      payMethod: "",
+      payMethod: PaymentMethod.OFFLINE,
+      isPayment: false,
     },
     validationSchema: OrderSchema,
-    onSubmit: async (values) => {
-      console.log(JSON.stringify(values));
+    onSubmit: async (values: IOrderInfo) => {
+      if (orderMutation.isPending) return;
+      if (values.payMethod === PaymentMethod.OFFLINE){
+        orderMutation.mutate({
+          ...values,
+          isPayment: false,
+        })
+      } else if (values.payMethod === PaymentMethod.ONLINE) {
+        console.log(JSON.stringify(values));
+      }
     }
   })
 
@@ -133,9 +166,14 @@ const OrderUserInfo = () => {
           <p className="font-bold">{t('page.cart.total')}:</p>
           <p className="font-bold text-red-700 lg:text-xl text-lg">{convertToVND(245000000)}</p>
         </div>
-        <button className="shadow rounded mt-8 w-full text-center bg-amber-600 py-1 font-medium text-white text-lg hover:bg-amber-700"
+        <button className={`shadow rounded mt-8 w-full text-center bg-amber-600 py-1 font-medium text-white text-lg hover:bg-amber-700 flex justify-center items-center gap-2 ${orderMutation.isPending && 'opacity-50'}`}
         type="submit"
-        >{t('page.cart.orderConfirm')}</button>
+        >
+          {t('page.cart.orderConfirm')}
+          {
+            orderMutation.isPending && <TailSpin className="w-10"/>
+          }
+        </button>
       </form>
     </div>
   )

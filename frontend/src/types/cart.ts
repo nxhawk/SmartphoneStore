@@ -6,3 +6,17 @@ export interface IProductCart {
   quantity: number;
   productId: IProduct;
 }
+
+export enum PaymentMethod {
+  ONLINE = 'online',
+  OFFLINE = 'offline',
+}
+
+export interface IOrderInfo {
+  reciverName: string;
+  address: string;
+  phoneNumber: string;
+  notes: string;
+  payMethod: PaymentMethod;
+  isPayment: boolean;
+}
