@@ -1,0 +1,54 @@
+version: '1.0'
+
+services:
+  postgres:
+    image: postgres:14.2
+    restart: always
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: smartphone-store
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data/
+      # - ./docker_postgres_init.sql:/docker-entrypoint-initdb.d/docker_postgres_init.sql
+    
+  backend:
+    restart: always
+    build:
+      dockerfile: Dockerfile
+      context: './backend'
+    depends_on:
+      - postgres
+    volumes:
+      - /backend/node_modules
+      - ./backend:/app
+    ports:
+      - '3003:3003'
+    environment:
+      - PORT = 3003
+      - ROOT_SERVER = http://localhost:3003
+      - CLIENT_URL = http://localhost:5173
+      - DB_DB = postgres
+      - DB_HOST = localhost
+      - DB_PORT = 5432
+      - DB_USERNAME = root
+      - DB_PASSWORD = root
+      - DB_DATABASE = smartphone-shop
+  frontend:
+    build:
+      dockerfile: Dockerfile
+      context: "./frontend"
+    depends_on:
+      - backend # todo: might not be necessary
+    volumes:
+      - /frontend/node_modules
+      - ./frontend:/app
+    ports:
+      - "5173:5173"
+    environment:
+      - VITE_REACT_APP_BASE_URL = 'http://localhost:3003/api'
+
+volumes:
+  pg_data:
