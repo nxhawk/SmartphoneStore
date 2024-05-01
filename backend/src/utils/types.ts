@@ -1,3 +1,4 @@
+import { Cart } from 'src/cart/entities/cart.entity';
 import { CommentEntity } from 'src/comment/entities/comment.entity';
 import { Product } from 'src/product/entities/product.entity';
 import { User } from 'src/user/entities/user.entity';
@@ -71,4 +72,9 @@ export type ICommentResponse = {
   perPage: number;
   totalPage: number;
   currentPage: number;
+};
+
+export type ICartResponse = {
+  carts: Cart[];
+  totalCost: number;
 };

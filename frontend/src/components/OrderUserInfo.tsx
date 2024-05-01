@@ -34,7 +34,7 @@ const OrderSchema = yup.object().shape({
   .required('pay method is required')
 });
 
-const OrderUserInfo = () => {
+const OrderUserInfo = ({ totalCost }: { totalCost: number }) => {
   const [t] = useTranslation('global');
   const orderMutation = useMutation({
     mutationFn: async (data: IOrderInfo) => ApiOrderProduct(data),
@@ -201,7 +201,7 @@ const OrderUserInfo = () => {
         <hr className="border-gray-700 mb-4"/>
         <div className="flex items-center justify-between">
           <p className="font-bold">{t('page.cart.total')}:</p>
-          <p className="font-bold text-red-700 lg:text-xl text-lg">{convertToVND(245000000)}</p>
+          <p className="font-bold text-red-700 lg:text-xl text-lg">{convertToVND(totalCost)}</p>
         </div>
         <button className={`shadow rounded mt-8 w-full text-center bg-amber-600 py-1 font-medium text-white text-lg hover:bg-amber-700 flex justify-center items-center gap-2 ${(orderMutation.isPending || orderVnpayMutation.isPending || orderPaypalMutation.isPending) && 'opacity-50'}`}
         type="submit"

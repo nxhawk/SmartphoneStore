@@ -11,9 +11,11 @@ import { AxiosError } from "axios"
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom"
 import { CartContext } from "../context/CartContext"
-import { useContext } from "react"
+import { useContext, useState } from "react"
 
 const Cart = () => {
+  const [totalCost, setTotalCost] = useState<number>(0);
+
   const { refetch: refetchCart } = useContext(CartContext)!;
 
   const navigate = useNavigate();
@@ -22,6 +24,11 @@ const Cart = () => {
     queryKey: ['cart'],
     queryFn: async () => {
       const data = await getCart();
+      let total = 0;
+      data.map((item: IProductCart) => {
+        total += item.quantity * item.productId.price * (100 - item.productId.discount);
+      })
+      setTotalCost(total);
       return data;
     },
   })
@@ -62,6 +69,7 @@ const Cart = () => {
                     product={product.productId}
                     quantity={product.quantity}
                     remove={deleteProductFromCartMutation}
+                    refetch={refetch}
                   />
                 ))
               }
@@ -70,7 +78,7 @@ const Cart = () => {
           {
             products.length > 0 &&
             <div className="flex-1">
-              <OrderUserInfo/>
+              <OrderUserInfo totalCost={totalCost}/>
             </div>
           }
         </div>

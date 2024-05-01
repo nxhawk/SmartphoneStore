@@ -18,9 +18,10 @@ interface Props {
   product: IProduct;
   quantity: number;
   remove:  UseMutationResult<string, AxiosError<unknown, string>, number, unknown>
+  refetch: () => void;
 }
 
-const ProductOrder = ({ product, quantity, remove }: Props) => {
+const ProductOrder = ({ product, quantity, remove, refetch }: Props) => {
   const [numberProduct, setNumberProduct] = useState<number>(quantity);
 
   const changeProductNumberCartMutation = useMutation({
@@ -35,6 +36,7 @@ const ProductOrder = ({ product, quantity, remove }: Props) => {
     },
     onSuccess: (data) => {
       setNumberProduct(data.quantity);
+      refetch();
     }
   })
   
