@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import configuration from './config/configuration';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { typeOrmAsyncConfig } from 'db/data-source';
+// import { typeOrmAsyncConfig } from 'db/data-source';
 import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
 import { PassportModule } from '@nestjs/passport';
@@ -23,8 +23,18 @@ import { OrderModule } from './order/order.module';
       load: [configuration],
     }),
     PassportModule.register({ session: true }),
-    // TypeOrmModule.forRoot(dataSourceOptions),
-    TypeOrmModule.forRootAsync(typeOrmAsyncConfig),
+    TypeOrmModule.forRoot({
+      type: 'postgres',
+      host: '127.0.0.1',
+      port: 5432,
+      username: 'postgres',
+      database: 'smartphone-shop',
+      password: '12345',
+      entities: ['dist/**/*.entity.{js, ts}'],
+      // autoLoadEntities: true,
+      synchronize: true,
+    }),
+    // TypeOrmModule.forRootAsync(typeOrmAsyncConfig),
     UserModule,
     AuthModule,
     ImageStorageModule,

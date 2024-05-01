@@ -2,19 +2,19 @@ version: '3.8'
 
 services:
   postgres:
-    image: postgres:14.2
+    image: postgres:14.2-alpine
     restart: always
     container_name: postgres
     environment:
       POSTGRES_USER: ${DB_USERNAME}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
-      POSTGRES_DB: ${smartphone-shop}
+      POSTGRES_DB: ${DB_DATABASE}
       PGDATA: /var/lib/postgresql/data
     ports:
       - "${DB_PORT}:5432"
     volumes:
       - pg_data:/var/lib/postgresql/data/
-      - ./docker_postgres_init.sql:/docker-entrypoint-initdb.d/docker_postgres_init.sql
+      # - ./docker_postgres_init.sql:/docker-entrypoint-initdb.d/docker_postgres_init.sql
     networks:
       - bp-network
     env_file:
@@ -27,8 +27,6 @@ services:
       dockerfile: Dockerfile
       context: './backend'
     depends_on:
-      - postgres
-    links:
       - postgres
     volumes:
       - ./backend:/svr/app
@@ -45,8 +43,8 @@ services:
     build:
       dockerfile: Dockerfile
       context: "./frontend"
-    depends_on:
-      - backend # todo: might not be necessary
+    # depends_on:
+    #   - backend # todo: might not be necessary
     volumes:
       - ./frontend:/usr/app
       - /usr/app/node_modules

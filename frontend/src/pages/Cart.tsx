@@ -43,7 +43,7 @@ const Cart = () => {
   })
 
   if (isLoading) return <div>Loading...</div>
-  if (isError) return navigate('/auth/login');
+  if (isError) navigate('/auth/login');
 
   return (
     <DocumentMeta {...CartMeta}>
