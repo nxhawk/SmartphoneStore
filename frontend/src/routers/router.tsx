@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { Navigate, createBrowserRouter } from "react-router-dom";
 import Layout from "../layout/Layout";
 import CheckLoginRoute from "./CheckLoginRoute";
 import Home from "../pages/Home";
@@ -20,96 +20,111 @@ import ForgotPassword from "../pages/ForgotPassword";
 import RegisterSuccess from "../pages/RegisterSuccess";
 import VerifyAccount from "../pages/VerifyAccount";
 import ButtonSetting from "../components/ButtonSetting/ButtonSetting";
+import Notfound from "../pages/error/Notfound";
+import ScrollToTop from "../hooks/useScrollToTop";
 
 const router = createBrowserRouter(
   [
     {
-      element: <ButtonSetting/>,
+      element: <ScrollToTop/>,
       children: [
         {
-          element: <Layout/>,
+          element: <ButtonSetting/>,
           children: [
             {
-              element: <CheckLoginRoute/>,
+              element: <Layout/>,
               children: [
                 {
-                  path: '/',
-                  element: <Home/>
-                },
-                {
-                  path: '/news',
-                  element: <News/>
-                },
-                {
-                  path: '/hiring',
-                  element: <Hiring/>
-                },
-                {
-                  path: '/about',
-                  element: <About/>
-                },
-                {
-                  path: '/maintenance',
-                  element: <Maintenance/>
-                },
-                {
-                  path: '/contact',
-                  element: <Contact/>
-                },
-                {
-                  path:'/showall',
-                  element: <AllProduct/>
-                },
-                {
-                  path: '/product/:productId',
-                  element: <ProductDetails/>
-                },
-                {
-                  path: '/settings',
-                  element: <Settings/>
-                },
-                {
-                  element: <PrivateRoute/>,
+                  element: <CheckLoginRoute/>,
                   children: [
                     {
-                      path: '/detailUser',
-                      element: <DetailUser/>
+                      path: '/',
+                      element: <Home/>
                     },
                     {
-                      path: '/cart',
-                      element: <Cart/>
+                      path: '/news',
+                      element: <News/>
+                    },
+                    {
+                      path: '/hiring',
+                      element: <Hiring/>
+                    },
+                    {
+                      path: '/about',
+                      element: <About/>
+                    },
+                    {
+                      path: '/maintenance',
+                      element: <Maintenance/>
+                    },
+                    {
+                      path: '/contact',
+                      element: <Contact/>
+                    },
+                    {
+                      path:'/showall',
+                      element: <AllProduct/>
+                    },
+                    {
+                      path: '/product/:productId',
+                      element: <ProductDetails/>
+                    },
+                    {
+                      path: '/settings',
+                      element: <Settings/>
+                    },
+                    {
+                      element: <PrivateRoute/>,
+                      children: [
+                        {
+                          path: '/detailUser',
+                          element: <DetailUser/>
+                        },
+                        {
+                          path: '/cart',
+                          element: <Cart/>
+                        }
+                      ]
                     }
                   ]
                 }
+              ]
+            },
+            {
+              path: '/auth',
+              element: <RedirectRoute/>,
+              children: [
+                {
+                  path: 'login',
+                  element: <Login/>
+                },
+                {
+                  path: 'signup',
+                  element: <Signup/>
+                },
+                {
+                  path: 'forgotPassword',
+                  element: <ForgotPassword/>
+                },
+                {
+                  path: 'success',
+                  element: <RegisterSuccess/>
+                },
+                {
+                  path: 'verify/:token',
+                  element: <VerifyAccount/>
+                },
               ]
             }
           ]
         },
         {
-          path: '/auth',
-          element: <RedirectRoute/>,
-          children: [
-            {
-              path: 'login',
-              element: <Login/>
-            },
-            {
-              path: 'signup',
-              element: <Signup/>
-            },
-            {
-              path: 'forgotPassword',
-              element: <ForgotPassword/>
-            },
-            {
-              path: 'success',
-              element: <RegisterSuccess/>
-            },
-            {
-              path: 'verify/:token',
-              element: <VerifyAccount/>
-            },
-          ]
+          path: '/notfound',
+          element: <Notfound/>
+        },
+        {
+          path: '*',
+          element: <Navigate to='/notfound'/>
         }
       ]
     }
