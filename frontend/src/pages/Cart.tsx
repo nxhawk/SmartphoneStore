@@ -26,7 +26,7 @@ const Cart = () => {
       const data = await getCart();
       let total = 0;
       data.map((item: IProductCart) => {
-        total += item.quantity * item.productId.price * (100 - item.productId.discount);
+        total += item.quantity * item.productId.price * (100 - item.productId.discount) / 100;
       })
       setTotalCost(total);
       return data;
