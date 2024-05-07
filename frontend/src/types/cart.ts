@@ -18,6 +18,6 @@ export interface IOrderInfo {
   address: string;
   phoneNumber: string;
   notes: string;
-  payMethod: PaymentMethod;
+  paymentMethod: PaymentMethod;
   isPayment: boolean;
 }

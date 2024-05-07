@@ -30,7 +30,7 @@ const OrderSchema = yup.object().shape({
   .required('phone number is required')
   .length(10, 'length is 10'),
   notes: yup.string(),
-  payMethod: yup.string()
+  paymentMethod: yup.string()
   .required('pay method is required')
 });
 
@@ -91,22 +91,22 @@ const OrderUserInfo = ({ totalCost }: { totalCost: number }) => {
       address: "",
       phoneNumber: "",
       notes: "",
-      payMethod: PaymentMethod.OFFLINE,
+      paymentMethod: PaymentMethod.OFFLINE,
       isPayment: false,
     },
     validationSchema: OrderSchema,
     onSubmit: async (values: IOrderInfo) => {
       if (orderMutation.isPending || orderVnpayMutation.isPending) return;
-      if (values.payMethod === PaymentMethod.OFFLINE){
+      if (values.paymentMethod === PaymentMethod.OFFLINE){
         orderMutation.mutate({
           ...values,
           isPayment: false,
         })
-      } else if (values.payMethod === PaymentMethod.VNPAY) {
+      } else if (values.paymentMethod === PaymentMethod.VNPAY) {
         orderVnpayMutation.mutate({
           ...values
         });
-      } else if (values.payMethod === PaymentMethod.PAYPAL) {
+      } else if (values.paymentMethod === PaymentMethod.PAYPAL) {
         orderPaypalMutation.mutate({
           ...values
         });
@@ -181,7 +181,7 @@ const OrderUserInfo = ({ totalCost }: { totalCost: number }) => {
               aria-labelledby="demo-radio-buttons-group-label"
               defaultValue="female"
               name="radio-buttons-group"
-              value={formik.values.payMethod}
+              value={formik.values.paymentMethod}
               onChange={formik.handleChange('payMethod')}
               onBlur={formik.handleBlur('payMethod')}
             >
@@ -193,7 +193,7 @@ const OrderUserInfo = ({ totalCost }: { totalCost: number }) => {
             </RadioGroup>
             <div className='px-2 font-semibold text-red-500 text-sm'>
               {
-                formik.touched.payMethod && formik.errors.payMethod
+                formik.touched.paymentMethod && formik.errors.paymentMethod
               }
             </div>
           </FormControl>

@@ -1,4 +1,4 @@
-import { Body, Controller, Inject, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Inject, Post, UseGuards } from '@nestjs/common';
 import { Routes, Services } from 'src/utils/constants';
 import { AuthenticatedGuard } from 'src/auth/utils/Guards';
 import { AuthUser } from 'src/utils/decorators';
@@ -7,6 +7,7 @@ import { OrderCreateDto } from './dtos/order-create.dto';
 import { IOrderService } from './interfaces/order';
 
 @Controller(Routes.ORDER)
+@UseGuards(AuthenticatedGuard)
 export class OrderController {
   constructor(
     @Inject(Services.ORDER_SERVICE)
@@ -14,7 +15,6 @@ export class OrderController {
   ) {}
 
   @Post()
-  @UseGuards(AuthenticatedGuard)
   async addNewOrder(
     @AuthUser() user: User,
     @Body() orderCreateDto: OrderCreateDto,
@@ -23,8 +23,12 @@ export class OrderController {
   }
 
   @Post('/mycart')
-  @UseGuards(AuthenticatedGuard)
   async getById(@AuthUser() user: User) {
     return this.orderService.getOrderById(user);
+  }
+
+  @Get()
+  async getMyListOrder(@AuthUser() user: User) {
+    return this.orderService.getAllOrder(user);
   }
 }
