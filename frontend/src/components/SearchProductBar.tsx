@@ -5,7 +5,7 @@ const SearchProductBar = ({setSearchValueRoot}: {setSearchValueRoot: Dispatch<Se
 
   const [searchValue, setSearchValue] = useState<string>("");
 
-  const debounceSearchValue = useDebounce({ value: searchValue, delay: 1000}); 
+  const debounceSearchValue = useDebounce({ value: searchValue, delay: 500}); 
 
   useEffect(()=>{
     setSearchValueRoot(debounceSearchValue);

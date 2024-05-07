@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { IProduct } from './interfaces/product';
 import { Product } from './entities/product.entity';
 import { InjectRepository } from '@nestjs/typeorm';
-import { In, Repository } from 'typeorm';
+import { ILike, In, Repository } from 'typeorm';
 import { ProductDetail } from './entities/product-details.entity';
 import { SortByOption, filterByPrice } from 'src/utils/helpers';
 import { IGetProductsResponse } from 'src/utils/types';
@@ -20,6 +20,7 @@ export class ProductService implements IProduct {
   async getAll(query): Promise<IGetProductsResponse> {
     const perPage = Number(query['perPage']) || 10;
     const currentPage = Number(query['page']) || 1;
+    const searchValue = query['search'] || '';
 
     const [products, totalProduct] = await this.productRepository.findAndCount({
       where: {
@@ -30,6 +31,7 @@ export class ProductService implements IProduct {
         },
         price: filterByPrice(query['price']),
         rate: query['star'] ? Number(query['star']) : undefined,
+        name: ILike(`%${searchValue}%`),
       },
       relations: {
         comment: true,
