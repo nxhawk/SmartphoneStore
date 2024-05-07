@@ -13,6 +13,7 @@ export interface filterProps {
 
 const AllProduct = () => {
   const [filter, setFilter] = useState<filterProps[]>([]);
+  const [searchValueRoot, setSearchValueRoot] = useState<string>("");
 
   const addFilterOption = (option: filterProps) => {
     if (option.option_root == 'brand'){
@@ -50,6 +51,7 @@ const AllProduct = () => {
         <div className='border-y-2 p-1 md:p-4'>
           <Brands
             addFilterOption={addFilterOption}
+            setSearchValueRoot={setSearchValueRoot}
           />
           <FilterList
             filter={filter}
@@ -62,6 +64,7 @@ const AllProduct = () => {
               title='* SẢN PHẨM TÌM KIẾM THEO YÊU CẦU *' 
               more={false}
               filter={filter}
+              searchValue={searchValueRoot}
             />
         </div>
       </div>

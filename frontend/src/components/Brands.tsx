@@ -1,9 +1,11 @@
+import { Dispatch, SetStateAction } from "react"
 import brandsData from "../constants/brands.json" 
 import filterOption from "../constants/filter.json" 
 import { filterProps } from "../pages/AllProduct"
 import ButtonFilter from "./ButtonFilter"
+import SearchProductBar from "./SearchProductBar"
 
-const Brands = ({ addFilterOption }: {  addFilterOption: (option: filterProps) =>void }) => {
+const Brands = ({ addFilterOption, setSearchValueRoot }: {  addFilterOption: (option: filterProps) =>void, setSearchValueRoot: Dispatch<SetStateAction<string>> }) => {
   return (
     <div>
       <div className="flex flex-wrap items-center justify-center cursor-pointer">
@@ -21,9 +23,13 @@ const Brands = ({ addFilterOption }: {  addFilterOption: (option: filterProps) =
           ))
         }
       </div>
+      
+      <div className="flex justify-center mt-4">
+        <SearchProductBar setSearchValueRoot={setSearchValueRoot}/>
+      </div>
 
       {/* filter */}
-      <div className="mt-6 flex gap-2 flex-wrap items-center justify-center">
+      <div className="flex gap-2 flex-wrap items-center justify-center">
         {
           filterOption["filter"].map((option) =>
             <ButtonFilter 

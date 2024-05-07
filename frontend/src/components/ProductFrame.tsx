@@ -13,6 +13,7 @@ interface ProductProps {
   more?: boolean;
   title: string;
   filter?: filterProps[];
+  searchValue?: string;
 }
 
 interface Product {
@@ -24,14 +25,14 @@ interface Product {
   comment: IComment[];
 }
 
-const ProductFrame = ({ more = true, title, filter}: ProductProps) => {
+const ProductFrame = ({ more = true, title, filter, searchValue}: ProductProps) => {
   const [t] = useTranslation("global");
   const [page, setPage] = useState(1);
   const [storePage, setStorePage] = useState(1);
   const [perPage, setperPage] = useState(more?5:10);
   const [countPage, setcountPage] = useState(0);
 
-  const handleChangePage = (e: React.ChangeEvent<unknown>, value: number) =>{
+  const handleChangePage = (_e: React.ChangeEvent<unknown>, value: number) =>{
     setPage(value);
     changePage(value);
   } 
@@ -42,11 +43,11 @@ const ProductFrame = ({ more = true, title, filter}: ProductProps) => {
   }
 
   const { isLoading, data: products} = useQuery({
-    queryKey: ['products', filter, page],
+    queryKey: ['products', filter, page, searchValue],
     queryFn: async () => {
       if (page === storePage) setPage(1);
       setStorePage(page);
-      const data = await getAllProduct(filter, page, perPage);
+      const data = await getAllProduct(filter, page, perPage, searchValue?searchValue:'');
       setcountPage(data.totalPage);
       setperPage(data.perPage);
       return data.products;
