@@ -38,7 +38,7 @@ const Notfound = () => {
 
                     <div className="grow flex flex-col pl-5 pt-2">
                         <div className="font-bold text-sm md:text-lg lg:text-xl group-hover:underline">
-                            <Link to={'/'}>Home Page</Link>
+                            <Link to={'/'} replace>Home Page</Link>
                         </div>
 
                         <div className="font-semibold text-sm md:text-md lg:text-lg
@@ -63,7 +63,7 @@ const Notfound = () => {
 
                     <div className="grow flex flex-col pl-5 pt-2">
                         <div className="font-bold text-sm md:text-lg lg:text-xl group-hover:underline">
-                        <Link to={'/news'}>News</Link>
+                        <Link to={'/news'} replace>News</Link>
                         </div>
 
                         <div className="font-semibold text-sm md:text-md lg:text-lg
@@ -89,7 +89,7 @@ const Notfound = () => {
 
                     <div className="grow flex flex-col pl-5 pt-2">
                         <div className="font-bold text-sm md:text-lg lg:text-xl group-hover:underline">
-                            <Link to={'/about'}>About</Link>
+                            <Link to={'/about'} replace>About</Link>
                         </div>
 
                         <div className="font-semibold text-sm md:text-md lg:text-lg
@@ -114,7 +114,7 @@ const Notfound = () => {
 
                     <div className="grow flex flex-col pl-5 pt-2">
                         <div className="font-bold text-sm md:text-lg lg:text-xl group-hover:underline">
-                            <Link to={'/contact'}>Contact</Link>
+                            <Link to={'/contact'} replace>Contact</Link>
                         </div>
 
                         <div className="font-semibold text-sm md:text-md lg:text-lg

@@ -12,6 +12,7 @@ import { ApiGetAllMyOrder } from "../api/order/apiOrder";
 import { Link, Navigate } from "react-router-dom";
 import { IOrderInfo_User } from "../types/order";
 import { convertDate, convertToVND } from "../utils/helper";
+import DownloadOrderListTemplate from "./ButtonDownload/DownloadOrderListTemplate";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -44,7 +45,7 @@ const OrderList = () => {
     queryKey: ['cart'],
     queryFn: async () => {
       const data = await ApiGetAllMyOrder();
-      return data;
+      return data as IOrderInfo_User;
     },
   })
 
@@ -52,47 +53,55 @@ const OrderList = () => {
   if (isError) return <Navigate to={'/auth/login'}/>
 
   return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 700 }} aria-label="customized table">
-        <TableHead>
-          <TableRow>
-            <StyledTableCell>STT</StyledTableCell>
-            <StyledTableCell align="center">{t('page.order.sum')}</StyledTableCell>
-            <StyledTableCell align="center">{t('page.order.status')}</StyledTableCell>
-            <StyledTableCell align="center">{t('page.order.paid')}</StyledTableCell>
-            <StyledTableCell align="center">{t('page.order.date')}</StyledTableCell>
-            <StyledTableCell align="center">{t('page.order.detail')}</StyledTableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {
-            listOrder && listOrder.map((order: IOrderInfo_User, idx: number) => (
-              <StyledTableRow key={idx}>
-                <StyledTableCell component="th" scope="row">
-                  {idx + 1}
-                </StyledTableCell>
-                <StyledTableCell align="center">
-                  {convertToVND(order.order_totalCost)}
-                </StyledTableCell>
-                <StyledTableCell align="center">
-                  {order.order_status}
-                </StyledTableCell>
-                <StyledTableCell align="center">
-                  {order.order_isPayment ? 'True': 'False'}
-                </StyledTableCell>
-                <StyledTableCell align="center">
-                  {convertDate(order.order_timeOrder)}
-                </StyledTableCell>
-                <StyledTableCell align="center">
-                  <Link className="hover:text-sky-500" to={`/order/${order.order_isPayment}`}>More</Link>
-                </StyledTableCell>
-              </StyledTableRow>
-            ))
-          }
+    <div>
+      <div className="flex justify-end mb-2">
+        <DownloadOrderListTemplate
+          title={["orderId", "money", "status", "isPayment", "Date Order"]}
+          data={listOrder}
+        />
+      </div>
+      <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 700 }} aria-label="customized table">
+          <TableHead>
+            <TableRow>
+              <StyledTableCell>STT</StyledTableCell>
+              <StyledTableCell align="center">{t('page.order.sum')}</StyledTableCell>
+              <StyledTableCell align="center">{t('page.order.status')}</StyledTableCell>
+              <StyledTableCell align="center">{t('page.order.paid')}</StyledTableCell>
+              <StyledTableCell align="center">{t('page.order.date')}</StyledTableCell>
+              <StyledTableCell align="center">{t('page.order.detail')}</StyledTableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {
+              listOrder && listOrder.map((order: IOrderInfo_User, idx: number) => (
+                <StyledTableRow key={idx}>
+                  <StyledTableCell component="th" scope="row">
+                    {idx + 1}
+                  </StyledTableCell>
+                  <StyledTableCell align="center">
+                    {convertToVND(order.order_totalCost)}
+                  </StyledTableCell>
+                  <StyledTableCell align="center">
+                    {order.order_status}
+                  </StyledTableCell>
+                  <StyledTableCell align="center">
+                    {order.order_isPayment ? 'True': 'False'}
+                  </StyledTableCell>
+                  <StyledTableCell align="center">
+                    {convertDate(order.order_timeOrder)}
+                  </StyledTableCell>
+                  <StyledTableCell align="center">
+                    <Link className="hover:text-sky-500" to={`/order/${order.order_isPayment}`}>More</Link>
+                  </StyledTableCell>
+                </StyledTableRow>
+              ))
+            }
 
-        </TableBody>
-      </Table>
-    </TableContainer>
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </div>
   )
 }
 
