@@ -67,7 +67,6 @@ export class OrderService implements IOrderService {
     return this.orderRepository
       .createQueryBuilder('order')
       .andWhere('order.userId = :userId', { userId: user.userId })
-      .leftJoinAndSelect('order.orderDetails', 'od')
       .execute();
   }
 

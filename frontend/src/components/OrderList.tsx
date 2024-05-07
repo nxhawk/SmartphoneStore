@@ -7,6 +7,11 @@ import { styled } from '@mui/material/styles';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import TableBody from '@mui/material/TableBody';
 import { useTranslation } from "react-i18next";
+import { useQuery } from "@tanstack/react-query";
+import { ApiGetAllMyOrder } from "../api/order/apiOrder";
+import { Link, Navigate } from "react-router-dom";
+import { IOrderInfo_User } from "../types/order";
+import { convertDate, convertToVND } from "../utils/helper";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -35,6 +40,17 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 const OrderList = () => {
   const [t] = useTranslation("global");
 
+  const { isLoading, isError, data: listOrder } = useQuery({
+    queryKey: ['cart'],
+    queryFn: async () => {
+      const data = await ApiGetAllMyOrder();
+      return data;
+    },
+  })
+
+  if (isLoading) return <div>Loading...</div>
+  if (isError) return <Navigate to={'/auth/login'}/>
+
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -49,19 +65,30 @@ const OrderList = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {/* list */}
-          <StyledTableRow>
-            <StyledTableCell component="th" scope="row">
-              1
-            </StyledTableCell>
-            <StyledTableCell align="center">
-            100.000.000 VNĐ
-            </StyledTableCell>
-            <StyledTableCell align="center">PENDING</StyledTableCell>
-            <StyledTableCell align="center">True</StyledTableCell>
-            <StyledTableCell align="center">15-04-2024</StyledTableCell>
-            <StyledTableCell align="center">More</StyledTableCell>
-          </StyledTableRow>
+          {
+            listOrder && listOrder.map((order: IOrderInfo_User, idx: number) => (
+              <StyledTableRow key={idx}>
+                <StyledTableCell component="th" scope="row">
+                  {idx + 1}
+                </StyledTableCell>
+                <StyledTableCell align="center">
+                  {convertToVND(order.order_totalCost)}
+                </StyledTableCell>
+                <StyledTableCell align="center">
+                  {order.order_status}
+                </StyledTableCell>
+                <StyledTableCell align="center">
+                  {order.order_isPayment ? 'True': 'False'}
+                </StyledTableCell>
+                <StyledTableCell align="center">
+                  {convertDate(order.order_timeOrder)}
+                </StyledTableCell>
+                <StyledTableCell align="center">
+                  <Link className="hover:text-sky-500" to={`/order/${order.order_isPayment}`}>More</Link>
+                </StyledTableCell>
+              </StyledTableRow>
+            ))
+          }
 
         </TableBody>
       </Table>
