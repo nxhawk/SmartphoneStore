@@ -45,12 +45,13 @@ const OrderList = () => {
     queryKey: ['cart'],
     queryFn: async () => {
       const data = await ApiGetAllMyOrder();
-      return data as IOrderInfo_User;
+      return data;
     },
   })
 
   if (isLoading) return <div>Loading...</div>
   if (isError) return <Navigate to={'/auth/login'}/>
+  if (listOrder && listOrder.length <= 0) return <div>Empty</div>
 
   return (
     <div>
