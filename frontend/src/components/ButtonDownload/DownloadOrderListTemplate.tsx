@@ -61,7 +61,10 @@ const DownloadOrderListTemplate = ({ data, title }: Props) => {
 
   const downloadCSV = () => {
     // Convert data to CSV format
-    const csvContent = title.map((row) => row.join(",")).join("\n");
+    let csvContent = title.join(",") + '\n';
+    data.map((row) => {
+        csvContent += (row.order_orderId+','+row.order_totalCost+','+row.order_status+','+row.order_isPayment+','+row.order_timeOrder+'\n');
+    });
 
     // Create a Blob object
     const blob = new Blob([csvContent], { type: "text/csv" });
