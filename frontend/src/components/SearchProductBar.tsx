@@ -6,18 +6,18 @@ const SearchProductBar = ({setSearchValueRoot}: {setSearchValueRoot: Dispatch<Se
 
   const [searchValue, setSearchValue] = useState<string>("");
 
-  // const debounceSearchValue = useDebounce({ value: searchValue, delay: 500}); 
-  const throttledValue = useThrottle(searchValue, 500);
-
-  // useEffect(()=>{
-  //   setSearchValueRoot(debounceSearchValue);
-  // // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [debounceSearchValue])
+  const debounceSearchValue = useDebounce({ value: searchValue, delay: 500}); 
+  //const throttledValue = useThrottle(searchValue, 500);
 
   useEffect(()=>{
-    setSearchValueRoot(throttledValue);
+    setSearchValueRoot(debounceSearchValue);
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [throttledValue])
+  }, [debounceSearchValue])
+
+  // useEffect(()=>{
+  //   setSearchValueRoot(throttledValue);
+  // // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [throttledValue])
 
   return (
     <div className="mb-3 xl:w-96">
