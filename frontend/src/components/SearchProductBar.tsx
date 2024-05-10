@@ -1,16 +1,23 @@
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import useDebounce from "../hooks/useDebounce";
+import useThrottle from "../hooks/useThrottle";
 
 const SearchProductBar = ({setSearchValueRoot}: {setSearchValueRoot: Dispatch<SetStateAction<string>>}) => {
 
   const [searchValue, setSearchValue] = useState<string>("");
 
-  const debounceSearchValue = useDebounce({ value: searchValue, delay: 500}); 
+  // const debounceSearchValue = useDebounce({ value: searchValue, delay: 500}); 
+  const throttledValue = useThrottle(searchValue, 500);
+
+  // useEffect(()=>{
+  //   setSearchValueRoot(debounceSearchValue);
+  // // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [debounceSearchValue])
 
   useEffect(()=>{
-    setSearchValueRoot(debounceSearchValue);
+    setSearchValueRoot(throttledValue);
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [debounceSearchValue])
+  }, [throttledValue])
 
   return (
     <div className="mb-3 xl:w-96">
